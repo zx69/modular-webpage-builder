@@ -1,6 +1,5 @@
 <template>
   <div class="page_builder-index">
-    builder
     <HeaderBar @preview="isPreviewing = true" @setSchema="setRenderSchema" />
     <main class="main-content flex-1"></main>
     <!-- <BrochurePreviewer
@@ -16,10 +15,13 @@
 import {
   defineComponent, reactive, computed, ref, toRefs,
 } from 'vue';
+import HeaderBar from './components/HeaderBar.vue';
 
 export default defineComponent({
   name: 'page_builder-index',
-  components: {},
+  components: {
+    HeaderBar,
+  },
   props: {},
   setup(props, { emit }) {
     const state = reactive({});

@@ -10,6 +10,18 @@ module.exports = {
     '@vue/airbnb',
     '@vue/typescript/recommended',
   ],
+  globals: {
+    globalThis: false,
+    __adobe_cep__: 'readonly',
+    cep_node: 'readonly',
+    NodeJS: 'readonly',
+    GetArrayItem: 'readonly',
+    AsyncReturnType: 'readonly',
+    Obj: 'readonly',
+    TableParams: 'readonly',
+    TableData: 'readonly',
+    valueof: 'readonly',
+  },
   parserOptions: {
     ecmaVersion: 2020,
   },
