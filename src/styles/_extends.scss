@@ -1,0 +1,75 @@
+/* ModelList page shoes or filders container */
+%models-container {
+  // margin-right: -20px;
+
+  .shoes-list {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 60vh;
+
+    .shoes-item {
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// Flex
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Flex
+%flex-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+%align-center {
+  display: flex;
+  align-items: center;
+}
+
+%align-horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+%align-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+%text-justify {
+  word-break: break-word;
+  text-align: justify;
+}
+
+@mixin resize-icon($size) {
+  font-size: percentage($size);
+  line-height: (1/$size);
+  vertical-align: percentage(((1/$size - 1) / 2));
+}
+
+@mixin over-text($lines:2) {
+  overflow: hidden;
+  word-break: break-all;
+  outline: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}
+
+
+@mixin layout-elastic-center-container($lines: 1560px) {
+  width: 100%;
+  max-width: $lines;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+@mixin layout-bottom-gap($cssKey: 'margin-bottom', $gap: 80px){
+  #{$cssKey}: $gap;
+}

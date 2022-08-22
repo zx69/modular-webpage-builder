@@ -1,0 +1,181 @@
+@import "~element-plus/theme-chalk/src/index";
+
+.el-button {
+  border-radius: 5px;
+  // letter-spacing: 1px;
+  font-weight: 400; // CLPT-2795
+  &:not(.el-button--large):not(.el-button--xlarge):not(.el-button--text){
+    min-height: 32px  !important;
+  }
+}
+
+// 去除部分组件的outline
+.el-tooltip[tabindex],.el-drawer,.el-drawer__container{
+  outline: none;
+}
+
+.el-overlay{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+
+  &.is-message-box{
+    justify-content: center;
+    &:after{
+      height: unset;
+    }
+  }
+  &:before, &:after{
+    display: block;
+    content: ' ';
+  }
+}
+
+.el-dialog{
+  flex-shrink:0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+    // max-height: 70vh;
+    // display: flex;
+    // flex-direction: column;
+    // margin: 0 auto;
+    // position: absolute;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%);
+    // .el-dialog__body{
+    //   overflow: auto;
+    // }
+
+  .el-dialog__body{
+    padding: 10px 30px 30px;
+  }
+}
+
+.el-popper[role=tooltip]{
+  line-height: 20px;
+}
+
+/* 表单相关 form */
+// 表单field 必须校验时，显示的小红星样式
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before, .el-form-item[isRequired]>.el-form-item__label:before {
+  content: '*';
+  display: inline-block;
+  position: relative;
+  /* top: -3px; */
+  color: #F56C6C;
+  margin-right: 4px;
+  font-size: 16px;
+  height: 20px;
+  overflow: hidden;
+}
+
+// 表格
+.el-table__body tr.hover-row > td, .el-table__body tr.hover-row.current-row > td,
+.el-table__body tr.hover-row.el-table__row--striped > td, .el-table__body tr.hover-row.el-table__row--striped.current-row > td {
+  background-color: #EAF2FF;
+}
+// 行高亮
+.el-table--enable-row-hover .el-table__body tr:hover > td {
+  background-color: #EAF2FF !important;
+}
+// 固定样式 row cells
+.customer-header {
+  background-color: #F5F5F5 !important;
+  color: #333;
+  font-weight: 900;
+}
+.customer-row {
+  padding: 10px 0;
+}
+
+.el-form .el-form-item__label{
+  color: #222;
+}
+
+
+// tab标签统一设置
+.el-tabs__header{
+  margin: 0 ;
+}
+.el-tabs__nav-wrap { 
+  &::after {
+    display: none;
+  }
+}
+  .el-tabs__active-bar {
+  height: 3px;
+}
+.el-tabs__item {
+  color:#999;
+  font-weight: 400;
+  padding: 0 16px;
+}
+.el-tabs__item.is-active {
+  color: $color-primary;
+  font-weight: 500;
+}
+
+// 自定义的tabs
+.sd-tabs{
+  .el-tabs__item{
+    color: #666;
+    z-index: 1;
+  }
+  .el-tabs__item.is-active{
+    font-weight: bold;
+    color: #222222;
+  }
+  .el-tabs__active-bar{
+      width: 28px;
+      transform: translateX(0px);
+      background-color: $color-primary;
+      bottom: 11px;
+      height: 4px;
+      border-radius: 2px;
+  }
+}
+
+// 分页器
+.el-pagination{
+  text-align: center;
+  .el-pager li,.btn-prev, .btn-next{
+    min-width: 30.5px;
+    border: 1px solid #dddddd !important;
+    border-radius: 4px;
+    margin-left: 5px;
+    font-weight: 400;
+  }
+  .btn-prev{
+    padding-right: 6px;
+
+  }
+  .btn-next{
+    padding-left: 6px;
+  }
+}
+  
+
+.el-message-box{
+  padding-bottom: 0;
+  .el-message-box__header{
+  }
+  .el-message-box__content{
+    padding: 15px 24px 20px 24px !important;
+    font-size: 16px;
+    font-weight: 500;
+    color: #222222;
+  }
+  .el-message-box__btns{
+    padding: 20px;
+    padding-top: 10px;
+    text-align: right;
+    box-sizing: border-box;
+  }
+}
+// ui-bug: CLPT-2183
+.el-message{
+  min-width: unset !important;
+}

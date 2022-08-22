@@ -1,0 +1,84 @@
+@import "~element-plus/theme-chalk/src/common/var";
+
+$icon-selector-prefix: i, icon;
+$iconfont-selector: '.iconfont';
+$icon-selectors: ($iconfont-selector);
+$iconfont-path: '../assets/font/' !default;
+
+@each $prefix in $icon-selector-prefix {
+  $icon-selectors: append($icon-selectors, '[class^="#{$prefix}-"]', $separator: comma);
+  $icon-selectors: append($icon-selectors, '[class*=" #{$prefix}-"]', $separator: comma);
+}
+
+/* Color */
+$color-primary: #21BFB8;
+$color-body-bg:#F1F2F5;
+
+
+$color-auxiliary-danger: #f62020;
+$color-auxiliary-success: #01c973;
+$color-auxiliary-warning: #ffaa00;
+$color-auxiliary-perple: #9266f9;
+$color-auxiliary-green: #16c2c2;
+
+$color-font-darkest: #333;
+$color-font-darker: #606060;
+$color-font-dark: #7f7f7f;
+$color-font-light: #bbb;
+
+$color-bg-primary: #f4f7fc;
+$color-bg-gray: #f2f3f5;
+$color-bg-white: #fff;
+$color-bg-blue-light: #e9f1ff;
+
+$color-border-dark: #ddd;
+$color-border-normal: #e5e5e5;
+$color-border-light: #eee;
+
+
+/* Font */
+$font-size-largest: 30px;
+$font-size-larger: 24px;
+$font-size-large: 20px;
+$font-size-medium: 16px;
+$font-size-small: 14px;
+$font-size-mini: 12px;
+
+$font-weight-large: 900;
+$font-weight-medium: 700;
+$font-weight-small: 500;
+$font-weight-mini: 100;
+
+/* Border Radius */
+$radius-large: 12px;
+$radius-medium: 8px;
+$radius-small: 4px;
+$radius-mini: 2px;
+
+/* table page related */
+$table-page-header: 66px;
+$table-page-padding: 20px;
+
+$--color-primary:$color-primary;
+$--font-path: '~element-plus/lib/theme-chalk/fonts';
+$--button-small-font-size: 14px;
+$--button-small-border-radius: 3px;
+$--button-small-padding-vertical: 8px;
+$--button-small-padding-horizontal: 16px;
+$--button-large-padding-vertical: 12px;
+$--button-large-padding-horizontal: 20px;
+$--input-small-height: 32px;
+$--button-font-size: $--button-small-font-size;
+$--button-border-radius: $--button-small-border-radius;
+$--button-padding-vertical: $--button-small-padding-vertical;
+$--button-padding-horizontal: $--button-small-padding-horizontal;
+$--button-default-font-color: #666;
+$--button-default-border-color: #ddd;
+
+
+/* Header's height */
+$header-height: 60px;
+$container-min-width: 1250px;
+
+/* sidebar's width */
+$sidebar-width: 100px;

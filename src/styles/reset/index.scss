@@ -1,0 +1,43 @@
+@import "element-reset"; 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-size: 14px;
+  color: #333;
+  background-color: transparent;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+video{
+  outline: none;
+}
+
+// 去掉苹果系统中i标签默认显示的蓝色边框
+i{
+  outline: none !important;
+}
