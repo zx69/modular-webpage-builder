@@ -1,0 +1,153 @@
+// .mc-module {
+//   margin-bottom: 20px;
+//   & + .mc-module{
+//   }
+// }
+
+
+
+
+.el-dropdown + .el-button, .el-button + .el-dropdown{
+  margin-left: 12px;
+}
+
+// 固定宽高比布局
+.fixed-aspect-radio-box{
+  position: relative;
+  & > div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.mc-module{
+  position: relative;
+  &.module-beside-gap, .module-beside-gap{
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    // &.platform-h5, &.platform-app, &.platform-mp {
+    //   padding: 0 12px 0;  
+    // }
+  }
+}
+
+.preview-container {
+  width: 100%;
+  max-width: 1920px;
+  min-width: 1420px;
+  margin: 0 auto;
+}
+
+
+.material-brochure_generator_index{
+  .el-pagination{
+    flex-shrink: 0;
+    padding: 12px 0;
+    .el-pager li {
+      min-width: unset;
+      width: 26px;
+    }
+  }
+}
+
+// 移动端适配
+.in-mobile, .preview-mode-mobile{
+  background-color: transparent !important;
+  .preview-container{
+    max-width: unset;
+    min-width: unset;
+    margin: unset;
+  }
+  .brochure_preview-iframe-window {
+    padding: 12px 12px 20px;
+  }
+  .mc-module{
+    margin-bottom: 20px;
+    padding: unset;
+    // margin-left: 12px;
+    // margin-right: 12px;
+    // &.module-beside-gap, .module-beside-gap{
+      // }
+  }
+}
+
+.mc-module{
+  &.in-readonly{
+    .mc-component{
+      pointer-events: none;
+    }
+  }
+  &.in-preview{
+    .mc-component{
+      &.inputable-text{
+        pointer-events: none;
+      }
+    }
+    .hot-point{
+      cursor: pointer;
+    }
+  }
+  &.in-edit{
+    .mc-block, .mc-component{
+      user-select: none;
+    }
+  }
+}
+
+.free-diy-module{
+  // .vdr{
+  //   position: absolute;
+  // }
+  .mc-group{
+    position: absolute;
+  }
+}
+// .sortable-drag{
+//   background: blue;
+//   // padding-bottom: 0 !important;
+  
+//   // .module-thumbnail{
+//   //   transform: scale(0.11267);
+//   // }
+// }
+
+// .sortable-ghost{
+//   background: red;
+//   // padding-bottom: 0 !important;
+
+// }
+
+// .sortable-fallback{
+//   background: green;
+//   // padding-bottom: 0 !important;
+// }
+
+.control-panel{
+  .subtitle{
+    font-weight: 400;
+    line-height: 20px;
+    margin: 12px 0 8px;
+  }
+}
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 44px;
+  &:after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid #dddddd;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+.draggable-component{
+  transform-origin: center center;
+}

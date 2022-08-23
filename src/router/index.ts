@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Builder from '../views/builder/index.vue';
+import ModuleEditor from '../views/moduleEditor/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/builder',
         name: 'builder',
         component: Builder,
+      },
+      {
+        path: '/moduleEditor',
+        name: 'moduleEditor',
+        component: ModuleEditor,
       },
     ],
   },

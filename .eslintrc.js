@@ -165,5 +165,6 @@ module.exports = {
     // 鉴于上述原因，暂时改成warn
     'vue/no-mutating-props': 'warn',
     '@typescript-eslint/ban-ts-comment': 'off',
+    'vuejs-accessibility/click-events-have-key-events': 'off',
   },
 };

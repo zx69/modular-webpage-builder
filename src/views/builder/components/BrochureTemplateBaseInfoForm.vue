@@ -107,24 +107,39 @@ export default defineComponent({
     };
 
     const handleSubmit = async () => {
-      formRef.value!.validate(async (valid) => {
-        if (valid) {
-          try {
-            state.loading = true;
-            const _brochureId = await submitSaveForm(state.formData, 'add');
-            //   // 编辑时返回的完整cover字段直接提交会超长,需要截取出其中有效path片段
-            //   await _fn({ ...state.formData, cover: getRelativePathFromUrl(state.formData.cover) });
-            emit('confirm', {
-              brochureId: _brochureId,
-              formData: state.formData,
-            });
-          } finally {
-            setTimeout(() => {
-              state.loading = false;
-            }, 1000);
-          }
-        }
-      });
+      await formRef.value.validate();
+      try {
+        state.loading = true;
+        const _brochureId = await submitSaveForm(state.formData, 'add');
+        //   // 编辑时返回的完整cover字段直接提交会超长,需要截取出其中有效path片段
+        //   await _fn({ ...state.formData, cover: getRelativePathFromUrl(state.formData.cover) });
+        emit('confirm', {
+          brochureId: _brochureId,
+          formData: state.formData,
+        });
+      } finally {
+        setTimeout(() => {
+          state.loading = false;
+        }, 1000);
+      }
+      // formRef.value!.validate(async (valid) => {
+      //   if (valid) {
+      //     try {
+      //       state.loading = true;
+      //       const _brochureId = await submitSaveForm(state.formData, 'add');
+      //       //   // 编辑时返回的完整cover字段直接提交会超长,需要截取出其中有效path片段
+      //       //   await _fn({ ...state.formData, cover: getRelativePathFromUrl(state.formData.cover) });
+      //       emit('confirm', {
+      //         brochureId: _brochureId,
+      //         formData: state.formData,
+      //       });
+      //     } finally {
+      //       setTimeout(() => {
+      //         state.loading = false;
+      //       }, 1000);
+      //     }
+      //   }
+      // });
     };
 
     return {
