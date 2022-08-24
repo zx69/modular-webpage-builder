@@ -1,14 +1,23 @@
-import { reactive, computed } from 'vue';
+import { getPlatform } from '@/utils/system';
+import {
+  reactive, computed, Ref, ref,
+} from 'vue';
+import getModulesList from '../modules';
 import {
   CommonCompProp, CompBlock, CompComponent, CompModule, ControlAction, CombindCompProp, FrameClientRect,
 } from './typings';
+
+export const modules: Ref<CombindCompProp[]> = ref([]);
+export const generateModulesList = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => {
+  modules.value = getModulesList(type);
+};
 
 
 const initStoreData = {
   // sectionId计数
   sectionIdCount: 1,
   // 当前平台
-  currentPlatform: '' as '' | 'pc' | 'h5' | 'mp' | 'app',
+  currentPlatform: getPlatform() as '' | 'pc' | 'h5' | 'mp',
   // 由shema渲染出的节点的扁平化[id-obj]键值对map
   flattenShemaNodeMap: {} as { [key: string]: CombindCompProp },
   // 各个section的data的扁平化[id-obj]键值对map

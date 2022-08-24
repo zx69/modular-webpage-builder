@@ -13,6 +13,6 @@ export default defineComponent({
 
 </script>
 <style lang="scss" scoped>
-.module-editor{
+.module-editor {
 }
 </style>

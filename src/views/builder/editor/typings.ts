@@ -9,7 +9,7 @@ export type PanelConfig = {
 };
 
 export type CommonCompProp = {
-  type: string,
+  type: 'module' | 'block' | 'component',
   class?: string,
   index: number, // 在模块列表中的排列序号
   style?: {

@@ -44,7 +44,7 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, h, onMounted, nextTick, toRef,
 } from 'vue';
-// import { getPx } from '../bridge/utils';
+// import { getPx } from '@/utils/style';
 // import store, {
 //   CONTENT_MAX_WIDTH,
 //   CONTENT_MIN_WIDTH,
