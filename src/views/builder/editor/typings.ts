@@ -8,52 +8,56 @@ export type PanelConfig = {
   panelType?: string,
 };
 
-export type CommonCompProp = {
-  type: 'module' | 'block' | 'component',
+export type SchemaType = 'module' | 'block' | 'component';
+export type CommonCompProp<T extends SchemaType = SchemaType> = {
+  index: T extends 'module' ? number : undefined, // 在模块列表中的排列序号
+  type: T,
   class?: string,
-  index: number, // 在模块列表中的排列序号
   style?: {
     [key: string]: string,
   },
   customStyle?: {
     [key: string]: string,
   },
-  children?: string | CommonCompProp[],
-  mobile?: CommonCompProp,
-  weixin?: CommonCompProp & { redirectUrl?: string },
+  mobile?: CommonCompProp<T>,
   operation?: string | false,
-  sid?: string,
-  mid?: string,
-};
-
-
-export type CompModule = CommonCompProp & {
-  mid: string,
-  // sid?: string,
-  type: 'module',
-  aspectRadio?: string,
-  data: {
+  sid: T extends 'module' ? string : undefined,
+  mid: T extends 'module' ? string : undefined,
+  aspectRadio: T extends 'module' ? string : undefined,
+  children: T extends 'component' ? undefined : string | (CompBlock | CompComponent)[],
+  data: T extends 'module' ? {
     // status: 'edit' | 'preview',
     [key: string]: unknown,
-  },
+  } : undefined,
+  component: T extends 'component' ? (string | ((data: Obj, attrs: Obj) => VNode)) : undefined,
+  props: T extends 'component' ? Obj : undefined,
 };
 
-export type CompBlock = CommonCompProp & {
-  type: 'block',
-};
-
-// export type CompTpl = CommonCompProp & {
-//   type: 'tpl',
-//   tpl: string,
+export type CompModule = CommonCompProp<'module'>;
+// export type CompModule = CommonCompProp<'module'> & {
+//   index: number, // 在模块列表中的排列序号
+//   type: 'module',
+//   mid: string,
+//   // sid?: string,
+//   aspectRadio?: string,
+//   children?: string | (CompBlock | CompComponent)[]
+//   data: {
+//     // status: 'edit' | 'preview',
+//     [key: string]: unknown,
+//   },
+// };
+export type CompBlock = CommonCompProp<'block'>;
+// export type CompBlock = CommonCompProp<'block'> & {
+//   type: 'block',
+// };
+export type CompComponent = CommonCompProp<'component'>;
+// export type CompComponent = CommonCompProp<'component'> & {
+//   component: string | ((data: Obj, attrs: Obj) => VNode),
+//   props: Obj,
 // };
 
-export type CompComponent = CommonCompProp & {
-  component: string | ((data: Obj, attrs: Obj) => VNode),
-  props: Obj,
-};
 
-
-export type CombindCompProp = CompModule | CompBlock | CompComponent;
+export type CombindCompProp<T> = CommonCompProp<T>;
 
 export type PreviewMode = 'pc' | 'mobile'; // 预览模式切换
 

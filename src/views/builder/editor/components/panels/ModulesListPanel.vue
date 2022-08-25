@@ -27,7 +27,7 @@ import {
 import {
   modules,
 } from '../../store';
-import { CommonCompProp } from '../../typings';
+import { CompModule } from '../../typings';
 import Renderer from '../Renderer';
 
 export default defineComponent({
@@ -42,7 +42,7 @@ export default defineComponent({
     const state = reactive({
     });
 
-    const handleDragStart = (ev: DragEvent, moduleSchema: CommonCompProp) => {
+    const handleDragStart = (ev: DragEvent, moduleSchema: CompModule) => {
       ev.dataTransfer?.setData('module-schema-id', moduleSchema.mid!);
     };
 

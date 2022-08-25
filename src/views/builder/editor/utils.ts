@@ -5,7 +5,7 @@ import { objUtil } from '@/utils/objUtil';
 import { moduleComponentsMap } from '../modules';
 import {
   CombindCompProp,
-  CommonCompProp, CompBlock, CompComponent, CompModule, PreviewMode, RenderStatus,
+  CommonCompProp, CompBlock, CompComponent, CompModule, PreviewMode, RenderStatus, SchemaType,
 } from './typings';
 import store from './store';
 
@@ -72,35 +72,36 @@ export const getEventCatchAndThrowMap = (eventNames: string | string[]) => {
 
 // 规范化nodeSchema策略集合
 const normalizeNodeSchemaStrategies = {
-  module(nodeSchema: CompModule) {
-    return {
-      tagName: 'div',
-      ...objUtil.pick(nodeSchema, ['style', 'class']),
-      children: nodeSchema.children || [],
-    };
+  module(nodeSchema: CombindCompProp<unknown>) {
+    if (nodeSchema.type === 'module') {
+      return {
+        tagName: 'div',
+        ...objUtil.pick(nodeSchema, ['style', 'class']),
+        children: nodeSchema.children || [],
+      };
+    }
+    return null;
   },
-  block(nodeSchema: CompBlock) {
-    return {
-      tagName: 'div',
-      ...objUtil.pick(nodeSchema, ['style', 'class']),
-      children: nodeSchema.children || [],
-
-    };
+  block(nodeSchema: CombindCompProp<unknown>) {
+    if (nodeSchema.type === 'block') {
+      return {
+        tagName: 'div',
+        ...objUtil.pick(nodeSchema, ['style', 'class']),
+        children: nodeSchema.children || [],
+      };
+    }
+    return null;
   },
-  // tpl(nodeSchema: CompTpl, data: Obj = {}) {
-  //   return {
-  //     tagName: 'span',
-  //     ...objUtil.pick(nodeSchema, ['style', 'class']),
-  //     children: parseTplExpress(data, nodeSchema.tpl),
-  //   };
-  // },
-  component(nodeSchema: CompComponent, currentStatus: RenderStatus) {
-    return {
-      tagName: '',
-      ...objUtil.pick(nodeSchema, ['style', 'class', 'props']),
-      component: nodeSchema.component,
-      status: currentStatus,
-    };
+  component(nodeSchema: CombindCompProp<unknown>, currentStatus: RenderStatus) {
+    if (nodeSchema.type === 'component') {
+      return {
+        tagName: '',
+        ...objUtil.pick(nodeSchema, ['style', 'class', 'props']),
+        component: nodeSchema.component,
+        status: currentStatus,
+      };
+    }
+    return null;
   },
 };
 
@@ -165,19 +166,20 @@ const mobileSchemaOverwrite = (nodeSchema: CommonCompProp, previewMode?: Preview
   return _nodeSchema;
 };
 
+function isModule(schema: CommonCompProp): schema is CompModule {
+  return schema.type !== 'module';
+}
+function isComponent(schema: CommonCompProp): schema is CompComponent {
+  return schema.type !== 'component';
+}
 /**
  * 解析jsonSchema为vnode
- *
- * @param {CommonCompProp} nodeSchema
- * @param {Obj} [renderData]
- * @param {Obj} [appendAttrs]
- * @return {*}
  */
 export const compileSchemaToElement = (
-  nodeSchema: CommonCompProp,
+  nodeSchema: CombindCompProp<SchemaType>,
   renderData?: Obj,
   appendAttrs?: Obj | null,
-  config: { mode?: PreviewMode, status?: RenderStatus } = { mode: 'pc', status: 'preview' },
+  config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' },
 ) => {
   if (typeof nodeSchema !== 'object') {
     throw Error('render json schema must be a object!');
@@ -189,25 +191,26 @@ export const compileSchemaToElement = (
   }
 
   nodeSchema = mobileSchemaOverwrite(nodeSchema, config.mode);
+
   // 没有找到规范策略时则设type为最基本类型block
   if (!Object.keys(normalizeNodeSchemaStrategies).includes(nodeSchema.type)) {
     nodeSchema.type = 'block';
   }
-  const normalizeNodeSchemaStrategy = normalizeNodeSchemaStrategies[nodeSchema.type as keyof typeof normalizeNodeSchemaStrategies];
-  // @ts-ignore
+  const normalizeNodeSchemaStrategy = normalizeNodeSchemaStrategies[nodeSchema.type];
   const vnode = normalizeNodeSchemaStrategy(nodeSchema, config.status);
+  if (!vnode) {
+    return undefined;
+  }
 
   // 模块汇总的data
-  const moduleData = nodeSchema.type === 'module' ? (nodeSchema as CompModule).data : renderData;
-  // console.log('moduleData', moduleData);
+  const moduleData = isModule(nodeSchema) ? nodeSchema.data : renderData;
   const {
     tagName, component, children, childrenAppendAttrs, ...attrs
   } = vnode as Obj;
 
   const autoMergedClassName = [`mc-${nodeSchema.type}`];
   // 对于模块, 将当前状态也加入类名中
-  if (nodeSchema.type === 'module') {
-    // @ts-ignore
+  if (isModule(nodeSchema)) {
     store.sectionsDataMap[nodeSchema.sid] = nodeSchema.data;
     autoMergedClassName.push(`platform-${store.currentPlatform}`);
   }
@@ -222,14 +225,12 @@ export const compileSchemaToElement = (
 
   let fid: string | undefined;
   const parentFid = nodeSchema.sid ?? appendAttrs?.parentFid;
-  if ('component' in vnode) {
+  if (isComponent(nodeSchema)) {
     // 可执行操作. 对于组件, 取值组件内的operation属性.其他的取自schema
-    // @ts-ignore
     nodeSchema.operation = moduleComponentsMap[component].operation ?? false;
   }
   if (nodeSchema.operation) {
     fid = `${parentFid ? `${parentFid}-` : ''}${nodeSchema.type[0]}${globalIdCount++}`;
-    // @ts-ignore
     store.flattenShemaNodeMap[fid] = nodeSchema;
   }
 
@@ -239,14 +240,12 @@ export const compileSchemaToElement = (
   });
 
   // 子元素为组件时
-  if ('component' in vnode) {
+  if (isComponent(nodeSchema)) {
     // return typeof component === 'function' ? component(moduleData || {}, attrs) : component;
     if (typeof component === 'function') {
       return component(moduleData || {}, attrs);
     }
-    // @ts-ignore
     if (typeof component === 'string' && moduleComponentsMap[component]) {
-      // @ts-ignore
       return h(moduleComponentsMap[component], {
         ...attrs,
         data: moduleData || {},
@@ -262,8 +261,12 @@ export const compileSchemaToElement = (
     { ...attrs },
     typeof children === 'string'
       ? children
-      // @ts-ignore
-      : (children || []).map((_c => compileSchemaToElement(_c, moduleData, { ...childrenAppendAttrs, parentFid: fid || parentFid }, config))),
+      : (children || []).map((_c => compileSchemaToElement(
+        _c,
+        moduleData,
+        { ...childrenAppendAttrs, parentFid: fid || parentFid },
+        config,
+      ))),
   );
 };
 
