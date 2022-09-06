@@ -3,7 +3,7 @@ import {
   defineComponent, reactive, computed, ref, toRefs, h, resolveDynamicComponent, PropType, watch,
 } from 'vue';
 import { CompModule, PreviewMode, RenderStatus } from '../typings';
-import { compileSchemaToElement } from '../utils';
+import { comilpeSchema } from '../utils/compiler';
 
 
 export default defineComponent({
@@ -25,6 +25,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    return () => compileSchemaToElement(props.schema, props.schema.data, null, { mode: props.previewMode, status: props.status });
+    return () => comilpeSchema(props.schema, props.schema.data, { mode: props.previewMode, status: props.status });
   },
 });

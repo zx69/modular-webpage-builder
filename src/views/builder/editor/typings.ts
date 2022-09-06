@@ -1,6 +1,7 @@
 import {
   ComponentInternalInstance, VNode,
 } from 'vue';
+import { moduleComponentsMap } from '../modules';
 
 
 export type PanelConfig = {
@@ -20,16 +21,17 @@ export type CommonCompProp<T extends SchemaType = SchemaType> = {
     [key: string]: string,
   },
   mobile?: CommonCompProp<T>,
+  weixin?: CommonCompProp<T>,
   operation?: string | false,
   sid: T extends 'module' ? string : undefined,
   mid: T extends 'module' ? string : undefined,
   aspectRadio: T extends 'module' ? string : undefined,
-  children: T extends 'component' ? undefined : string | (CompBlock | CompComponent)[],
+  children: T extends 'component' ? undefined : (string | (CompBlock | CompComponent)[]),
   data: T extends 'module' ? {
     // status: 'edit' | 'preview',
     [key: string]: unknown,
   } : undefined,
-  component: T extends 'component' ? (string | ((data: Obj, attrs: Obj) => VNode)) : undefined,
+  component: T extends 'component' ? ((keyof typeof moduleComponentsMap) | ((data: Obj, attrs: Obj) => VNode)) : undefined,
   props: T extends 'component' ? Obj : undefined,
 };
 
@@ -56,8 +58,6 @@ export type CompComponent = CommonCompProp<'component'>;
 //   props: Obj,
 // };
 
-
-export type CombindCompProp<T> = CommonCompProp<T>;
 
 export type PreviewMode = 'pc' | 'mobile'; // 预览模式切换
 

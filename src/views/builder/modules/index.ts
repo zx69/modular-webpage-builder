@@ -1,6 +1,6 @@
 // import InputableText from '../components/moduleComponents/InputableText.vue';
 // import MaterialBox from '../components/moduleComponents/MaterialBox.vue';
-// import ImageBox from '../components/moduleComponents/ImageBox.vue';
+import ImageBox from '@/views/builder/editor/components/moduleComponents/ImageBox.vue';
 // import VideoBox from '../components/moduleComponents/VideoBox.vue';
 // import store from '../store';
 
@@ -9,7 +9,7 @@
 export const moduleComponentsMap = {
   InputableText: {},
   MaterialBox: {},
-  ImageBox: {},
+  ImageBox,
   VideoBox: {},
 };
 

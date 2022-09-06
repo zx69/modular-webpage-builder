@@ -122,8 +122,8 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+@import "./styles.scss";
 .material-brochure_generator_index {
-  @import "./styles.scss";
   height: 100%;
   .left-sidebar {
     .static-vertical-menu {

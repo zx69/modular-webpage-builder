@@ -11,7 +11,7 @@ export const objUtil = {
       return memo;
     }, target);
   },
-  omit<O extends Obj, K extends keyof O>(obj: O, omitKeys: K[] = []) {
+  omit<O extends Obj, K extends string>(obj: O, omitKeys: K[] = []) {
     const omitKeysMap = omitKeys.reduce((_obj, key) => {
       _obj[key] = true;
       return _obj;

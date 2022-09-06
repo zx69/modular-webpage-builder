@@ -4,22 +4,23 @@ import {
 } from 'vue';
 import getModulesList from '../modules';
 import {
-  CommonCompProp, CompBlock, CompComponent, CompModule, ControlAction, CombindCompProp, FrameClientRect,
+  CommonCompProp, CompBlock, CompComponent, CompModule, ControlAction, FrameClientRect,
 } from './typings';
 
-export const modules: Ref<CombindCompProp[]> = ref([]);
+export const modules: Ref<CommonCompProp<'module'>[]> = ref([]);
 export const generateModulesList = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => {
-  modules.value = getModulesList(type);
+  console.log(getModulesList(type));
+  modules.value = [getModulesList(type)[0]];
 };
 
-
+generateModulesList();
 const initStoreData = {
   // sectionId计数
   sectionIdCount: 1,
   // 当前平台
   currentPlatform: getPlatform() as '' | 'pc' | 'h5' | 'mp',
   // 由shema渲染出的节点的扁平化[id-obj]键值对map
-  flattenShemaNodeMap: {} as { [key: string]: CombindCompProp },
+  flattenShemaNodeMap: {} as { [key: string]: CommonCompProp },
   // 各个section的data的扁平化[id-obj]键值对map
   sectionsDataMap: {} as { [key: string]: Obj },
   // 工作区主内容区Dom
@@ -63,7 +64,6 @@ const store = reactive<typeof initStoreData>(JSON.parse(JSON.stringify(initStore
 
 export default store;
 
-export const activeElementSchema = computed<CombindCompProp | null>(() => {
-  // console.log(store.activeElementFid, store.flattenShemaNodeMap);
+export const activeElementSchema = computed<CommonCompProp | null>(() => {
   return store.activeElementFid ? (store.flattenShemaNodeMap[store.activeElementFid] || null) : null;
 });

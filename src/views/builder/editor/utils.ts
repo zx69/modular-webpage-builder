@@ -1,10 +1,14 @@
-import { h, reactive } from 'vue';
+// @ts-ignore
+import {
+  ComponentOptionsMixin, h, reactive, VNode,
+} from 'vue';
 import classNames from 'classnames';
 import { getIsMobile } from '@/utils/system';
 import { objUtil } from '@/utils/objUtil';
+import { v4 as uuidv4 } from 'uuid';
+import keySerializer from '@/utils/key-serializer';
 import { moduleComponentsMap } from '../modules';
 import {
-  CombindCompProp,
   CommonCompProp, CompBlock, CompComponent, CompModule, PreviewMode, RenderStatus, SchemaType,
 } from './typings';
 import store from './store';
@@ -40,17 +44,19 @@ export const isMobile = getIsMobile();
 //   return avaliableExpress;
 // };
 
-// export const getModuleData = (data: Obj, express: string) => {
-//   return keySerializer.get(data, express);
-// };
+export const getModuleData = (data: Obj, express: string) => {
+  // eslint-disable-next-line import/no-named-as-default-member
+  return keySerializer.get(data, express);
+};
 
-// export const saveModuleData = (data: Obj, express: string, val: unknown) => {
-//   keySerializer.set(data, express, val);
-//   // 初始化时进行的赋值操作不改变isSaved的值
-//   if (store.isInit) {
-//     setSaveState(false);
-//   }
-// };
+export const saveModuleData = (data: Obj, express: string, val: unknown) => {
+  // eslint-disable-next-line import/no-named-as-default-member
+  keySerializer.set(data, express, val);
+  // 初始化时进行的赋值操作不改变isSaved的值
+  // if (store.isInit) {
+  //   setSaveState(false);
+  // }
+};
 
 // 捕获事件并重新抛出.按设计,组件类型应该作为一个整体接受事件, 即组件内部元素不可单独点击等.所以对于type=component类型,
 // 在组件外层捕获响应事件, 并重新抛出,这样外面接受的的ev.target就是组件外层整体元素了
@@ -70,38 +76,48 @@ export const getEventCatchAndThrowMap = (eventNames: string | string[]) => {
   }));
 };
 
+function isModule(schema: CommonCompProp): schema is CompModule {
+  return schema.type !== 'module';
+}
+function isComponent(schema: CommonCompProp): schema is CommonCompProp<'component'> {
+  return schema.type !== 'component';
+}
+function isBlock(schema: CommonCompProp): schema is CompBlock {
+  return schema.type !== 'block';
+}
 // 规范化nodeSchema策略集合
-const normalizeNodeSchemaStrategies = {
-  module(nodeSchema: CombindCompProp<unknown>) {
-    if (nodeSchema.type === 'module') {
-      return {
-        tagName: 'div',
-        ...objUtil.pick(nodeSchema, ['style', 'class']),
-        children: nodeSchema.children || [],
-      };
-    }
-    return null;
+const normalizeNodeSchemaStrategies: {
+  module: (nodeSchema: CommonCompProp) =>
+    Partial<Pick<CommonCompProp<'module'>, 'style' | 'class' | 'children'>>
+    & { tagName: string },
+  block: (nodeSchema: CommonCompProp) =>
+    Partial<Pick<CommonCompProp<'block'>, 'style' | 'class' | 'children'>>
+    & { tagName: string },
+  component: (nodeSchema: CommonCompProp, currentStatus: RenderStatus) =>
+    Partial<Pick<CommonCompProp<'component'>, 'style' | 'class' | 'children' | 'component' | 'props'>>
+    & { tagName: string, status?: RenderStatus },
+} = {
+  module(nodeSchema: CommonCompProp) {
+    return {
+      tagName: 'div',
+      ...objUtil.pick(nodeSchema, ['style', 'class']),
+      children: nodeSchema.children || [],
+    };
   },
-  block(nodeSchema: CombindCompProp<unknown>) {
-    if (nodeSchema.type === 'block') {
-      return {
-        tagName: 'div',
-        ...objUtil.pick(nodeSchema, ['style', 'class']),
-        children: nodeSchema.children || [],
-      };
-    }
-    return null;
+  block(nodeSchema: CommonCompProp) {
+    return {
+      tagName: 'div',
+      ...objUtil.pick(nodeSchema, ['style', 'class']),
+      children: nodeSchema.children || [],
+    };
   },
-  component(nodeSchema: CombindCompProp<unknown>, currentStatus: RenderStatus) {
-    if (nodeSchema.type === 'component') {
-      return {
-        tagName: '',
-        ...objUtil.pick(nodeSchema, ['style', 'class', 'props']),
-        component: nodeSchema.component,
-        status: currentStatus,
-      };
-    }
-    return null;
+  component(nodeSchema: CommonCompProp, currentStatus: RenderStatus) {
+    return {
+      tagName: '',
+      ...objUtil.pick(nodeSchema, ['style', 'class', 'props']),
+      component: nodeSchema.component,
+      status: currentStatus,
+    };
   },
 };
 
@@ -166,21 +182,16 @@ const mobileSchemaOverwrite = (nodeSchema: CommonCompProp, previewMode?: Preview
   return _nodeSchema;
 };
 
-function isModule(schema: CommonCompProp): schema is CompModule {
-  return schema.type !== 'module';
-}
-function isComponent(schema: CommonCompProp): schema is CompComponent {
-  return schema.type !== 'component';
-}
+
 /**
  * 解析jsonSchema为vnode
  */
 export const compileSchemaToElement = (
-  nodeSchema: CombindCompProp<SchemaType>,
+  nodeSchema: CommonCompProp<SchemaType>,
   renderData?: Obj,
   appendAttrs?: Obj | null,
   config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' },
-) => {
+): VNode => {
   if (typeof nodeSchema !== 'object') {
     throw Error('render json schema must be a object!');
   }
@@ -198,16 +209,14 @@ export const compileSchemaToElement = (
   }
   const normalizeNodeSchemaStrategy = normalizeNodeSchemaStrategies[nodeSchema.type];
   const vnode = normalizeNodeSchemaStrategy(nodeSchema, config.status);
-  if (!vnode) {
-    return undefined;
-  }
 
   // 模块汇总的data
   const moduleData = isModule(nodeSchema) ? nodeSchema.data : renderData;
-  const {
-    tagName, component, children, childrenAppendAttrs, ...attrs
-  } = vnode as Obj;
 
+  // const {
+  //   tagName, component, children, ...attrs
+  // } = vnode;
+  const attrs = objUtil.omit(vnode, ['tagName', 'component', 'children']);
   const autoMergedClassName = [`mc-${nodeSchema.type}`];
   // 对于模块, 将当前状态也加入类名中
   if (isModule(nodeSchema)) {
@@ -224,13 +233,24 @@ export const compileSchemaToElement = (
 
 
   let fid: string | undefined;
-  const parentFid = nodeSchema.sid ?? appendAttrs?.parentFid;
+  let componentNode: ComponentOptionsMixin | undefined;
   if (isComponent(nodeSchema)) {
-    // 可执行操作. 对于组件, 取值组件内的operation属性.其他的取自schema
-    nodeSchema.operation = moduleComponentsMap[component].operation ?? false;
+    if (typeof nodeSchema.component === 'function') {
+      // @ts-ignore
+      componentNode = component(moduleData || {}, attrs);
+      // @ts-ignore
+    } else if (typeof component === 'string' && moduleComponentsMap[nodeSchema.component]) {
+      componentNode = h(moduleComponentsMap[nodeSchema.component], {
+        ...attrs,
+        data: moduleData || {},
+        // @ts-ignore
+        ...vnode.props,
+      });
+    }
+    nodeSchema.operation = componentNode?.operation ?? false;
   }
   if (nodeSchema.operation) {
-    fid = `${parentFid ? `${parentFid}-` : ''}${nodeSchema.type[0]}${globalIdCount++}`;
+    fid = uuidv4();
     store.flattenShemaNodeMap[fid] = nodeSchema;
   }
 
@@ -240,31 +260,19 @@ export const compileSchemaToElement = (
   });
 
   // 子元素为组件时
-  if (isComponent(nodeSchema)) {
-    // return typeof component === 'function' ? component(moduleData || {}, attrs) : component;
-    if (typeof component === 'function') {
-      return component(moduleData || {}, attrs);
-    }
-    if (typeof component === 'string' && moduleComponentsMap[component]) {
-      return h(moduleComponentsMap[component], {
-        ...attrs,
-        data: moduleData || {},
-        ...vnode.props,
-      });
-    }
-    return component;
+  if ('component' in vnode && componentNode) {
+    return h(componentNode);
   }
 
   // 子元素为一般组件时
   return h(
     vnode.tagName,
     { ...attrs },
-    typeof children === 'string'
-      ? children
-      : (children || []).map((_c => compileSchemaToElement(
+    typeof vnode.children === 'string'
+      ? vnode.children
+      : (vnode.children || []).map((_c => compileSchemaToElement(
         _c,
         moduleData,
-        { ...childrenAppendAttrs, parentFid: fid || parentFid },
         config,
       ))),
   );

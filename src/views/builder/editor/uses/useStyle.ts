@@ -1,7 +1,7 @@
 import {
   Ref, ComputedRef, reactive, computed,
 } from 'vue';
-import { CombindCompProp } from '../typings';
+import { CommonCompProp } from '../typings';
 import { activeElementSchema as activeElementSchemaType } from '../store';
 
 /* eslint-disable import/prefer-default-export */
