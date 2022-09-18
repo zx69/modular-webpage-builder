@@ -47,7 +47,6 @@ export default defineComponent({
           },
         },
       });
-      debugger;
       if (originImageUrl) {
         currentSectionData[currentValueKey] = originImageUrl;
       }
