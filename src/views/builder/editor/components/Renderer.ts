@@ -25,6 +25,6 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    return () => comilpeSchema(props.schema, props.schema.data, { mode: props.previewMode, status: props.status });
+    return () => comilpeSchema(props.schema, props.schema.data, null, { mode: props.previewMode, status: props.status });
   },
 });

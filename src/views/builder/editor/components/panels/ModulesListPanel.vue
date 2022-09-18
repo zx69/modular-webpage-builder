@@ -84,5 +84,8 @@ export default defineComponent({
       width: 100%;
     }
   }
+  .fixed-aspect-radio-box{
+    width: 100%;
+  }
 }
 </style>

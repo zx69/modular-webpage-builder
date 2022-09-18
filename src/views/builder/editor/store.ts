@@ -67,3 +67,11 @@ export default store;
 export const activeElementSchema = computed<CommonCompProp | null>(() => {
   return store.activeElementFid ? (store.flattenShemaNodeMap[store.activeElementFid] || null) : null;
 });
+
+export const setActiveElementFid = (fid: string) => {
+  store.activeElementFid = fid;
+};
+export const setActiveFrameClientRect = (clientRect: FrameClientRect | null) => {
+  store.activeFrameClientRect = clientRect;
+};
+

@@ -9,19 +9,20 @@
     "start": "yarn serve"
   },
   "dependencies": {
-    "classnames": "^2.3.1",
+    "classnames": "^2.3.2",
     "core-js": "^3.8.3",
     "deepmerge": "^4.2.2",
     "element-plus": "^2.2.12",
     "normalize.css": "^8.0.1",
+    "object-hash": "^3.0.0",
     "throttle-debounce": "^5.0.0",
-    "uuid": "^8.3.2",
     "vue": "^3.2.13",
+    "vue-picture-cropper": "^0.5.1",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@types/uuid": "^8.3.4",
+    "@types/object-hash": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",

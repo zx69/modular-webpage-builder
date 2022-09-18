@@ -8,7 +8,7 @@
     }"
     v-on="events"
   >
-    <base-image :src="croppedImgFullUrl" v-if="imageType === 'image'">
+    <!-- <base-image  v-if="imageType === 'image'">
       <template #noImage>
         <div class="image-receive-box flex-column" v-if="!croppedImgFullUrl">
           <div class="flex-column flex-center flex-1">
@@ -17,7 +17,16 @@
           </div>
         </div>
       </template>
-    </base-image>
+    </base-image> -->
+
+    <el-image  :src="croppedImgFullUrl"  v-if="imageType === 'image'">
+      <template #error>
+        <div class="image-slot">
+          <el-icon><icon-picture /></el-icon>
+          <p>暂无图片</p>
+        </div>
+      </template>
+    </el-image>
     <template v-if="imageType === 'background' && !croppedImgFullUrl">
       <div class="image-receive-box flex-column">
         <div class="flex-column flex-center flex-1">

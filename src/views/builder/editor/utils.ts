@@ -5,7 +5,6 @@ import {
 import classNames from 'classnames';
 import { getIsMobile } from '@/utils/system';
 import { objUtil } from '@/utils/objUtil';
-import { v4 as uuidv4 } from 'uuid';
 import keySerializer from '@/utils/key-serializer';
 import { moduleComponentsMap } from '../modules';
 import {
@@ -13,16 +12,6 @@ import {
 } from './typings';
 import store from './store';
 
-let globalIdCount = 1;
-
-export const createRandomString = () => {
-  const upEnArr = [...new Array(26)].map((_, i) => 65 + i);
-  const downEnArr = [...new Array(26)].map((_, i) => 97 + i);
-  const numArr = [...new Array(10)].map((_, i) => 48 + i);
-  const arr = [...upEnArr, ...downEnArr, ...numArr];
-  const randomIndexArr = [...new Array(4)].map(() => String.fromCharCode(arr[Math.round(Math.random() * (arr.length - 1))]));
-  return randomIndexArr.join('');
-};
 
 export const isMobile = getIsMobile();
 
@@ -76,77 +65,6 @@ export const getEventCatchAndThrowMap = (eventNames: string | string[]) => {
   }));
 };
 
-function isModule(schema: CommonCompProp): schema is CompModule {
-  return schema.type !== 'module';
-}
-function isComponent(schema: CommonCompProp): schema is CommonCompProp<'component'> {
-  return schema.type !== 'component';
-}
-function isBlock(schema: CommonCompProp): schema is CompBlock {
-  return schema.type !== 'block';
-}
-// 规范化nodeSchema策略集合
-const normalizeNodeSchemaStrategies: {
-  module: (nodeSchema: CommonCompProp) =>
-    Partial<Pick<CommonCompProp<'module'>, 'style' | 'class' | 'children'>>
-    & { tagName: string },
-  block: (nodeSchema: CommonCompProp) =>
-    Partial<Pick<CommonCompProp<'block'>, 'style' | 'class' | 'children'>>
-    & { tagName: string },
-  component: (nodeSchema: CommonCompProp, currentStatus: RenderStatus) =>
-    Partial<Pick<CommonCompProp<'component'>, 'style' | 'class' | 'children' | 'component' | 'props'>>
-    & { tagName: string, status?: RenderStatus },
-} = {
-  module(nodeSchema: CommonCompProp) {
-    return {
-      tagName: 'div',
-      ...objUtil.pick(nodeSchema, ['style', 'class']),
-      children: nodeSchema.children || [],
-    };
-  },
-  block(nodeSchema: CommonCompProp) {
-    return {
-      tagName: 'div',
-      ...objUtil.pick(nodeSchema, ['style', 'class']),
-      children: nodeSchema.children || [],
-    };
-  },
-  component(nodeSchema: CommonCompProp, currentStatus: RenderStatus) {
-    return {
-      tagName: '',
-      ...objUtil.pick(nodeSchema, ['style', 'class', 'props']),
-      component: nodeSchema.component,
-      status: currentStatus,
-    };
-  },
-};
-
-/**
- * 合并attrs, 目前主要用于合并父组件传入的className(如type=flex时)
- *
- * @param {*} baseAttrs
- * @param {*} appendAttrs
- */
-const mergeAttrs = (baseAttrs: Obj, appendAttrs: Obj) => {
-  // console.log(baseAttrs, appendAttrs);
-  Object.entries(appendAttrs).forEach(([key, val]) => {
-    if (key === 'class') {
-      baseAttrs[key] = classNames(baseAttrs[key], appendAttrs[key]);
-      return;
-    }
-    if (typeof baseAttrs[key] === 'undefined') {
-      baseAttrs[key] = val;
-      return;
-    }
-    if (typeof baseAttrs[key] === 'string' && typeof val === 'string') {
-      baseAttrs[key] = val;
-      return;
-    }
-    if (typeof baseAttrs[key] === 'object' && typeof val === 'object') {
-      baseAttrs = { ...baseAttrs, ...appendAttrs };
-    }
-  });
-};
 
 // 解析style属性中的变量
 // const parseStyleValue = (styleObj: Obj, data: Obj) => {
@@ -181,101 +99,3 @@ const mobileSchemaOverwrite = (nodeSchema: CommonCompProp, previewMode?: Preview
   }
   return _nodeSchema;
 };
-
-
-/**
- * 解析jsonSchema为vnode
- */
-export const compileSchemaToElement = (
-  nodeSchema: CommonCompProp<SchemaType>,
-  renderData?: Obj,
-  appendAttrs?: Obj | null,
-  config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' },
-): VNode => {
-  if (typeof nodeSchema !== 'object') {
-    throw Error('render json schema must be a object!');
-  }
-
-  // 有sid表示是最外层的renderer, 此时将idcount重置为1
-  if (nodeSchema.sid) {
-    globalIdCount = 1;
-  }
-
-  nodeSchema = mobileSchemaOverwrite(nodeSchema, config.mode);
-
-  // 没有找到规范策略时则设type为最基本类型block
-  if (!Object.keys(normalizeNodeSchemaStrategies).includes(nodeSchema.type)) {
-    nodeSchema.type = 'block';
-  }
-  const normalizeNodeSchemaStrategy = normalizeNodeSchemaStrategies[nodeSchema.type];
-  const vnode = normalizeNodeSchemaStrategy(nodeSchema, config.status);
-
-  // 模块汇总的data
-  const moduleData = isModule(nodeSchema) ? nodeSchema.data : renderData;
-
-  // const {
-  //   tagName, component, children, ...attrs
-  // } = vnode;
-  const attrs = objUtil.omit(vnode, ['tagName', 'component', 'children']);
-  const autoMergedClassName = [`mc-${nodeSchema.type}`];
-  // 对于模块, 将当前状态也加入类名中
-  if (isModule(nodeSchema)) {
-    store.sectionsDataMap[nodeSchema.sid] = nodeSchema.data;
-    autoMergedClassName.push(`platform-${store.currentPlatform}`);
-  }
-
-  if (nodeSchema.customStyle) {
-    if (!nodeSchema.style) {
-      nodeSchema.style = {};
-    }
-    Object.assign(nodeSchema.style, nodeSchema.customStyle);
-  }
-
-
-  let fid: string | undefined;
-  let componentNode: ComponentOptionsMixin | undefined;
-  if (isComponent(nodeSchema)) {
-    if (typeof nodeSchema.component === 'function') {
-      // @ts-ignore
-      componentNode = component(moduleData || {}, attrs);
-      // @ts-ignore
-    } else if (typeof component === 'string' && moduleComponentsMap[nodeSchema.component]) {
-      componentNode = h(moduleComponentsMap[nodeSchema.component], {
-        ...attrs,
-        data: moduleData || {},
-        // @ts-ignore
-        ...vnode.props,
-      });
-    }
-    nodeSchema.operation = componentNode?.operation ?? false;
-  }
-  if (nodeSchema.operation) {
-    fid = uuidv4();
-    store.flattenShemaNodeMap[fid] = nodeSchema;
-  }
-
-  // 如果有附加attrs时, 需合并到当前attrs(通常来自父组件)
-  mergeAttrs(attrs, {
-    ...appendAttrs, class: autoMergedClassName, fid,
-  });
-
-  // 子元素为组件时
-  if ('component' in vnode && componentNode) {
-    return h(componentNode);
-  }
-
-  // 子元素为一般组件时
-  return h(
-    vnode.tagName,
-    { ...attrs },
-    typeof vnode.children === 'string'
-      ? vnode.children
-      : (vnode.children || []).map((_c => compileSchemaToElement(
-        _c,
-        moduleData,
-        config,
-      ))),
-  );
-};
-
-export default compileSchemaToElement;

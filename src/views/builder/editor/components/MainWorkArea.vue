@@ -1,6 +1,6 @@
 <template>
   <div class="material-brochure_main-work-area" ref="mainWorkArea">
-    <!-- <main
+    <main
       ref="mainContainer"
       id="mainContainer"
       class="container"
@@ -33,8 +33,8 @@
         </div>
       </DropReceiver>
       <div id="hoverFrame" class="hover-frame" :style="hoverFrameClientRect" v-show="hoverFrameClientRect"></div>
-      <ActiveFrame></ActiveFrame>
-    </main> -->
+      <ActiveFrame />
+    </main>
   </div>
 </template>
 
@@ -44,27 +44,29 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, h, onMounted, nextTick, toRef,
 } from 'vue';
-// import { getPx } from '@/utils/style';
-// import store, {
-//   CONTENT_MAX_WIDTH,
-//   CONTENT_MIN_WIDTH,
-//   modules, setActiveElementFid, setActiveFrameClientRect, setSaveState,
-// } from '../store';
+import { getPx } from '@/utils/style';
+import {
+  CONTENT_MAX_WIDTH,
+  CONTENT_MIN_WIDTH,
+} from '../const/common';
+import store, {
+  modules, setActiveElementFid, setActiveFrameClientRect,
+} from '../store';
 // import modules from '../modules';
-// import { FrameClientRect } from '../types';
-// import Renderer from './Renderer';
-// import DropReceiver from './DropReceiver.vue';
-// import ModuleControlBox from './ModuleControlBox.vue';
-// import ActiveFrame from './ActiveFrame.vue';
+import { FrameClientRect } from '../typings';
+import Renderer from './Renderer';
+import DropReceiver from './DropReceiver.vue';
+import ModuleControlBox from './ModuleControlBox.vue';
+import ActiveFrame from './ActiveFrame.vue';
 
 
 export default defineComponent({
   name: 'material-brochure_main-work-area',
   components: {
-    // Renderer,
-    // DropReceiver,
-    // ModuleControlBox,
-    // ActiveFrame,
+    Renderer,
+    DropReceiver,
+    ModuleControlBox,
+    ActiveFrame,
   },
   props: {
     isExpansable: {
@@ -73,108 +75,107 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    // const mainWorkArea = ref();
-    // const mainContainer = ref();
-    // const state = reactive({
-    //   mainContainerWidth: 0,
-    //   currentPreviewAreaWidth: 1420, // 当前预览时的有效区域宽度
-    //   // mainContainerScale: 1,
-    //   hoverFrameClientRect: null as FrameClientRect | null,
-    //   // 清空hoverFrameClientRect的定时器, 用于避免频繁清空影响性能
-    //   clearHoverFrameTimer: null as NodeJS.Timeout | null,
+    const mainWorkArea = ref();
+    const mainContainer = ref();
+    const state = reactive({
+      mainContainerWidth: 0,
+      currentPreviewAreaWidth: 1420, // 当前预览时的有效区域宽度
+      // mainContainerScale: 1,
+      hoverFrameClientRect: null as FrameClientRect | null,
+      // 清空hoverFrameClientRect的定时器, 用于避免频繁清空影响性能
+      // clearHoverFrameTimer: null as NodeJS.Timeout | null,
 
-    //   // activeFrameClientRect: null as FrameClientRect | null,
-    // });
+      // activeFrameClientRect: null as FrameClientRect | null,
+    });
 
-    // const copyDropSchema = (schemaMid: string) => {
-    //   const schema = modules.value.find(module => module.mid === schemaMid);
-    //   if (schema) {
-    //     // const { data } = schema;
-    //     // schema.data = JSON.parse(JSON.stringify(data));
-    //     // 同一材料册可能有多个相同模块,各模块的data/style各不相同, 所以应深拷贝一份;
-    //     const _copiedSchema = JSON.parse(JSON.stringify(schema));
-    //     _copiedSchema.sid = `section${store.sectionIdCount++}`;
-    //     store.renderSchemaList.push(_copiedSchema);
-    //   }
-    //   setSaveState(false);
-    // };
+    const copyDropSchema = (schemaMid: string) => {
+      const schema = modules.value.find(module => module.mid === schemaMid);
+      if (schema) {
+        // const { data } = schema;
+        // schema.data = JSON.parse(JSON.stringify(data));
+        // 同一材料册可能有多个相同模块,各模块的data/style各不相同, 所以应深拷贝一份;
+        const _copiedSchema = JSON.parse(JSON.stringify(schema));
+        _copiedSchema.sid = `section${store.sectionIdCount++}`;
+        store.renderSchemaList.push(_copiedSchema);
+      }
+    };
 
-    // const handleMouseOver = (ev: Event) => {
-    //   const _target = ev.target as HTMLElement | null;
-    //   // 没有fid说明不是可编辑元素, 忽略
-    //   if (!_target || !_target.getAttribute('fid')) {
-    //     return;
-    //   }
+    const handleMouseOver = (ev: Event) => {
+      const _target = ev.target as HTMLElement | null;
+      console.log(_target, _target?.getAttribute('fid'));
+      // 没有fid说明不是可编辑元素, 忽略
+      if (!_target || !_target.getAttribute('fid')) {
+        return;
+      }
+      // if (state.clearHoverFrameTimer) {
+      //   clearTimeout(state.clearHoverFrameTimer);
+      // }
 
-    //   if (state.clearHoverFrameTimer) {
-    //     clearTimeout(state.clearHoverFrameTimer);
-    //   }
+      const _clientRect = _target.getBoundingClientRect();
+      const _mainContainerClientRect = mainContainer.value.getBoundingClientRect();
+      state.hoverFrameClientRect = {
+        width: getPx(_clientRect.width),
+        height: getPx(_clientRect.height),
+        top: getPx(_clientRect.top - _mainContainerClientRect.top),
+        left: getPx(_clientRect.left - _mainContainerClientRect.left),
+      };
+    };
+    const handleMouseOut = (ev: Event) => {
+      const _target = ev.target as HTMLElement | null;
+      if (!_target) {
+        return;
+      }
 
-    //   const _clientRect = _target.getBoundingClientRect();
-    //   const _mainContainerClientRect = mainContainer.value.getBoundingClientRect();
-    //   state.hoverFrameClientRect = {
-    //     width: getPx(_clientRect.width),
-    //     height: getPx(_clientRect.height),
-    //     top: getPx(_clientRect.top - _mainContainerClientRect.top),
-    //     left: getPx(_clientRect.left - _mainContainerClientRect.left),
-    //   };
-    // };
-    // const handleMouseOut = (ev: Event) => {
-    //   const _target = ev.target as HTMLElement | null;
-    //   if (!_target) {
-    //     return;
-    //   }
+      // state.clearHoverFrameTimer = setTimeout(() => {
+      state.hoverFrameClientRect = null;
+      // }, 0);
+    };
 
-    //   state.clearHoverFrameTimer = setTimeout(() => {
-    //     state.hoverFrameClientRect = null;
-    //   }, 0);
-    // };
-
-    // const handleClick = (ev: Event) => {
-    //   console.log('click', ev);
-    //   // console.log((ev.target as HTMLElement)?.getBoundingClientRect());
-    //   const _target = ev.target as HTMLElement | null;
-    //   if (!_target) {
-    //     return;
-    //   }
-    //   if (!state.hoverFrameClientRect) {
-    //     return;
-    //   }
-    //   setActiveFrameClientRect({ ...state.hoverFrameClientRect });
-    //   setActiveElementFid(_target.getAttribute('fid') || '');
-    // };
+    const handleClick = (ev: Event) => {
+      console.log('click', ev);
+      // console.log((ev.target as HTMLElement)?.getBoundingClientRect());
+      const _target = ev.target as HTMLElement | null;
+      if (!_target) {
+        return;
+      }
+      if (!state.hoverFrameClientRect) {
+        return;
+      }
+      setActiveFrameClientRect({ ...state.hoverFrameClientRect });
+      setActiveElementFid(_target.getAttribute('fid') || '');
+    };
 
 
-    // // 点击空白区域,清空工作区的聚焦元素和状态
-    // const removeWorkAreaActiveStatus = () => {
-    //   setActiveFrameClientRect(null);
-    //   setActiveElementFid('');
-    // };
+    // 点击空白区域,清空工作区的聚焦元素和状态
+    const removeWorkAreaActiveStatus = () => {
+      setActiveFrameClientRect(null);
+      setActiveElementFid('');
+    };
 
-    // onMounted(() => {
-    //   // 初始化计算出mainContent的宽度, 后面宽度就不再变化.避免resize时选中框变形
-    //   const workAreaClientRect = mainWorkArea.value.getBoundingClientRect();
-    //   state.mainContainerWidth = workAreaClientRect.width - (180 + 40); // 180为左右margin的距离
-    //   state.currentPreviewAreaWidth = document.body.clientWidth > CONTENT_MAX_WIDTH
-    //     ? CONTENT_MAX_WIDTH
-    //     : document.body.clientWidth < CONTENT_MIN_WIDTH
-    //       ? CONTENT_MIN_WIDTH
-    //       : document.body.clientWidth;
-    //   // editorContainerScale的除数取当前预览有效区域, 才能保证编辑时和预览时的字高比例一样
-    //   store.editorContainerScale = state.mainContainerWidth / state.currentPreviewAreaWidth;
-    // });
+    onMounted(() => {
+      // 初始化计算出mainContent的宽度, 后面宽度就不再变化.避免resize时选中框变形
+      const workAreaClientRect = mainWorkArea.value.getBoundingClientRect();
+      state.mainContainerWidth = workAreaClientRect.width - (180 + 40); // 180为左右margin的距离
+      state.currentPreviewAreaWidth = document.body.clientWidth > CONTENT_MAX_WIDTH
+        ? CONTENT_MAX_WIDTH
+        : document.body.clientWidth < CONTENT_MIN_WIDTH
+          ? CONTENT_MIN_WIDTH
+          : document.body.clientWidth;
+      // editorContainerScale的除数取当前预览有效区域, 才能保证编辑时和预览时的字高比例一样
+      store.editorContainerScale = state.mainContainerWidth / state.currentPreviewAreaWidth;
+    });
 
     return {
-      // ...toRefs(state),
-      // copyDropSchema,
-      // handleClick,
-      // handleMouseOver,
-      // handleMouseOut,
-      // mainWorkArea,
-      // mainContainer,
-      // renderSchemaList: toRef(store, 'renderSchemaList'),
-      // removeWorkAreaActiveStatus,
-      // mainContainerScale: computed(() => store.editorContainerScale),
+      ...toRefs(state),
+      copyDropSchema,
+      handleClick,
+      handleMouseOver,
+      handleMouseOut,
+      mainWorkArea,
+      mainContainer,
+      renderSchemaList: toRef(store, 'renderSchemaList'),
+      removeWorkAreaActiveStatus,
+      mainContainerScale: computed(() => store.editorContainerScale),
     };
   },
 });
@@ -182,24 +183,29 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import "../styles.scss";
 @import "../extends.scss";
+
 .material-brochure_main-work-area {
   min-width: 880px;
   overflow-y: auto;
+
   // margin: 0 auto;
   .container {
     margin: 20px 90px;
     position: relative;
   }
 }
+
 .module-receive-box {
   @include material-brochure-module-section;
   height: 48px;
   color: #666;
 }
+
 .material-brochure_module-control-bar {
   position: absolute;
   right: -36px;
 }
+
 #hoverFrame,
 #activeFrame {
   position: absolute;
@@ -219,6 +225,7 @@ export default defineComponent({
       margin-right: 4px;
       font-size: 16px;
     }
+
     &.hovering {
       .module-receive-box {
         background: #eeeeee;

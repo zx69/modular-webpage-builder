@@ -1,0 +1,112 @@
+.default-upload-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #f5f5f5;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    .default-upload-list-add{
+      border: none;
+    }
+    .upload-icon {
+      font-size: 30px;
+    }
+    .img {
+      width: 100%;
+      padding-top: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    .close-icon {
+      opacity: 0;
+      font-size: 20px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer;
+    }
+    &:hover {
+      color: $color-primary;
+      border-color: $color-primary;
+      .img-veil {
+        display: flex;
+      }
+      .close-icon{
+        opacity: 1;
+      }
+    }
+}
+
+.default-upload-list-add {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  i {
+    color: #9ca0a4;
+    font-size: 34px;
+    transition: color 0.2s;
+  }
+  &:hover {
+    i {
+      color: $color-primary;
+    }
+    border-color: $color-primary;
+  }
+}
+
+.default-upload-close-icon{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 6px;
+  top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  transition: color 0.2s;
+  cursor: pointer;
+  &::before{
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+  &::after{
+    z-index: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.default-upload-file{
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img{
+    width: 100%;
+    object-fit: contain;
+  }
+}

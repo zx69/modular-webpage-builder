@@ -1,6 +1,7 @@
 import { objUtil } from '@/utils/objUtil';
 import { ComponentOptionsMixin, h, VNode } from 'vue';
-import { v4 as uuidv4 } from 'uuid';
+import hash from 'object-hash';
+import classnames from 'classnames';
 import {
   CommonCompProp, PreviewMode, RenderStatus, SchemaType,
 } from '../typings';
@@ -69,9 +70,35 @@ const normalizeStrategies = {
   },
 };
 
+
+/**
+ * 合并attrs
+ */
+const mergeAttrs = (baseAttrs: Obj, appendAttrs: Obj) => {
+  // console.log(baseAttrs, appendAttrs);
+  Object.entries(appendAttrs).forEach(([key, val]) => {
+    if (key === 'class') {
+      baseAttrs[key] = classnames(baseAttrs[key], appendAttrs[key]);
+      return;
+    }
+    if (typeof baseAttrs[key] === 'undefined') {
+      baseAttrs[key] = val;
+      return;
+    }
+    if (typeof baseAttrs[key] === 'string' && typeof val === 'string') {
+      baseAttrs[key] = val;
+      return;
+    }
+    if (typeof baseAttrs[key] === 'object' && typeof val === 'object') {
+      baseAttrs = { ...baseAttrs, ...appendAttrs };
+    }
+  });
+};
+
 const comilpeSchema = (
   nodeSchema: CommonCompProp<SchemaType>,
   renderData?: Obj,
+  parentAttrs?: Obj | null,
   config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' },
 ): VNode => {
   if (typeof nodeSchema !== 'object') {
@@ -91,6 +118,17 @@ const comilpeSchema = (
   const moduleData = isModule(nodeSchema) ? nodeSchema.data : renderData;
   const attrs = objUtil.omit(vnode, ['tagName', 'component', 'children']);
 
+
+  const autoMergedClassName = [`mc-${nodeSchema.type}`];
+  // 对于模块, 将当前状态也加入类名中
+  if (nodeSchema.type === 'module') {
+    if (nodeSchema.sid) {
+      store.sectionsDataMap[nodeSchema.sid!] = nodeSchema.data || {};
+    }
+    autoMergedClassName.push(`platform-${store.currentPlatform}`);
+  }
+
+  // 合并样式
   if (nodeSchema.customStyle) {
     if (!nodeSchema.style) {
       nodeSchema.style = {};
@@ -99,43 +137,50 @@ const comilpeSchema = (
   }
 
   let fid: string | undefined;
-  let componentNode: ComponentOptionsMixin | undefined;
+  const parentFid = nodeSchema.sid ?? parentAttrs?.parentFid;
+  // let componentNode: ComponentOptionsMixin | undefined;
+  if (isComponent(nodeSchema) && typeof nodeSchema.component === 'string') {
+    nodeSchema.operation = moduleComponentsMap[nodeSchema.component].operation ?? false;
+  }
+
+  console.log(nodeSchema.operation);
+  if (nodeSchema.operation) {
+    fid = `${parentFid ? `${parentFid}-` : ''}${hash(nodeSchema).substr(0, 10)}`;
+    store.flattenShemaNodeMap[fid] = nodeSchema;
+  }
+
+  mergeAttrs(attrs, {
+    class: autoMergedClassName,
+    fid,
+  });
+  // console.log(attrs);
+  // 子元素为组件时
   if (isComponent(nodeSchema)) {
     if (typeof nodeSchema.component === 'function') {
-      // @ts-ignore
-      componentNode = component(moduleData || {}, attrs);
-      // @ts-ignore
-    } else {
-      componentNode = h(moduleComponentsMap[nodeSchema.component], {
+      return nodeSchema.component(moduleData || {}, attrs);
+    }
+    if (typeof nodeSchema.component === 'string' && moduleComponentsMap[nodeSchema.component]) {
+      return h(moduleComponentsMap[nodeSchema.component], {
         ...attrs,
         data: moduleData || {},
         // @ts-ignore
         ...vnode.props,
       });
     }
-    nodeSchema.operation = componentNode?.operation ?? false;
   }
 
-  if (nodeSchema.operation) {
-    fid = uuidv4();
-    store.flattenShemaNodeMap[fid] = nodeSchema;
-  }
-
-
-  // 子元素为组件时
-  if (isComponent(nodeSchema)) {
-    return h(componentNode!);
-  }
   const children = vnode.children ?? [];
   // 子元素为一般组件时
   return h(
     vnode.tagName,
     { ...attrs },
+
     typeof children === 'string'
       ? children
       : (children || []).map((_c => comilpeSchema(
         _c,
         moduleData,
+        { ...parentAttrs, parentFid: fid ?? parentFid },
         config,
       ))),
   );
