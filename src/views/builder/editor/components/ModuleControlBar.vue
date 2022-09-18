@@ -11,7 +11,7 @@
         :offset="2"
       >
         <el-button :disabled="btn.disabled" @click.stop="handleMondelControlAction(btn.action)">
-          <i :class="`icon ${btn.icon}`"></i>
+          <i :class="`iconfont ${btn.icon}`"></i>
         </el-button>
       </el-tooltip>
     </template>
@@ -47,14 +47,14 @@ export default defineComponent({
   setup(props, { emit }) {
     const moduleControlBtnsConfig = computed(() => [
       {
-        title: '上移', icon: 'i-r-wangshang-16', action: 'up', disabled: props.index === 0,
+        title: '上移', icon: 'i-xiangshang4', action: 'up', disabled: props.index === 0,
       },
       {
-        title: '下移', icon: 'i-r-wangxia-16', action: 'down', disabled: props.index === store.renderSchemaList.length - 1,
+        title: '下移', icon: 'i-xiangxia4', action: 'down', disabled: props.index === store.renderSchemaList.length - 1,
       },
-      { title: '还原', icon: 'i-r-qingkong-16', action: 'reset' },
-      { title: '复制', icon: 'i-r-fuzhi-16', action: 'copy' },
-      { title: '删除', icon: 'i-r-shanchu-161', action: 'remove' },
+      { title: '还原', icon: 'i-recover', action: 'reset' },
+      { title: '复制', icon: 'i-fuzhi', action: 'copy' },
+      { title: '删除', icon: 'i-changyonggoupiaorenshanchu', action: 'remove' },
     ]);
 
     const handleMondelControlAction = (action: ControlAction) => {

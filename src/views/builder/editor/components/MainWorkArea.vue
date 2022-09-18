@@ -28,8 +28,8 @@
       </ModuleControlBox>
       <DropReceiver transferDataType="module-schema-id" @transferData="copyDropSchema" v-if="isExpansable">
         <div class="module-receive-box flex-center">
-          <i class="icon i-r-tianjia-16"></i>
-          拖拽模块到这里
+          <i class="iconfont i-jiahao"></i>
+          &nbsp;&nbsp;拖拽模块到这里
         </div>
       </DropReceiver>
       <div id="hoverFrame" class="hover-frame" :style="hoverFrameClientRect" v-show="hoverFrameClientRect"></div>

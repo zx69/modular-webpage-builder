@@ -13,15 +13,6 @@
         </div>
       </template>
     </el-image>
-    <!-- <template v-if="imageType === 'background' && !croppedImgFullUrl">
-      <div class="image-receive-box flex-column">
-        <div class="flex-column flex-center flex-1">
-          <i class="icon i-r-tupian-14"></i>
-          <p>暂无图片</p>
-        </div>
-      </div>
-    </template> -->
-
     <slot></slot>
   </DropReceiver>
 </template>
