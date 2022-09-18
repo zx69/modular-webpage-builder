@@ -26,7 +26,7 @@
     <!-- <div>支持拖拽图片上传； 建议尺寸 440*225；只支持jpg、jpeg、bmp、png、gif；大小不超过4MB</div> -->
     <footer class="dialog-buttons">
       <el-button @click="$emit('cancel')">取消</el-button>
-      <el-button type="primary" @click="handleSubmit">缺点</el-button>
+      <el-button type="primary" @click="handleSubmit">确定</el-button>
     </footer>
   </div>
 </template>

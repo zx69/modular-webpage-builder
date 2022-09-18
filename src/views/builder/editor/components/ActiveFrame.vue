@@ -33,7 +33,6 @@ export default defineComponent({
 
       const currentSectionId = store.activeElementFid.split('-')[0];
       const currentSectionData = store.sectionsDataMap[currentSectionId];
-      console.log(store.sectionsDataMap);
       const currentValueKey = activeElementSchema.value!.props!.valueKey;
       const currentImageUrl = currentSectionData[currentValueKey];
 
@@ -48,7 +47,7 @@ export default defineComponent({
           },
         },
       });
-
+      debugger;
       if (originImageUrl) {
         currentSectionData[currentValueKey] = originImageUrl;
       }

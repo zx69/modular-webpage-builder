@@ -102,7 +102,6 @@ export default defineComponent({
 
     const handleMouseOver = (ev: Event) => {
       const _target = ev.target as HTMLElement | null;
-      console.log(_target, _target?.getAttribute('fid'));
       // 没有fid说明不是可编辑元素, 忽略
       if (!_target || !_target.getAttribute('fid')) {
         return;

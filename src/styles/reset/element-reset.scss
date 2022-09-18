@@ -15,11 +15,11 @@
 }
 
 .el-overlay{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow-y: auto;
+  // display: flex;
+  // align-items: center;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // overflow-y: auto;
 
   &.is-message-box{
     justify-content: center;
@@ -34,9 +34,9 @@
 }
 
 .el-dialog{
-  flex-shrink:0;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+//   flex-shrink:0;
+//   margin-top: 0 !important;
+//   margin-bottom: 0 !important;
     // max-height: 70vh;
     // display: flex;
     // flex-direction: column;

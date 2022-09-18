@@ -76,9 +76,8 @@ class Dialog {
     // @ts-ignore
     if (isClose) closeError.isClose = isClose;
     this.reject?.(closeError);
-
     dialogs.pop();
-    const elOverLayEl: HTMLElement = elDialogVm?.dialogRef.parentElement;
+    const elOverLayEl: HTMLElement = elDialogVm.dialogContentRef.$el?.parentElement?.parentElement;
     if (elOverLayEl && elOverLayEl.parentElement) document.body.removeChild(elOverLayEl);
   }
 }
