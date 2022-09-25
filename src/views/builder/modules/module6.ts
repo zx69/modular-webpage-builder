@@ -84,7 +84,7 @@ const rightSection = {
 };
 
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 4,
   aspectRadio: '61.9%',
@@ -97,7 +97,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
   },
   class: 'module-beside-gap',
   children: [
-    headerSection(type),
+    headerSection(),
     {
       type: 'block',
       style: {

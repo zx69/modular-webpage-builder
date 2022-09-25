@@ -28,7 +28,7 @@ const gridImgBox = (wrapperStyle: Obj, imgBoxValueKey: string) => ({
 });
 
 // note: 移动端兼容性问题: grid-area布局方式下, 格子内的子元素高度如果没设置为变成0, align-items:stretch设置也没用
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 3,
   aspectRadio: '74.72%',
@@ -47,7 +47,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
   },
   class: 'module-beside-gap',
   children: [
-    headerSection(type),
+    headerSection(),
     {
       type: 'block',
       mobile: {

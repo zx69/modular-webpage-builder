@@ -8,12 +8,10 @@ import {
 } from './typings';
 
 export const modules: Ref<CommonCompProp<'module'>[]> = ref([]);
-export const generateModulesList = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => {
-  console.log(getModulesList(type));
-  modules.value = [getModulesList(type)[0]];
+export const generateModulesList = (type?: string) => {
+  modules.value = getModulesList();
 };
 
-generateModulesList();
 
 const initStoreData = {
   // sectionId计数

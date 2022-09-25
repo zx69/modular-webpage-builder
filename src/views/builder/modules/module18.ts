@@ -25,7 +25,7 @@ const emptyBorderBox = () => {
   };
 };
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 16,
   aspectRadio: getPercentage(760 / 1420),

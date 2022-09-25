@@ -1,5 +1,5 @@
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 1,
   aspectRadio: '44.26%',

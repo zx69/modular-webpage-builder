@@ -1,6 +1,6 @@
 import { getPercentage, getPx } from '@/utils/style';
 
-export const headerSection = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure', withBacground = true) => ({
+export const headerSection = (withBacground = true) => ({
   type: 'block',
   style: {
     paddingBottom: '50px',
@@ -45,7 +45,7 @@ export const headerSection = (type: 'material-brochure' | 'merchant-homepage' = 
             valueKey: 'title',
           },
         },
-        type === 'material-brochure' && {
+        {
           type: 'component',
           component: 'InputableText',
           style: {
@@ -76,7 +76,7 @@ export const headerSection = (type: 'material-brochure' | 'merchant-homepage' = 
         },
       ].filter(Boolean),
     },
-    type === 'material-brochure' && {
+    {
       type: 'component',
       component: 'InputableText',
       style: {

@@ -1,7 +1,7 @@
 import { getPercentage } from '@/utils/style';
 import { headerSection, moduleInnerBox1, materialItemIds } from './common';
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 7,
   aspectRadio: '65.99%',
@@ -13,7 +13,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
   },
   class: 'module-beside-gap',
   children: [
-    headerSection(type, false),
+    headerSection(false),
     {
       type: 'block',
       style: {

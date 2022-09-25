@@ -1,7 +1,7 @@
 import { getPercentage } from '@/utils/style';
 import { decorateLine1, iconfontElem } from './common';
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 12,
   aspectRadio: '49.30%',

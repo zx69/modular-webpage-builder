@@ -53,7 +53,7 @@ const rightSection = {
   children: Array.from({ length: 6 }).map((e, i) => (moduleInnerBox1(`materialsIds[${i}]`))),
 };
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 5,
   aspectRadio: '60.31%',
@@ -86,7 +86,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
         style: {
           height: '0',
           // width: '100%',
-          paddingBottom: type === 'material-brochure' ? getPercentage(471 / 351) : getPercentage(471 / 375),
+          paddingBottom: getPercentage(471 / 351),
           position: 'absolute',
           left: '0',
           top: '0',
@@ -110,7 +110,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
         style: {
           height: '0',
           width: getPercentage(280 / 375),
-          paddingBottom: type === 'material-brochure' ? getPercentage(471 / 351) : getPercentage(471 / 375),
+          paddingBottom: getPercentage(471 / 351),
           position: 'absolute',
           left: '0',
           top: '0',
@@ -130,7 +130,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
         },
       },
       children: [
-        headerSection(type, false),
+        headerSection(false),
         {
           type: 'block',
           style: {

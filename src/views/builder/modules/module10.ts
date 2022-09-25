@@ -26,7 +26,7 @@ const gridImgBox = (wrapperStyle: Obj, imgBoxValueKey: string) => ({
   ],
 });
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 8,
   aspectRadio: '86.28%',
@@ -40,7 +40,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
   },
   class: 'module-beside-gap',
   children: [
-    headerSection(type, false),
+    headerSection(false),
     {
       type: 'block',
       style: {

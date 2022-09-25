@@ -1,6 +1,6 @@
 import InputableText from '@/views/builder/editor/components/moduleComponents/InputableText.vue';
-// import MaterialBox from '../components/moduleComponents/MaterialBox.vue';
 import ImageBox from '@/views/builder/editor/components/moduleComponents/ImageBox.vue';
+import MaterialBox from '@/views/builder/editor/components/moduleComponents/MaterialBox.vue';
 // import VideoBox from '../components/moduleComponents/VideoBox.vue';
 // import store from '../store';
 
@@ -8,9 +8,8 @@ import ImageBox from '@/views/builder/editor/components/moduleComponents/ImageBo
 // note: 原本type=component时使用函数表示组件, 但函数序列化后会丢失, 不利于保存到服务器.所以改用字符串表示特定组件
 export const moduleComponentsMap = {
   InputableText,
-  // MaterialBox: {},
+  MaterialBox,
   ImageBox,
-  // VideoBox: {},
 };
 
 
@@ -19,12 +18,12 @@ export const getPercentage = (num: number, unit = '%') => {
 };
 
 
-const getModulesList = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => {
+const getModulesList = () => {
   const requireCtx = require.context('.', true, /\.(ts)$/);
   const keys = requireCtx.keys();
   return keys.filter(key => /\.\/module(.*).ts/.test(key)).map((key, i) => {
     const moduleFn = requireCtx(key).default;
-    const moduleObj = typeof moduleFn === 'function' && moduleFn(type);
+    const moduleObj = typeof moduleFn === 'function' && moduleFn();
     if (!moduleObj) {
       return false;
     }

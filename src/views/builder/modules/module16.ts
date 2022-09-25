@@ -2,7 +2,7 @@ import { getPercentage } from '@/utils/style';
 import { capsuleTag, decorateLine1, iconfontElem } from './common';
 
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 14,
   aspectRadio: getPercentage(700 / 1420),

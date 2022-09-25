@@ -134,7 +134,7 @@ const rightSection = {
   children: Array.from({ length: 6 }).map((e, i) => (moduleInnerBox1(`materialsIds[${i}]`))),
 };
 
-const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-brochure') => ({
+const module = () => ({
   type: 'module',
   index: 6,
   aspectRadio: '61.72%',
@@ -148,7 +148,7 @@ const module = (type: 'material-brochure' | 'merchant-homepage' = 'material-broc
   },
   class: 'module-beside-gap',
   children: [
-    headerSection(type),
+    headerSection(),
     {
       type: 'block',
       style: {
