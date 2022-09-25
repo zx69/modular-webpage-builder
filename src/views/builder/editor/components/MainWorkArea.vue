@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_main-work-area" ref="mainWorkArea">
+  <div class="material-brochure_main-work-area" ref="mainWorkArea" @click="removeWorkAreaActiveStatus">
     <main
       ref="mainContainer"
       id="mainContainer"
