@@ -56,7 +56,7 @@ import {
 import {
   BrochureBaseInfo,
 } from '@/api/brochure';
-import useBaseInfo from '../editor/uses/useBaseInfo';
+import useBaseInfo from '../editor/uses/use-base-info';
 import { createRandomString } from '../editor/utils/common';
 import ImageUploader from './ImageUploader.vue';
 

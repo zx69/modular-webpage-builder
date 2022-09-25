@@ -93,7 +93,7 @@ import {
   defineComponent, reactive, computed, ref, toRefs, watch, nextTick,
 } from 'vue';
 import { getPx } from '@/utils/style';
-import useStyle from '@/views/builder/editor/uses/useStyle';
+import useStyle from '@/views/builder/editor/uses/use-style';
 import store, { activeElementSchema } from '../../store';
 import {
   presetFontStyleMenuList, fontTypeBtnsList, fontFamilyList, fontSizeList, textAlignBtnsList,
