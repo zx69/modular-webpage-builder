@@ -1,7 +1,8 @@
 import justifiedLayout from 'justified-layout';
-import Mock from 'mockjs';
+// import Mock from 'mockjs';
 import hash from 'object-hash';
 import mockImageList from '@/mock/image/list.json';
+import store from '@/views/builder/editor/store';
 /* ============== 图片管理 ============== */
 
 // photo上传状态
@@ -85,8 +86,8 @@ export const fetchMaterialBrochureInfo = async (collectionId: string) => {
 
 // 获取材料册内容JSON
 export const fetchMaterialBrochureContent = async (collectionId: string) => {
-  // const res = await axios.get<BrochureBaseInfo>('/idealab-manage/collection/temp/detail', { params: { tempId: collectionId } });
-  // return res.data;
+  // mock
+  return store.renderSchemaList;
 };
 
 // export type BrochureEditionItem = {name: string, saveTime: string, version: string};

@@ -1,11 +1,11 @@
 import {
-  ComponentInternalInstance, VNode,
+  ComponentPublicInstance, VNode,
 } from 'vue';
 import { moduleComponentsMap } from '../modules';
 
 
 export type PanelConfig = {
-  label: string, value: string, icon: string, component: ComponentInternalInstance,
+  label: string, value: string, icon: string, component: ComponentPublicInstance,
   panelType?: string,
 };
 

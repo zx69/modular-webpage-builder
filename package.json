@@ -9,14 +9,15 @@
     "start": "yarn serve"
   },
   "dependencies": {
+    "@cheprasov/qrcode": "^0.1.0",
     "classnames": "^2.3.2",
     "core-js": "^3.8.3",
     "deepmerge": "^4.2.2",
     "element-plus": "^2.2.12",
     "justified-layout": "^4.1.0",
-    "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "object-hash": "^3.0.0",
+    "query-string": "^7.1.1",
     "throttle-debounce": "^5.0.0",
     "vue": "^3.2.13",
     "vue-picture-cropper": "^0.5.1",

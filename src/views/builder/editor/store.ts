@@ -63,3 +63,7 @@ export const setActiveFrameClientRect = (clientRect: FrameClientRect | null) => 
   store.activeFrameClientRect = clientRect;
 };
 
+export const setRenderSchema = (schema: CompModule[]) => {
+  store.renderSchemaList = schema;
+  store.sectionIdCount = store.renderSchemaList.length + 1; // sectionIdCount需根据store.renderSChenmaList实时更新
+};

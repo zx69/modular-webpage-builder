@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "474968",
+      "name": "mobile",
+      "font_class": "mobile",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "12270805",
+      "name": "pc",
+      "font_class": "pc",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
       "icon_id": "3868282",
       "name": "应用管理",
       "font_class": "yingyongguanli",

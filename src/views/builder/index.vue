@@ -2,19 +2,19 @@
   <div class="page_builder-index flex-column">
     <HeaderBar @preview="isPreviewing = true" @setSchema="setRenderSchema" />
     <main class="main-content flex-1">
-      <BrochureEditor
-        ref="BrochureEditor"
+      <Editor
+        ref="editorRef"
         class="flex-1"
         :leftSidebarTabsConfig="leftSidebarTabsConfig"
         :rightSidebarTabsConfig="rightSidebarTabsConfig"
       />
     </main>
-    <!-- <BrochurePreviewer
+    <Previewer
       v-model:isPreviewing="isPreviewing"
       qrcodeUrl="/merchant-homepage/detail"
       :qrcodeQueryId="companyInfo?.orgId"
       qrcodeQueryKey="orgId"
-    /> -->
+    />
   </div>
 </template>
 
@@ -22,7 +22,7 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, h,
 } from 'vue';
-import BrochureEditor from './editor/index.vue';
+import Editor from './editor/index.vue';
 import HeaderBar from './components/HeaderBar.vue';
 import BrochureBaseInfoForm from './components/BrochureBaseInfoForm.vue';
 import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
@@ -33,46 +33,54 @@ import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
 // import MaterialsListPanel from './editor/components/panels/MaterialsListPanel.vue';
 // import ModelListPanel from './editor/components/panels/ModelListPanel.vue';
+import Previewer from './previewer/index.vue';
+import { setRenderSchema } from './editor/store';
 
+const leftSidebarTabsConfig = [
+  // {
+  //   label: '模板',
+  //   value: 'template',
+  //   icon: ' i-r-moban-16',
+  //   component: h(TemplatesListPanel, {
+  //     onSave: () => {
+  //       // headerBar.value?.handleSaveCommand();
+  //     },
+  //   }),
+  // },
+  {
+    label: '模块', value: 'module', icon: ' i-r-mokuai-16', component: ModulesListPanel,
+  },
+];
+const rightSidebarTabsConfig = [
+  {
+    label: '文本', value: 'text', icon: ' i-text', component: TextControlPanel,
+  },
+  {
+    label: '图片', value: 'image', icon: ' i-image', component: PhotoLibraryPanel, panelType: 'photo',
+  },
+  {
+    label: '材料册设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
+  },
+];
 export default defineComponent({
   name: 'page_builder-index',
   components: {
     HeaderBar,
-    BrochureEditor,
+    Editor,
+    Previewer,
   },
   props: {},
   setup(props, { emit }) {
-    const state = reactive({});
-    const leftSidebarTabsConfig = [
-      // {
-      //   label: '模板',
-      //   value: 'template',
-      //   icon: ' i-r-moban-16',
-      //   component: h(TemplatesListPanel, {
-      //     onSave: () => {
-      //       // headerBar.value?.handleSaveCommand();
-      //     },
-      //   }),
-      // },
-      {
-        label: '模块', value: 'module', icon: ' i-r-mokuai-16', component: ModulesListPanel,
-      },
-    ];
-    const rightSidebarTabsConfig = [
-      {
-        label: '文本', value: 'text', icon: ' i-text', component: TextControlPanel,
-      },
-      {
-        label: '图片', value: 'image', icon: ' i-image', component: PhotoLibraryPanel, panelType: 'photo',
-      },
-      {
-        label: '材料册设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
-      },
-    ];
+    const state = reactive({
+      loading: false,
+      isPreviewing: false,
+    });
+
     return {
       ...toRefs(state),
       leftSidebarTabsConfig,
       rightSidebarTabsConfig,
+      setRenderSchema,
     };
   },
 });
