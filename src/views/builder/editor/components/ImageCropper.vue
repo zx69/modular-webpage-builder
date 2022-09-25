@@ -17,7 +17,7 @@
       >
         <template #default="{ upload }">
           <div class="upload-content flex-column flex-center" @click="upload">
-            <i class="el-icon-circle-plus"></i>
+            <i class="iconfont i-jiahao"></i>
             <p>上传图片</p>
           </div>
         </template>
@@ -89,6 +89,7 @@ export default defineComponent({
       // 如果是本地后面上传的图片, 需先上传到OSS
       if (state.currentUrl.startsWith('blob:')) { // 暂时通过blob前缀判断本地图片,后面再看有没有更好办法
         // 这里自行增加上传ajax逻辑
+        state.currentUrl = cropper.getDataURL();
       }
 
       emit('confirm', {

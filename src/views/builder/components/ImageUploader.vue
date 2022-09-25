@@ -17,7 +17,7 @@ import {
   defineComponent, reactive, watch, toRefs, PropType, ref,
 } from 'vue';
 import { dialog } from '@/utils/dialog';
-import ImageCropper from '@/views/builder/editor/components/ImageCropper.vue';
+import ImageCropperForm from './ImageCropperForm.vue';
 
 export default defineComponent({
   name: 'image-uploader-with-cutter',
@@ -54,8 +54,8 @@ export default defineComponent({
     }, { immediate: true });
 
     const showEditAvatarDialog = async () => {
-      const { blobUrl, url } = await dialog({
-        is: ImageCropper,
+      const { url } = await dialog({
+        is: ImageCropperForm,
         props: {
           viewMode: 1,
           dragMode: 'move',
@@ -65,8 +65,8 @@ export default defineComponent({
           ...props.uploaderProps,
         },
       });
-      currentImgUrl.value = blobUrl;
-      emit('update:imageUrl', url);
+      currentImgUrl.value = url;
+      emit('update:imageUrl', currentImgUrl.value);
     };
     return {
       currentImgUrl,
