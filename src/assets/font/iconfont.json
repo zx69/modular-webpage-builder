@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "924549",
+      "name": "text",
+      "font_class": "text",
+      "unicode": "e959",
+      "unicode_decimal": 59737
+    },
+    {
+      "icon_id": "8474274",
+      "name": "image",
+      "font_class": "image",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "19061021",
+      "name": "settings",
+      "font_class": "settings",
+      "unicode": "e899",
+      "unicode_decimal": 59545
+    },
+    {
       "icon_id": "630342",
       "name": "向上4",
       "font_class": "xiangshang4",

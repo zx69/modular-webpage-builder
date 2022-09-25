@@ -10,7 +10,7 @@
             :class="{ active: leftSidebarActiveValue === tab.value }"
             @click="leftSidebarActiveValue = tab.value"
           >
-            <i :class="['icon', tab.icon]"></i>
+            <i :class="['iconfont', tab.icon]"></i>
             {{ tab.label }}
           </div>
         </div>
@@ -44,7 +44,7 @@
                 :class="{ active: rightSidebarActiveValue === tab.value }"
                 @click="rightSidebarActiveValue = tab.value"
               >
-                <i :class="['icon', tab.icon]"></i>
+                <i :class="['iconfont', tab.icon]"></i>
               </div>
             </el-tooltip>
           </template>

@@ -73,6 +73,7 @@ export default defineComponent({
     });
 
     const pMounted = new Promise((resolve) => {
+      // @ts-ignore
       onMounted(resolve);
     });
 

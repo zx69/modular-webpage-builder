@@ -13,6 +13,8 @@
     "core-js": "^3.8.3",
     "deepmerge": "^4.2.2",
     "element-plus": "^2.2.12",
+    "justified-layout": "^4.1.0",
+    "mockjs": "^1.1.0",
     "normalize.css": "^8.0.1",
     "object-hash": "^3.0.0",
     "throttle-debounce": "^5.0.0",
@@ -22,6 +24,8 @@
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/justified-layout": "^4.1.0",
+    "@types/mockjs": "^1.0.6",
     "@types/object-hash": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",

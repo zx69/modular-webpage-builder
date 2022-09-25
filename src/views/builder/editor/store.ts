@@ -14,6 +14,7 @@ export const generateModulesList = (type: 'material-brochure' | 'merchant-homepa
 };
 
 generateModulesList();
+
 const initStoreData = {
   // sectionId计数
   sectionIdCount: 1,
@@ -29,22 +30,10 @@ const initStoreData = {
   activeElementFid: '',
   // 当前选择元素的clientRect
   activeFrameClientRect: null as FrameClientRect | null,
-  // currentActiveElement: null as HTMLElement | null,
   // 当前活跃模块的schema
   activeModuleScheme: null as CompModule | null,
   // activeModuleDom: null as HTMLElement | null,
   renderSchemaList: [] as CompModule[],
-
-  // // 当前已使用到的全部材料id列表
-  // relatedMaterialsIds: [] as RelatedMaterialsIds[],
-  // relatedMaterialsList: [] as MaterialListItem[],
-  // // 当前已使用到的全部模型id列表
-  // relatedModelsIds: [] as string[],
-  // relatedModelsList: [] as Model[],
-  // // 当前拖动中的材料
-  // draggingMaterial: null as MaterialListItem | null,
-  // // 当前拖动中的模型
-  // draggingModel: null as Model | null,
   // 编辑器缩放比例
   editorContainerScale: 1,
   // 是否已经保存(离开或替换schma提醒判断)
@@ -56,7 +45,6 @@ const initStoreData = {
   ossDomain: '',
   previewAreaWidth: 1420,
   previewContentWidth: 286,
-  // modelList: [] as ModelTypeItem[],
 };
 
 

@@ -24,12 +24,13 @@ import {
 } from 'vue';
 import BrochureEditor from './editor/index.vue';
 import HeaderBar from './components/HeaderBar.vue';
+import BrochureBaseInfoForm from './components/BrochureBaseInfoForm.vue';
 import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
 // import TemplatesListPanel from './editor/components/panels/TemplatesListPanel.vue';
 import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 // import ShapeControlPanel from './editor/components/panels/ShapeControlPanel.vue';
 // import HotPointControlPanel from './editor/components/panels/HotPointControlPanel.vue';
-// import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
+import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
 // import MaterialsListPanel from './editor/components/panels/MaterialsListPanel.vue';
 // import ModelListPanel from './editor/components/panels/ModelListPanel.vue';
 
@@ -59,20 +60,14 @@ export default defineComponent({
     ];
     const rightSidebarTabsConfig = [
       {
-        label: '文本', value: 'text', icon: ' i-r-wenzi-16', component: TextControlPanel,
+        label: '文本', value: 'text', icon: ' i-text', component: TextControlPanel,
       },
-      // {
-      //   label: '图片', value: 'image', icon: ' i-r-tupian-16', component: PhotoLibraryPanel, panelType: 'photo',
-      // },
-      // // {
-      // //   label: '材料', value: 'material', icon: ' i-r-cailiao-16', component: MaterialsListPanel,
-      // // },
-      // {
-      //   label: '视频', value: 'video', icon: ' i-r-shipin-16', component: PhotoLibraryPanel, panelType: 'video',
-      // },
-      // {
-      //   label: '形状', value: 'shape', icon: ' i-r-xingzhuang-16', component: ShapeControlPanel,
-      // },
+      {
+        label: '图片', value: 'image', icon: ' i-image', component: PhotoLibraryPanel, panelType: 'photo',
+      },
+      {
+        label: '材料册设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
+      },
     ];
     return {
       ...toRefs(state),
