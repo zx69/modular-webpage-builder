@@ -34,7 +34,7 @@
         <template #default="{ upload }">
           <div class="upload-content" @click="upload">
             <div class="icon-wrapper flex-center">
-              <i class="iconfont i-jiahao"></i>
+              <i class="iconfont i-shangchuan"></i>
             </div>
             <p>重新上传</p>
           </div>

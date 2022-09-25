@@ -5,7 +5,7 @@
     @transferData="receiverDropMaterial"
     v-on="events"
   >
-    <el-image  :src="croppedImageUrl" ref="imageWrapper">
+    <el-image  :src="croppedImageUrl" ref="imageWrapper" fit="cover">
       <template #error>
         <div class="image-slot">
           <el-icon><icon-picture /></el-icon>

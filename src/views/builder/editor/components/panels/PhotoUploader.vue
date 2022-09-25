@@ -10,7 +10,7 @@
     >
       <template #default="{ upload }">
         <el-button class="handle-btn--text" type="text" @click="upload">
-          <i class="icon i-r-shangchuan-121"></i>
+          <i class="iconfont i-shangchuan"></i>
           上传
         </el-button>
       </template>

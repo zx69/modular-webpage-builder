@@ -4,7 +4,7 @@
       <el-image v-if="currentImgUrl" class="preview-box" :src="currentImgUrl" @click="showEditAvatarDialog" />
       <div v-else class="upload-btn flex-center flex-column" @click="showEditAvatarDialog">
         <slot name="emptyPlaceholder">
-          <i class="icon i-l-shangchuantubiao-34"></i>
+          <i class="iconfont i-shangchuan"></i>
           <span>{{ placeholder ?? '上传' }}</span>
         </slot>
       </div>

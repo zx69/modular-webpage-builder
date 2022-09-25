@@ -175,15 +175,6 @@ export default defineComponent({
       }
     }
   }
-  // .right-sidebar_base-info-panel {
-  //   width: 280px;
-  //   flex: 0 0 280px;
-  //   background-color: #fff;
-  //   border-left: 1px solid #ddd;
-  //   // &.placeholder {
-  //   //   visibility: hidden;
-  //   // }
-  // }
 }
 
 .block-radio-tooltip {

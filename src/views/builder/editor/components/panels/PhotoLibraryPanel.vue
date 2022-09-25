@@ -1,23 +1,25 @@
 <template>
   <div class="material-brochure_photo-library-panel">
-    <h3 class="sidebar-title flex-space-between" v-if="title">
-      {{ title }}
-      <aside class="handle-btns flex">
-        <el-button
-          class="handle-btn--text"
-          type="text"
-          :disabled="status === 'normal' && isConentEmpty"
-          @click="managePhoto"
-          :class="{ active: status === 'manage' }"
-        >
-          <i class="icon" :class="status === 'normal' ? 'i-r-guanli-12' : 'i-r-wancheng-12'"></i>
-          {{ status === "normal" ? "管理" : "完成" }}
-        </el-button>
-        <component
-          :is="panelType === 'photo' ? 'PhotoUploader' : 'PhotoUploader'"
-          @getFilesWithSize="saveUploadingFile"
-        />
-      </aside>
+    <h3 class="sidebar-title" v-if="title">
+      <div class="flex-space-between">
+        {{ title }}
+        <aside class="handle-btns flex">
+          <el-button
+            class="handle-btn--text"
+            type="text"
+            :disabled="status === 'normal' && isConentEmpty"
+            @click="managePhoto"
+            :class="{ active: status === 'manage' }"
+          >
+            <i class="iconfont" :class="status === 'normal' ? 'i-yingyongguanli' : 'i-wancheng'"></i>
+            {{ status === "normal" ? "管理" : "完成" }}
+          </el-button>
+          <component
+            :is="panelType === 'photo' ? 'PhotoUploader' : 'PhotoUploader'"
+            @getFilesWithSize="saveUploadingFile"
+          />
+        </aside>
+      </div>
     </h3>
     <main class="main-content">
       <transition-group name="photo-list">
@@ -34,7 +36,7 @@
             :data-src="box.url"
             @contextmenu.prevent="showContextMenu"
           >
-            <base-image :src="box.url" :draggable="true" @dragstart="(ev) => handleDragStart(ev, box.url)"></base-image>
+            <el-image :src="box.url" :draggable="true" @dragstart="(ev) => handleDragStart(ev, box.url)"></el-image>
             <div class="image-veil" v-if="box.status && ['uploading', 'fail'].includes(box.status)">
               <el-progress
                 v-if="box.status === 'uploading'"
@@ -50,35 +52,7 @@
             <i
               v-if="status === 'manage'"
               @click.stop="removeFile(box.url)"
-              class="icon remove-icon flex-center i-r-guanbi-16"
-            ></i>
-          </div>
-        </template>
-        <template v-if="panelType === 'video'">
-          <div
-            class="video-layout-box"
-            v-for="video in videoList"
-            :key="video.key"
-            :data-src="video.url"
-            @contextmenu.prevent="showContextMenu"
-          >
-            <base-video :src="video?.url" :draggable="true" @dragstart="(ev) => handleDragStart(ev, video.url)" />
-            <div class="image-veil" v-if="video.status && ['uploading', 'fail'].includes(video.status)">
-              <el-progress
-                v-if="video.status === 'uploading'"
-                type="circle"
-                color="#fff"
-                :percentage="(video.uploadedSize / video.file.size) * 100"
-                :width="84 * 0.6"
-                :stroke-width="4"
-                :show-text="false"
-              />
-              <p v-if="video.status === 'fail'" class="error-notice">上传失败</p>
-            </div>
-            <i
-              v-if="status === 'manage'"
-              @click.stop="removeFile(video.url)"
-              class="icon remove-icon flex-center i-r-guanbi-16"
+              class="iconfont i-close remove-icon flex-center"
             ></i>
           </div>
         </template>
@@ -221,6 +195,7 @@ export default defineComponent({
   }
   .handle-btn--text {
     margin-left: 16px;
+    color: #333333;
   }
   .photo-layout-box {
     position: absolute;
@@ -236,6 +211,7 @@ export default defineComponent({
   }
   .photo-layout-box,
   .video-layout-box {
+    cursor: pointer;
     .image-veil {
       position: absolute;
       top: 0;
@@ -300,7 +276,13 @@ export default defineComponent({
     opacity: 0;
   }
   .no-photo-error {
+    text-align:center;
+    color: #dddddd;
     margin-top: 60px !important;
+  }
+
+  .sidebar-title{
+    margin-bottom: 16px;
   }
 }
 </style>
