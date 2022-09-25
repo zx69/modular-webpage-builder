@@ -67,3 +67,18 @@ export const setRenderSchema = (schema: CompModule[]) => {
   store.renderSchemaList = schema;
   store.sectionIdCount = store.renderSchemaList.length + 1; // sectionIdCount需根据store.renderSChenmaList实时更新
 };
+export const setMainContainerDom = (dom: HTMLElement | null) => {
+  store.mainContainerDom = dom;
+};
+
+// 获取目标元素相对于工作区的clientRect
+export const getRelativeClientRectFromWoreArea = (targetDomOrRect: HTMLElement | FrameClientRect, mainContainerDom?: HTMLElement) => {
+  const _clientRect = 'width' in targetDomOrRect ? targetDomOrRect : targetDomOrRect.getBoundingClientRect();
+  const _mainContainerClientRect = (mainContainerDom || store.mainContainerDom)?.getBoundingClientRect();
+  return {
+    width: _clientRect.width,
+    height: _clientRect.height,
+    top: Number(_clientRect.top) - (_mainContainerClientRect?.top || 0),
+    left: Number(_clientRect.left) - (_mainContainerClientRect?.left || 0),
+  };
+};

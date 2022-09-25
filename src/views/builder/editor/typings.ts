@@ -66,12 +66,11 @@ export type RenderStatus = 'edit' | 'readonly' | 'preview'; // 模块渲染状�
 export type ControlAction = 'up' | 'down' | 'reset' | 'copy' | 'remove';
 
 export type FrameClientRect = {
-  width: string,
-  height: string,
-  top: string,
-  left: string,
+  width: number,
+  height: number,
+  top: number | string,
+  left: number | string,
 };
-
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomOptions {

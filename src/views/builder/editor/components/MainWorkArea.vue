@@ -32,7 +32,7 @@
           &nbsp;&nbsp;拖拽模块到这里
         </div>
       </DropReceiver>
-      <div id="hoverFrame" class="hover-frame" :style="hoverFrameClientRect" v-show="hoverFrameClientRect"></div>
+      <div id="hoverFrame" class="hover-frame" :style="unitifyClientRect(hoverFrameClientRect) ?? {}" v-show="hoverFrameClientRect"></div>
       <ActiveFrame />
     </main>
   </div>
@@ -50,10 +50,12 @@ import {
   CONTENT_MIN_WIDTH,
 } from '../const/common';
 import store, {
-  modules, setActiveElementFid, setActiveFrameClientRect,
+  getRelativeClientRectFromWoreArea,
+  modules, setActiveElementFid, setActiveFrameClientRect, setMainContainerDom,
 } from '../store';
 // import modules from '../modules';
 import { FrameClientRect } from '../typings';
+import { unitifyClientRect } from '../utils/common';
 import Renderer from './Renderer';
 import DropReceiver from './DropReceiver.vue';
 import ModuleControlBox from './ModuleControlBox.vue';
@@ -110,14 +112,15 @@ export default defineComponent({
       //   clearTimeout(state.clearHoverFrameTimer);
       // }
 
-      const _clientRect = _target.getBoundingClientRect();
-      const _mainContainerClientRect = mainContainer.value.getBoundingClientRect();
-      state.hoverFrameClientRect = {
-        width: getPx(_clientRect.width),
-        height: getPx(_clientRect.height),
-        top: getPx(_clientRect.top - _mainContainerClientRect.top),
-        left: getPx(_clientRect.left - _mainContainerClientRect.left),
-      };
+      // const _clientRect = _target.getBoundingClientRect();
+      // const _mainContainerClientRect = mainContainer.value.getBoundingClientRect();
+      // state.hoverFrameClientRect = {
+      //   width: getPx(_clientRect.width),
+      //   height: getPx(_clientRect.height),
+      //   top: getPx(_clientRect.top - _mainContainerClientRect.top),
+      //   left: getPx(_clientRect.left - _mainContainerClientRect.left),
+      // };
+      state.hoverFrameClientRect = getRelativeClientRectFromWoreArea(_target);
     };
     const handleMouseOut = (ev: Event) => {
       const _target = ev.target as HTMLElement | null;
@@ -151,7 +154,7 @@ export default defineComponent({
       setActiveElementFid('');
     };
 
-    onMounted(() => {
+    onMounted(async () => {
       // 初始化计算出mainContent的宽度, 后面宽度就不再变化.避免resize时选中框变形
       const workAreaClientRect = mainWorkArea.value.getBoundingClientRect();
       state.mainContainerWidth = workAreaClientRect.width - (180 + 40); // 180为左右margin的距离
@@ -162,6 +165,10 @@ export default defineComponent({
           : document.body.clientWidth;
       // editorContainerScale的除数取当前预览有效区域, 才能保证编辑时和预览时的字高比例一样
       store.editorContainerScale = state.mainContainerWidth / state.currentPreviewAreaWidth;
+      await nextTick();
+      if (mainContainer.value) {
+        setMainContainerDom(mainContainer.value);
+      }
     });
 
     return {
@@ -174,6 +181,7 @@ export default defineComponent({
       mainContainer,
       renderSchemaList: toRef(store, 'renderSchemaList'),
       removeWorkAreaActiveStatus,
+      unitifyClientRect,
       mainContainerScale: computed(() => store.editorContainerScale),
     };
   },
