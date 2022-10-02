@@ -95,6 +95,8 @@ const mergeAttrs = (baseAttrs: Obj, appendAttrs: Obj) => {
   });
 };
 
+let globalIdCount = 1; // 用于生成fid的计算器
+
 const comilpeSchema = (
   nodeSchema: CommonCompProp<SchemaType>,
   renderData?: Obj,
@@ -103,6 +105,11 @@ const comilpeSchema = (
 ): VNode => {
   if (typeof nodeSchema !== 'object') {
     throw Error('render json schema must be a object!');
+  }
+
+  // 有sid表示是模块最外层的renderer, 此时将idcount重置为1
+  if (nodeSchema.sid) {
+    globalIdCount = 1;
   }
 
   nodeSchema = mobileSchemaOverwrite(nodeSchema, config.mode);
@@ -145,7 +152,8 @@ const comilpeSchema = (
 
   console.log(nodeSchema.operation);
   if (nodeSchema.operation) {
-    fid = `${parentFid ? `${parentFid}-` : ''}${hash(nodeSchema).substr(0, 10)}`;
+    // 暂定fid生成方案.需求: 需要跟元素绑定,避免每次修改样式都生成新的fid,导致频繁mutation
+    fid = `${parentFid ? `${parentFid}-` : ''}${globalIdCount++}`;
     store.flattenShemaNodeMap[fid] = nodeSchema;
   }
 
