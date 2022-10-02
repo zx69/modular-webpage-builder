@@ -99,3 +99,18 @@ export const fetchMaterialBrochureContent = async (collectionId: string) => {
 
 
 /* ============== end 材料册管理 ============== */
+
+
+// 获取材料册内容JSON
+export const fetchMaterialList = async (params: Obj) => {
+  // mock
+  return Array(10).fill('').map((item, i) => ({
+    id: `${i + 1}`,
+    name: `产品${i + 1}`,
+    price: Math.random() * 10 + 12,
+    applicableSeason: ['春季', '夏季', '秋季', '冬季'][Math.round(Math.random() * 4)],
+    category: ['衣服', '鞋子', '裤子', '配饰'][Math.round(Math.random() * 4)],
+    supplierLogo: '',
+    supplierName: 'Niubility Ltd',
+  }));
+};

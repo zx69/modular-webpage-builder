@@ -31,10 +31,10 @@ import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 // import ShapeControlPanel from './editor/components/panels/ShapeControlPanel.vue';
 // import HotPointControlPanel from './editor/components/panels/HotPointControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
-// import MaterialsListPanel from './editor/components/panels/MaterialsListPanel.vue';
+import ProductsListPanel from './editor/components/panels/ProductsListPanel.vue';
 // import ModelListPanel from './editor/components/panels/ModelListPanel.vue';
 import Previewer from './previewer/index.vue';
-import { setRenderSchema } from './editor/store';
+import { generateModulesList, setRenderSchema } from './editor/store';
 
 const leftSidebarTabsConfig = [
   // {
@@ -59,6 +59,9 @@ const rightSidebarTabsConfig = [
     label: '图片', value: 'image', icon: ' i-image', component: PhotoLibraryPanel, panelType: 'photo',
   },
   {
+    label: '商品', value: 'product', icon: ' i-shangpin', component: ProductsListPanel,
+  },
+  {
     label: '材料册设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
   },
 ];
@@ -76,6 +79,7 @@ export default defineComponent({
       isPreviewing: false,
     });
 
+    generateModulesList();
     return {
       ...toRefs(state),
       leftSidebarTabsConfig,

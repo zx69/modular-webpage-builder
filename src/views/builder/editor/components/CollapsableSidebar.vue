@@ -23,10 +23,10 @@
       v-if="showControlBar"
     >
       <el-button v-if="position === 'left'" type="text" @click="isPanelCollapsed = !isPanelCollapsed">
-        <i :class="['icon', isPanelCollapsed ? 'i-r-shouqi-16' : 'i-r-zhankai-16']"></i>
+        <i :class="['iconfont', isPanelCollapsed ? 'i-xiangyouzhankai' : 'i-xiangzuoshouqi']"></i>
       </el-button>
       <el-button v-else type="text" @click="isPanelCollapsed = !isPanelCollapsed">
-        <i :class="['icon', isPanelCollapsed ? 'i-r-zhankai-16' : 'i-r-shouqi-16']"></i>
+        <i :class="['iconfont', isPanelCollapsed ? 'i-xiangzuoshouqi' : 'i-xiangyouzhankai']"></i>
       </el-button>
     </aside>
   </div>

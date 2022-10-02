@@ -105,7 +105,7 @@ export const headerSection = (withBacground = true) => ({
 export const moduleInnerBox1 = (valueKey: string, style = {}) => {
   return {
     type: 'component',
-    component: 'MaterialBox',
+    component: 'ProductBox',
     props: {
       valueKey,
     },

@@ -61,7 +61,6 @@
             :is="tab.component"
             :title="tab.label"
             :panelType="tab.panelType"
-            :ref="tab.value === 'base-info' ? 'baseInfoPanel' : ''"
           ></component>
         </div>
       </template>
@@ -166,6 +165,7 @@ export default defineComponent({
         flex-direction: column;
         color: #666;
         outline: none;
+        cursor: pointer;
         &:hover {
           color: $color-primary;
         }

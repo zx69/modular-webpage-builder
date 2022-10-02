@@ -47,7 +47,7 @@ const leftSection = {
         },
         {
           type: 'component',
-          component: 'MaterialBox',
+          component: 'ProductBox',
           props: {
             valueKey: 'mainMaterialId',
             showTitle: false,

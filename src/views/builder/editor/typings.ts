@@ -77,3 +77,14 @@ declare module '@vue/runtime-core' {
     operation?: string;
   }
 }
+
+
+export type ProductItem = {
+  id: string,
+  name: string,
+  price: number,
+  applicableSeason: string,
+  category: string,
+  supplierLogo: string,
+  supplierName: string,
+};

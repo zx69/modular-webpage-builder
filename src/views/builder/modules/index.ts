@@ -1,6 +1,6 @@
 import InputableText from '@/views/builder/editor/components/moduleComponents/InputableText.vue';
 import ImageBox from '@/views/builder/editor/components/moduleComponents/ImageBox.vue';
-import MaterialBox from '@/views/builder/editor/components/moduleComponents/MaterialBox.vue';
+import ProductBox from '@/views/builder/editor/components/moduleComponents/ProductBox.vue';
 // import VideoBox from '../components/moduleComponents/VideoBox.vue';
 // import store from '../store';
 
@@ -8,7 +8,7 @@ import MaterialBox from '@/views/builder/editor/components/moduleComponents/Mate
 // note: 原本type=component时使用函数表示组件, 但函数序列化后会丢失, 不利于保存到服务器.所以改用字符串表示特定组件
 export const moduleComponentsMap = {
   InputableText,
-  MaterialBox,
+  ProductBox,
   ImageBox,
 };
 

@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "629357",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "966366",
+      "name": "向右展开",
+      "font_class": "xiangyouzhankai",
+      "unicode": "e8a7",
+      "unicode_decimal": 59559
+    },
+    {
+      "icon_id": "966367",
+      "name": "向左收起",
+      "font_class": "xiangzuoshouqi",
+      "unicode": "e8a8",
+      "unicode_decimal": 59560
+    },
+    {
+      "icon_id": "3923002",
+      "name": "模板",
+      "font_class": "moban",
+      "unicode": "e76a",
+      "unicode_decimal": 59242
+    },
+    {
+      "icon_id": "201644",
+      "name": "3.1 全部商品",
+      "font_class": "shangpin",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1727380",
+      "name": "34模板、框架-线性",
+      "font_class": "mokuai",
+      "unicode": "e8a5",
+      "unicode_decimal": 59557
+    },
+    {
       "icon_id": "474968",
       "name": "mobile",
       "font_class": "mobile",

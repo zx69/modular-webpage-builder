@@ -113,7 +113,7 @@ const module = () => ({
                   },
                   {
                     type: 'component',
-                    component: 'MaterialBox',
+                    component: 'ProductBox',
                     props: {
                       valueKey: 'materialId1',
                       showTitle: false,
@@ -214,7 +214,7 @@ const module = () => ({
                   },
                   {
                     type: 'component',
-                    component: 'MaterialBox',
+                    component: 'ProductBox',
                     props: {
                       valueKey: 'materialId2',
                       showTitle: false,
