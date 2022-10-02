@@ -39,7 +39,7 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, watch,
 } from 'vue';
-import { fetchProductList } from '@/api/brochure';
+import { fetchProductList } from '@/api/builder';
 import { ProductItem } from '../../typings';
 import { draggingProduct } from '../../uses/use-drag-product';
 import ProductTileItem from './ProductTileItem.vue';

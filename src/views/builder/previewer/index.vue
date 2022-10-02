@@ -30,7 +30,7 @@ import { generateQRCode } from '@/utils/qrcode';
 import {
   defineComponent, reactive, computed, ref, toRefs, toRef, onMounted, watch, onUnmounted, toRaw, inject, PropType,
 } from 'vue';
-import { fetchMaterialBrochureContent } from '@/api/brochure';
+import { fetchMaterialBrochureContent } from '@/api/builder';
 import { CompModule, PreviewMode } from '../editor/typings';
 import store from '../editor/store';
 import useBaseInfo from '../editor/uses/use-base-info';

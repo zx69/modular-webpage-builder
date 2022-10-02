@@ -6,7 +6,7 @@ import {
   MixedPhotoItem,
   PhotoItem,
   removePhotoFromLibray,
-} from '@/api/brochure';
+} from '@/api/builder';
 
 export const useContextMenu = (fileListRef: Ref<(MixedPhotoItem & { key: string })[]>, statusRef: Ref<string>, type: 'photo' | 'video') => {
   const _state = reactive({

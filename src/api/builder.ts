@@ -54,35 +54,35 @@ export const photoApi = {
 
 
 /* ============== 主页管理 ============== */
-export type BrochureItem = {
+export type WebpageItem = {
   id: string,
   name: string,
   cover: string,
   content: Obj,
 };
-export type BrochureBaseInfo = { name: string, isOpen: 1 | 2, cover: string, version: string, content: Obj };
+export type WebpageBaseInfo = { name: string, isOpen: 1 | 2, cover: string, version: string, content: Obj };
 
 // 新增材料册
-export const addMaterialBrochure = async (brochureData: Omit<BrochureItem, 'id'>) => {
+export const addMaterialBrochure = async (brochureData: Omit<WebpageItem, 'id'>) => {
   // const res = await axios.post<null>('/idealab-manage/collection/temp/add', brochureData);
   // return res.data;
 };
 
 // 编辑材料册属性
-export const editMaterialBrochureInfo = async (brochureInfo: Omit<BrochureItem, 'content'>) => {
+export const editMaterialBrochureInfo = async (brochureInfo: Omit<WebpageItem, 'content'>) => {
   // const res = await axios.post<null>('/idealab-manage/collection/temp/update', brochureInfo);
   // return res;
 };
 
 // 保存材料册内容，并记录版本
-export const saveMaterialBrochureContent = async (brochureContent: Pick<BrochureItem, 'id' | 'content'>) => {
+export const saveMaterialBrochureContent = async (brochureContent: Pick<WebpageItem, 'id' | 'content'>) => {
   // const res = await axios.post<null>('/idealab-manage/collection/temp/content/update', brochureContent);
   // return res.data;
 };
 
 // 获取材料册属性
 export const fetchMaterialBrochureInfo = async (collectionId: string) => {
-  // const res = await axios.get<BrochureBaseInfo>('/idealab-manage/collection/temp/detail', { params: { tempId: collectionId } });
+  // const res = await axios.get<WebpageBaseInfo>('/idealab-manage/collection/temp/detail', { params: { tempId: collectionId } });
   // return res.data;
 };
 
@@ -91,15 +91,6 @@ export const fetchMaterialBrochureContent = async (collectionId: string) => {
   // mock
   return store.renderSchemaList;
 };
-
-// export type BrochureEditionItem = {name: string, saveTime: string, version: string};
-// 获取材料册版本列表
-// export const fetchMaterialBrochureEditionsList = async (collectionId: string) => {
-//   const res = await axios.get<BrochureEditionItem[]>('/idealab-material/collection/revisions', { params: { collectionId } });
-//   return res.data;
-// };
-
-
 /* ============== end 主页管理 ============== */
 
 

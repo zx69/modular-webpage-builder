@@ -1,9 +1,9 @@
 <template>
   <div class="webpage-builder_settings-panel control-panel">
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
-    <div class="brochure-template-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
+    <div class="brochure-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
       <el-form
-        class="brochure-template-base-info-form form--narrow-label"
+        class="form--narrow-label"
         label-position="top"
         :model="formData"
         :rules="formRules"
@@ -42,14 +42,14 @@ import {
   defineComponent, reactive, computed, ref, toRefs, watch, PropType, inject,
 } from 'vue';
 import {
-  BrochureBaseInfo,
-} from '@/api/brochure';
+  WebpageBaseInfo,
+} from '@/api/builder';
 import useBaseInfo from '../editor/uses/use-base-info';
 import { createRandomString } from '../editor/utils/common';
 import ImageUploader from './ImageUploader.vue';
 
 export default defineComponent({
-  name: 'brochure-template-base-info-form',
+  name: 'brochure-base-info-form',
   components: { ImageUploader },
   props: {
     title: {
@@ -60,9 +60,8 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    // inject无法获取到dialog形式的formData, 所以对于isInDialog, 取props.initFormData
     initFormData: {
-      type: Object as PropType<BrochureBaseInfo>,
+      type: Object as PropType<WebpageBaseInfo>,
     },
   },
   setup(props, { emit }) {
@@ -117,7 +116,7 @@ export default defineComponent({
     margin-bottom: 16px;
   }
 }
-.brochure-template-base-info-form {
+.brochure-base-info-form {
   .el-radio {
     width: 100%;
     + .el-radio {

@@ -1,6 +1,6 @@
 import { reactive, ref, Ref } from 'vue';
 import { ElMessage, ElForm } from 'element-plus';
-import { BrochureBaseInfo } from '@/api/brochure';
+import { WebpageBaseInfo } from '@/api/builder';
 import { watch } from 'vue-demi';
 
 const formEl = ref<typeof ElForm>();

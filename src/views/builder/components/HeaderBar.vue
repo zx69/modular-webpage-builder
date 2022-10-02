@@ -23,7 +23,7 @@ import {
 } from 'vue';
 import { ElMessage } from 'element-plus';
 import useBaseInfo from '../editor/uses/use-base-info';
-import BrochureBaseInfoForm from './BrochureBaseInfoForm.vue';
+import BaseInfoForm from './BaseInfoForm.vue';
 
 export default defineComponent({
   name: 'webpage-builder_header-bar',
@@ -55,7 +55,7 @@ export default defineComponent({
         brochureId: string,
         formData: Obj,
       }>({
-        is: BrochureBaseInfoForm,
+        is: BaseInfoForm,
         props: {
           isInDialog: true,
           initFormData: currentBaseFormInfo,

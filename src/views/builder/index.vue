@@ -24,7 +24,7 @@ import {
 } from 'vue';
 import Editor from './editor/index.vue';
 import HeaderBar from './components/HeaderBar.vue';
-import BrochureBaseInfoForm from './components/BrochureBaseInfoForm.vue';
+import BaseInfoForm from './components/BaseInfoForm.vue';
 import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
 import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
@@ -62,7 +62,7 @@ const rightSidebarTabsConfig = [
     label: '形状', value: 'shape', icon: ' i-moban', component: ShapeControlPanel,
   },
   {
-    label: '设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
+    label: '设置', value: 'base-info', icon: ' i-settings', component: BaseInfoForm,
   },
 ];
 export default defineComponent({

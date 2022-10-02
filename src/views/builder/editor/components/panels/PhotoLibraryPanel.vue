@@ -82,7 +82,7 @@ import {
   // fetchVideoLibraryList,
   LayoutedPhotoItem,
   MixedPhotoItem,
-} from '@/api/brochure';
+} from '@/api/builder';
 import { getPx } from '@/utils/style';
 import PhotoUploader from './PhotoUploader.vue';
 import { useContextMenu } from './useContextMenu';
