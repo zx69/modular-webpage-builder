@@ -31,12 +31,12 @@ const module = () => ({
   index: 10,
   aspectRadio: '86.28%',
   data: {
-    title: '材料系列名称',
-    desc: 'Width：52” Gauge：0.8mm',
-    titleTag: 'SD-13688',
+    title: '主题1',
+    desc: 'description text',
+    titleTag: 'ASIDE TAG',
     materialsIds: Array.from({ length: 9 }).map(e => ''),
-    imgUrl1: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-13.png',
-    imgUrl2: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-14.png',
+    imgUrl1: 'https://gd-hbimg.huaban.com/85b335916ee9a97b55ff463cb0a0331cb74f09f356972-8okT2A_fw658',
+    imgUrl2: 'https://gd-hbimg.huaban.com/9eade61122ea1a4a26832ff1118601622ec379df27e72-b1FgQv_fw658',
   },
   class: 'module-beside-gap',
   children: [

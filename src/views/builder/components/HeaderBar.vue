@@ -1,6 +1,6 @@
 <template>
   <div class="webpage-builder_header-bar flex-space-between">
-    <el-button type="text" @click="goBack"> <i class="back-icon i-r-zuo-12"></i>返回</el-button>
+    <h3>未命名</h3>
     <section class="right-section">
       <el-button @click="handlePreview">预览</el-button>
       <el-button @click="handlePreview">版本</el-button>

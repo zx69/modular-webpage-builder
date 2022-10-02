@@ -31,10 +31,10 @@ const module = () => ({
   aspectRadio: getPercentage(800 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    imgUrl: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-18.png',
+    imgUrl: 'https://gd-hbimg.huaban.com/5edee231a8a21aaefa8b60b14d125e0b0234a90c303c9-1VjnaL_fw658',
     title: '简约',
     title2: '时尚',
-    desc: 'MATERIAL',
+    desc: 'FASHION',
   },
   class: 'fixed-aspect-radio-box',
   style: {
@@ -50,7 +50,7 @@ const module = () => ({
         bottom: getPercentage(50 / 800),
         alignItems: 'stretch',
         // eslint-disable-next-line max-len
-        backgroundImage: 'url(https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-25.png)',
+        backgroundImage: 'url(https://gd-hbimg.huaban.com/e02471b697cfca846605a884cbdc81951235d3c5dec95-pqO6bJ_fw658)',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       },

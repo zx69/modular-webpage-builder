@@ -8,8 +8,8 @@ const module = () => ({
   aspectRadio: getPercentage(700 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    imgUrl: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-20.png',
-    imgUrl2: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-18.png',
+    imgUrl: 'https://gd-hbimg.huaban.com/ffa960e2b468cdef1f047880c446e909b3f110434de94-vqBull_fw658',
+    imgUrl2: 'https://gd-hbimg.huaban.com/eb9c2379a3862c8bd173c358b462d12dc35ff17321573-1YWPSL_fw658',
     title: 'FASHION',
   },
   class: 'fixed-aspect-radio-box',

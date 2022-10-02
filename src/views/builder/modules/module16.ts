@@ -8,11 +8,11 @@ const module = () => ({
   aspectRadio: getPercentage(700 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    backgroundImage: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-19.png',
+    backgroundImage: 'https://gd-hbimg.huaban.com/8906cb4ad5a5d230fa3f32e4e5aaf8504142369bbb1f0-bIJymE_fw658',
     title: '简约',
-    title2: '牛津',
-    desc1: '简约现代',
-    desc2: '遇见更好的面料',
+    title2: '舒适',
+    desc1: '现代风格',
+    desc2: '遇见悠闲的生活',
   },
   class: 'fixed-aspect-radio-box',
   style: {

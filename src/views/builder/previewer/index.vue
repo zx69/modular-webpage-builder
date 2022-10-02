@@ -88,11 +88,10 @@ export default defineComponent({
       if (val) {
         currentPreviewMode.value = 'pc';
         const _renderSchemaProp = props.renderSchema || store.renderSchemaList;
+        console.log(JSON.stringify(_renderSchemaProp));
         if (_renderSchemaProp) {
           // 每次打开预览时再给currentSchema赋值触发渲染.
           currentSchema.value = _renderSchemaProp;
-        } else if (props.renderSchemaId) {
-          currentSchema.value = await fetchMaterialBrochureContent(props.renderSchemaId);
         }
         currentName.value = props.name || baseInfo?.name || '';
         // if (props.qrcodeQueryId) {

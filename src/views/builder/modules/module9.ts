@@ -6,9 +6,9 @@ const module = () => ({
   index: 7,
   aspectRadio: '65.99%',
   data: {
-    title: '材料系列名称',
-    desc: 'Width：52” Gauge：0.8mm',
-    titleTag: 'SD-13688',
+    title: '主题1',
+    desc: 'description text',
+    titleTag: 'ASIDE TAG',
     materialsIds: Array.from({ length: 10 }).map(e => ''),
   },
   class: 'module-beside-gap',
