@@ -1,5 +1,5 @@
 <template>
-  <div class="page_builder-index flex-column">
+  <div class="page_builder-index flex-column" v-loading="loading">
     <HeaderBar @preview="isPreviewing = true" @setSchema="setRenderSchema" />
     <main class="main-content flex-1">
       <Editor
@@ -25,6 +25,7 @@ import {
 import Editor from './editor/index.vue';
 import HeaderBar from './components/HeaderBar.vue';
 import BaseInfoForm from './components/BaseInfoForm.vue';
+import TemplatesListPanel from './editor/components/panels/TemplatesListPanel.vue';
 import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
 import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
@@ -34,18 +35,18 @@ import Previewer from './previewer/index.vue';
 import { generateModulesList, setRenderSchema } from './editor/store';
 
 const leftSidebarTabsConfig = [
-  // {
-  //   label: '模板',
-  //   value: 'template',
-  //   icon: ' i-r-moban-16',
-  //   component: h(TemplatesListPanel, {
-  //     onSave: () => {
-  //       // headerBar.value?.handleSaveCommand();
-  //     },
-  //   }),
-  // },
   {
-    label: '模块', value: 'module', icon: ' i-r-mokuai-16', component: ModulesListPanel,
+    label: '模板',
+    value: 'template',
+    icon: ' i-moban',
+    component: h(TemplatesListPanel, {
+      onSave: () => {
+        // todo
+      },
+    }),
+  },
+  {
+    label: '模块', value: 'module', icon: ' i-mokuai', component: ModulesListPanel,
   },
 ];
 const rightSidebarTabsConfig = [

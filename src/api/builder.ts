@@ -2,6 +2,7 @@ import justifiedLayout from 'justified-layout';
 // import Mock from 'mockjs';
 import hash from 'object-hash';
 import mockImageList from '@/mock/image/list.json';
+import mockTemplateList from '@/mock/templateList.json';
 import store from '@/views/builder/editor/store';
 
 
@@ -111,4 +112,11 @@ export const fetchProductList = async (params: Obj) => {
   }));
 
   return mockList.slice((page - 1) * size, page * size);
+};
+
+// 获取模板列表
+export const fetchTemplateList = (params: {keyword?: string}) => {
+  return {
+    data: mockTemplateList,
+  };
 };
