@@ -7,7 +7,7 @@ import { comilpeSchema } from '../utils/compiler';
 
 
 export default defineComponent({
-  name: 'material-brochure_generator_renderer',
+  name: 'webpage-builder_generator_renderer',
   components: {
   },
   props: {

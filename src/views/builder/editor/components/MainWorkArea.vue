@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_main-work-area" ref="mainWorkArea" @click="removeWorkAreaActiveStatus">
+  <div class="webpage-builder_main-work-area" ref="mainWorkArea" @click="removeWorkAreaActiveStatus">
     <main
       ref="mainContainer"
       id="mainContainer"
@@ -63,7 +63,7 @@ import ActiveFrame from './ActiveFrame.vue';
 
 
 export default defineComponent({
-  name: 'material-brochure_main-work-area',
+  name: 'webpage-builder_main-work-area',
   components: {
     Renderer,
     DropReceiver,
@@ -191,7 +191,7 @@ export default defineComponent({
 @import "../styles.scss";
 @import "../extends.scss";
 
-.material-brochure_main-work-area {
+.webpage-builder_main-work-area {
   min-width: 880px;
   overflow-y: auto;
 
@@ -203,12 +203,12 @@ export default defineComponent({
 }
 
 .module-receive-box {
-  @include material-brochure-module-section;
+  @include webpage-builder-module-section;
   height: 48px;
   color: #666;
 }
 
-.material-brochure_module-control-bar {
+.webpage-builder_module-control-bar {
   position: absolute;
   right: -36px;
 }
@@ -226,7 +226,7 @@ export default defineComponent({
 }
 </style>
 <style lang="scss">
-.material-brochure_main-work-area {
+.webpage-builder_main-work-area {
   .drop-receiver {
     .icon {
       margin-right: 4px;

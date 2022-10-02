@@ -1,7 +1,7 @@
 <template>
   <div
     id="activeFrame"
-    class="material-brochure_active-frame"
+    class="webpage-builder_active-frame"
     :style="unitifyClientRect(activeFrameClientRect) ?? {}"
     v-show="activeFrameClientRect"
   >
@@ -22,7 +22,7 @@ import { unitifyClientRect } from '../utils/common';
 import ImageCorpper from './ImageCropper.vue';
 
 export default defineComponent({
-  name: 'material-brochure_active-frame',
+  name: 'webpage-builder_active-frame',
   components: {},
   props: {
   },
@@ -124,7 +124,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 // @import 'url'
-.material-brochure_active-frame {
+.webpage-builder_active-frame {
   position: relative;
   .image-handle-btn {
     pointer-events: auto;

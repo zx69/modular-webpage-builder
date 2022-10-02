@@ -1,6 +1,6 @@
 <template>
   <DropReceiver
-    class="material-brochure_image-box image-container"
+    class="webpage-builder_image-box image-container"
     transferDataType="image-path"
     @transferData="receiverDropMaterial"
     v-on="events"
@@ -28,7 +28,7 @@ import { RenderStatus } from '../../typings';
 import { activeElementSchema } from '../../store';
 
 export default defineComponent({
-  name: 'material-brochure_image-box',
+  name: 'webpage-builder_image-box',
   components: { DropReceiver },
   operation: 'image',
   props: {
@@ -108,7 +108,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_image-box {
+.webpage-builder_image-box {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

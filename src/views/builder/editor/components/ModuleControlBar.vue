@@ -1,6 +1,6 @@
 <template>
   <!-- controlbar是不可选中的, 在这里stopPropagation阻止其可选中 -->
-  <div class="material-brochure_module-control-bar flex-column" @mouseover.stop @mouseout.stop>
+  <div class="webpage-builder_module-control-bar flex-column" @mouseover.stop @mouseout.stop>
     <template v-for="btn in moduleControlBtnsConfig" :key="btn.action">
       <el-tooltip
         effect="light"
@@ -26,7 +26,7 @@ import { CompModule, ControlAction } from '../typings';
 import store, { modules } from '../store';
 
 export default defineComponent({
-  name: 'material-brochure_module-control-box',
+  name: 'webpage-builder_module-control-box',
   components: {},
   props: {
     moduleSchema: {
@@ -115,7 +115,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_module-control-bar {
+.webpage-builder_module-control-bar {
   .el-button {
     width: 36px;
     height: 36px;

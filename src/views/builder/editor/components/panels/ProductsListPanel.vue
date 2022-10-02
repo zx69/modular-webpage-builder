@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_materials-list-panel control-panel flex-column">
+  <div class="webpage-builder_materials-list-panel control-panel flex-column">
     <h3 class="sidebar-title" v-if="title">
       {{ title }}
     </h3>
@@ -46,7 +46,7 @@ import ProductTileItem from './ProductTileItem.vue';
 import CollapseSearchFilter from './CollapseSearchFilter.vue';
 
 export default defineComponent({
-  name: 'material-brochure_materials-list-panel',
+  name: 'webpage-builder_materials-list-panel',
   components: {
     CollapseSearchFilter,
     ProductTileItem,
@@ -120,7 +120,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_materials-list-panel {
+.webpage-builder_materials-list-panel {
   height: 100%;
   position: relative;
   .sidebar-title {

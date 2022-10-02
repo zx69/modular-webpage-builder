@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_previewer flex-column" v-show="isVisible" :class="size">
+  <div class="webpage-builder_previewer flex-column" v-show="isVisible" :class="size">
     <header class="flex-space-between">
       <h4 class="over-text">{{ currentName }}</h4>
       <slot :schema="currentSchema">
@@ -38,7 +38,7 @@ import PlatformRadio from './components/PlatformRadio.vue';
 import PreviewContent from './components/PreviewContent.vue';
 
 export default defineComponent({
-  name: 'material-brochure_previewer',
+  name: 'webpage-builder_previewer',
   components: {
     PlatformRadio,
     PreviewContent,
@@ -152,7 +152,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_previewer {
+.webpage-builder_previewer {
   position: absolute;
   top: 0;
   left: 0;
@@ -262,7 +262,7 @@ export default defineComponent({
 .brochure-previewer-dialog {
   overflow-x: hidden;
   overflow-y: auto;
-  .material-brochure_previewer {
+  .webpage-builder_previewer {
     .preview-mode-pc {
       .preview-container {
         transform: scale(0.422);

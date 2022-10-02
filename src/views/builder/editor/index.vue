@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_generator_index flex">
+  <div class="webpage-builder_generator_index flex">
     <CollapsableSidebar v-if="leftSidebarTabsConfig" class="left-sidebar" :panelWidth="200">
       <template #control-bar v-if="leftSidebarTabsConfig.length > 1">
         <div class="block-radio-group">
@@ -92,7 +92,7 @@ import CollapsableSidebar from './components/CollapsableSidebar.vue';
 // import { onCreated } from './bridge/utils';
 
 export default defineComponent({
-  name: 'material-brochure_generator_index',
+  name: 'webpage-builder_generator_index',
   components: {
     MainWorkArea,
     CollapsableSidebar,
@@ -122,7 +122,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 @import "./styles.scss";
-.material-brochure_generator_index {
+.webpage-builder_generator_index {
   height: 100%;
   .left-sidebar {
     .static-vertical-menu {

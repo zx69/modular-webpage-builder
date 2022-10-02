@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_header-bar flex-space-between">
+  <div class="webpage-builder_header-bar flex-space-between">
     <el-button type="text" @click="goBack"> <i class="back-icon i-r-zuo-12"></i>返回</el-button>
     <section class="right-section">
       <el-button @click="handlePreview">预览</el-button>
@@ -31,7 +31,7 @@ import { useRouter } from 'vue-router';
 import BrochureTemplateBaseInfoForm from './BrochureTemplateBaseInfoForm.vue';
 
 export default defineComponent({
-  name: 'material-brochure_header-bar',
+  name: 'webpage-builder_header-bar',
   components: {},
   props: {
   },
@@ -137,7 +137,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 // @import 'url'
-.material-brochure_header-bar {
+.webpage-builder_header-bar {
   padding: 0 20px;
   height: 64px;
   flex: none;

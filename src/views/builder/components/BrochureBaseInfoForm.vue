@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_settings-panel control-panel">
+  <div class="webpage-builder_settings-panel control-panel">
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
     <div class="brochure-template-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
       <el-form
@@ -147,7 +147,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.material-brochure_settings-panel {
+.webpage-builder_settings-panel {
   .sidebar-title {
     margin-bottom: 16px;
   }

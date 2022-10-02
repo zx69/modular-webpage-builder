@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_photo-uploader">
+  <div class="webpage-builder_photo-uploader">
     <Upload
       :options="{ types: ['png', 'jpg', 'jpeg'] }"
       :validOptions="['img']"
@@ -26,7 +26,7 @@ import Upload from '@/components/upload/index.vue';
 import { MixedPhotoItem, savePhotoToLibrary } from '@/api/brochure';
 
 export default defineComponent({
-  name: 'material-brochure_photo-uploader',
+  name: 'webpage-builder_photo-uploader',
   components: { Upload },
   props: {},
   setup(props, { emit }) {
@@ -114,7 +114,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 // @import 'url'
-.material-brochure_photo-uploader {
+.webpage-builder_photo-uploader {
   .upload-wrap {
     display: flex;
   }

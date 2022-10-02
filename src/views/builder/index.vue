@@ -130,7 +130,7 @@ export default defineComponent({
       height: 100%;
       .main {
         height: 100%;
-        .material-brochure_previewer {
+        .webpage-builder_previewer {
           background: transparent;
           .preview-wrapper {
             background: transparent;

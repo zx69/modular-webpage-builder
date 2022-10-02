@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_photo-library-panel">
+  <div class="webpage-builder_photo-library-panel">
     <h3 class="sidebar-title" v-if="title">
       <div class="flex-space-between">
         {{ title }}
@@ -88,7 +88,7 @@ import PhotoUploader from './PhotoUploader.vue';
 import { useContextMenu } from './useContextMenu';
 
 export default defineComponent({
-  name: 'material-brochure_photo-library-panel',
+  name: 'webpage-builder_photo-library-panel',
   components: {
     PhotoUploader,
     // VideoUploader,
@@ -189,7 +189,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.material-brochure_photo-library-panel {
+.webpage-builder_photo-library-panel {
   .main-content {
     position: relative;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_text-control-panel control-panel">
+  <div class="webpage-builder_text-control-panel control-panel">
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
     <section>
       <h4 class="subtitle">文本类型</h4>
@@ -50,7 +50,7 @@
       <el-color-picker
         v-model="currentColor"
         color-format="rgb"
-        popper-class="material-brochure_color-picker"
+        popper-class="webpage-builder_color-picker"
         @active-change="(val) => setCustomStyle({ color: val })"
         @change="(val) => setCustomStyle({ color: val })"
       />
@@ -103,7 +103,7 @@ import {
 // import BrochureColorPicker from '../BrochureColorPicker.vue';
 
 export default defineComponent({
-  name: 'material-brochure_text-control-panel',
+  name: 'webpage-builder_text-control-panel',
   components: {
     // BrochureColorPicker,
   },
@@ -149,7 +149,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_text-control-panel {
+.webpage-builder_text-control-panel {
   section {
     padding-bottom: 8px;
   }
@@ -222,7 +222,7 @@ export default defineComponent({
     }
   }
 }
-.material-brochure_color-picker {
+.webpage-builder_color-picker {
   .el-color-dropdown__btns {
     .el-color-dropdown__link-btn{
       display: none;

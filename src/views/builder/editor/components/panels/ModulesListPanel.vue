@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_modules-list-panel flex-column">
+  <div class="webpage-builder_modules-list-panel flex-column">
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
     <main class="flex-1" v-if="modules.length">
       <div
@@ -31,7 +31,7 @@ import { CompModule } from '../../typings';
 import Renderer from '../Renderer';
 
 export default defineComponent({
-  name: 'material-brochure_modules-list-panel',
+  name: 'webpage-builder_modules-list-panel',
   components: { Renderer },
   props: {
     title: {
@@ -56,7 +56,7 @@ export default defineComponent({
 </script>
 <style lang="scss">
 // @import 'url'
-.material-brochure_modules-list-panel {
+.webpage-builder_modules-list-panel {
   height: 100%;
   > main {
     margin-left: -20px;

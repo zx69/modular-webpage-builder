@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_image-corpper" v-loading="currentUrl && !isCropperReady">
+  <div class="webpage-builder_image-corpper" v-loading="currentUrl && !isCropperReady">
     <div class="cropper-box-wrapper">
       <VueCropper
         v-if="currentUrl"
@@ -39,7 +39,7 @@ import VueCropper, { cropper } from 'vue-picture-cropper';
 import Upload from '@/components/upload/index.vue';
 
 export default defineComponent({
-  name: 'material-brochure_image-corpper',
+  name: 'webpage-builder_image-corpper',
   components: {
     VueCropper,
     Upload,
@@ -106,7 +106,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.material-brochure_image-corpper {
+.webpage-builder_image-corpper {
   .cropper-upload-btn {
     text-align: right;
   }

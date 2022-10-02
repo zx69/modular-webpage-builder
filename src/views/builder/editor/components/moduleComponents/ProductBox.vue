@@ -1,6 +1,6 @@
 <template>
   <DropReceiver
-    class="material-brochure_material-box"
+    class="webpage-builder_material-box"
     transferDataType="material-id"
     @transferData="receiverDropMaterial"
     v-on="material ? events : null"
@@ -51,7 +51,7 @@ import ProductTileItem from '../panels/ProductTileItem.vue';
 declare const Idealab: { postMessage: (...arg: any) => void };
 
 export default defineComponent({
-  name: 'material-brochure_material-box',
+  name: 'webpage-builder_material-box',
   components: { DropReceiver, ProductTileItem },
   inheritAttrs: false,
   operation: 'product',
@@ -113,7 +113,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 // @import 'url'
-.material-brochure_material-box {
+.webpage-builder_material-box {
   .material-receive-box {
     width: 100%;
     height: 100%;

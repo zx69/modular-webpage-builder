@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_collapse-search-filter">
+  <div class="webpage-builder_collapse-search-filter">
     <header>
       <el-button class="handle-btn--text" type="text" @click="isCollapsed = !isCollapsed">
         <i class="icon i-r-shaixuan-12"></i>
@@ -37,7 +37,7 @@ import {
 import { Search } from '@element-plus/icons-vue';
 
 export default defineComponent({
-  name: 'material-brochure_collapse-search-filter',
+  name: 'webpage-builder_collapse-search-filter',
   props: {
     handleChange: {
       type: Function,
@@ -82,7 +82,7 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.material-brochure_collapse-search-filter {
+.webpage-builder_collapse-search-filter {
   position: relative;
   z-index: 30;
   header {

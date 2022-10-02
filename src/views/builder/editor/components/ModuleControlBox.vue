@@ -1,5 +1,5 @@
 <template>
-  <div class="material-brochure_module-control-box">
+  <div class="webpage-builder_module-control-box">
     <div
       class="module-control-box-inner"
       :style="{
@@ -22,7 +22,7 @@ import { CompModule } from '../typings';
 import ModuleControlBar from './ModuleControlBar.vue';
 
 export default defineComponent({
-  name: 'material-brochure_module-control-box',
+  name: 'webpage-builder_module-control-box',
   components: { ModuleControlBar },
   props: {
     moduleSchema: {
@@ -54,25 +54,25 @@ export default defineComponent({
 <style lang="scss" scoped>
 // @import "../styles.scss";
 @import "../extends.scss";
-.material-brochure_module-control-box {
+.webpage-builder_module-control-box {
   padding: 20px;
   position: relative;
-  @include material-brochure-module-section;
+  @include webpage-builder-module-section;
   .module-control-box-inner {
     transform-origin: left top;
   }
-  .material-brochure_module-control-bar {
+  .webpage-builder_module-control-bar {
     display: none;
     position: absolute;
     top: 0;
     right: -36px;
   }
   &:hover {
-    .material-brochure_module-control-bar {
+    .webpage-builder_module-control-bar {
       display: flex;
     }
   }
-  & + .material-brochure_module-control-box {
+  & + .webpage-builder_module-control-box {
     margin-top: 16px;
   }
 }
