@@ -47,12 +47,14 @@
       >
         <el-option v-for="size in fontSizeList" :key="size.value" :value="size.value" :label="size.title"></el-option>
       </el-select>
-      <!-- <BrochureColorPicker
+      <el-color-picker
         v-model="currentColor"
+        color-format="rgb"
+        popper-class="material-brochure_color-picker"
+        @active-change="(val) => setCustomStyle({ color: val })"
         @change="(val) => setCustomStyle({ color: val })"
-      ></BrochureColorPicker> -->
+      />
     </section>
-    <!-- <el-color-picker v-model="selectedColor" color-format="rgb" popper-class="material-brochure_color-picker" /> -->
     <section>
       <h4 class="subtitle">样式</h4>
       <div class="font-type-group flex">
@@ -167,9 +169,8 @@ export default defineComponent({
       border: 0;
     }
     .el-color-picker__icon {
-      left: unset;
+      position: absolute;
       right: 0px;
-      transform: translate3d(0, -50%, 0);
       width: 28px;
       height: 100%;
       background: #fff;
@@ -178,15 +179,10 @@ export default defineComponent({
     }
   }
   .font-style-option {
-    // height: 40px;
     padding: 0 12px;
     margin-bottom: 8px;
-    // line-height: 40px !important;
     cursor: pointer;
     user-select: none; // 使文本不可选中
-    // p {
-    //   transform-origin: left center;
-    // }
     &:hover {
       background-color: #f3f3f3;
     }
@@ -225,19 +221,19 @@ export default defineComponent({
       background-color: #f5ffff;
     }
   }
-  .material-brochure_color-picker {
-    .el-color-dropdown__btns {
-      .el-color-dropdown__link-btn {
-        display: none;
-      }
+}
+.material-brochure_color-picker {
+  .el-color-dropdown__btns {
+    .el-color-dropdown__link-btn{
+      display: none;
     }
-    .color-picker-trigger {
-      width: unset;
-      .arrow {
-        display: block;
-        width: 28px;
-        text-align: center;
-      }
+  }
+  .color-picker-trigger {
+    width: unset;
+    .arrow {
+      display: block;
+      width: 28px;
+      text-align: center;
     }
   }
 }
