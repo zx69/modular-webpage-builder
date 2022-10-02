@@ -29,6 +29,7 @@ import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
 import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
 import ProductsListPanel from './editor/components/panels/ProductsListPanel.vue';
+import ShapeControlPanel from './editor/components/panels/ShapeControlPanel.vue';
 import Previewer from './previewer/index.vue';
 import { generateModulesList, setRenderSchema } from './editor/store';
 
@@ -58,7 +59,10 @@ const rightSidebarTabsConfig = [
     label: '商品', value: 'product', icon: ' i-shangpin', component: ProductsListPanel,
   },
   {
-    label: '材料册设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
+    label: '形状', value: 'shape', icon: ' i-moban', component: ShapeControlPanel,
+  },
+  {
+    label: '设置', value: 'base-info', icon: ' i-settings', component: BrochureBaseInfoForm,
   },
 ];
 export default defineComponent({

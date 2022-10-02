@@ -157,27 +157,6 @@ export default defineComponent({
     width: 100%;
     margin-bottom: 8px;
   }
-  .el-color-picker {
-    width: 100%;
-    .el-color-picker__trigger {
-      padding: 0;
-      width: 100%;
-      height: 28px;
-      overflow: hidden;
-    }
-    .el-color-picker__color {
-      border: 0;
-    }
-    .el-color-picker__icon {
-      position: absolute;
-      right: 0px;
-      width: 28px;
-      height: 100%;
-      background: #fff;
-      color: #c0c4cc;
-      line-height: 26px;
-    }
-  }
   .font-style-option {
     padding: 0 12px;
     margin-bottom: 8px;
@@ -222,19 +201,5 @@ export default defineComponent({
     }
   }
 }
-.webpage-builder_color-picker {
-  .el-color-dropdown__btns {
-    .el-color-dropdown__link-btn{
-      display: none;
-    }
-  }
-  .color-picker-trigger {
-    width: unset;
-    .arrow {
-      display: block;
-      width: 28px;
-      text-align: center;
-    }
-  }
-}
+
 </style>
