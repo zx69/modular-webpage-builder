@@ -1,20 +1,34 @@
-import { reactive } from 'vue';
-import { ElMessage } from 'element-plus';
+import { reactive, ref, Ref } from 'vue';
+import { ElMessage, ElForm } from 'element-plus';
 import { BrochureBaseInfo } from '@/api/brochure';
+import { watch } from 'vue-demi';
 
-export default () => {
+const formEl = ref<typeof ElForm>();
+
+export default (formRef?: Ref<typeof ElForm>) => {
   const baseInfo = reactive({
     name: '',
-    viewRange: 1 as BrochureBaseInfo['viewRange'],
+    isOpen: 1 as 1|2,
     cover: '',
-    password: '',
   });
+
   const submitSaveForm = (currentFormData: typeof baseInfo, saveType: 'edit' | 'add') => {
     ElMessage.success('提交成功');
   };
 
+  watch(() => formRef?.value, (val) => {
+    if (val) {
+      formEl.value = val;
+    }
+  });
+
+  const validateForm = async () => {
+    await formEl.value?.validate();
+  };
+
   return {
     baseInfo,
+    validateForm,
     submitSaveForm,
   };
 };

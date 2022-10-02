@@ -94,15 +94,13 @@ export default defineComponent({
           currentSchema.value = _renderSchemaProp;
         }
         currentName.value = props.name || baseInfo?.name || '';
-        // if (props.qrcodeQueryId) {
         const _qrcodeUrl = `${window.location.origin}${props.qrcodeUrl}`;
         // appType是app端要用来辨别是自己的网页(有访问范围限制)
         qrcodeDataUrl.value = await generateQRCode(_qrcodeUrl, {
           [props.qrcodeQueryKey]: props.qrcodeQueryId,
-          appType: 'previewIdeaLab',
+          appType: 'homepage',
           mode: 'preview', // 预览模式下不校验密码
         });
-        // }
       }
     }, { immediate: true });
 
@@ -123,15 +121,13 @@ export default defineComponent({
           currentSchema.value = await fetchMaterialBrochureContent(props.renderSchemaId);
         }
         currentName.value = props.name || baseInfo?.name || '';
-        // if (props.qrcodeQueryId) {
         const _qrcodeUrl = `${window.location.origin}${props.qrcodeUrl}`;
         // appType是app端要用来辨别是自己的网页(有访问范围限制)
         qrcodeDataUrl.value = await generateQRCode(_qrcodeUrl, {
           [props.qrcodeQueryKey]: props.qrcodeQueryId,
-          appType: 'previewIdeaLab',
+          appType: 'homepage',
           mode: 'preview', // 预览模式下不校验密码
         });
-        // }
       }
     }, { immediate: true });
 

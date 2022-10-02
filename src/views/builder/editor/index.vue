@@ -74,22 +74,16 @@
 import {
   defineComponent,
   reactive,
-  computed,
-  ref,
   toRefs,
-  h,
-  toRef,
   watch,
   PropType,
 } from 'vue';
 import { PanelConfig } from './typings';
 import store, {
-//   resetStore,
   activeElementSchema,
 } from './store';
 import MainWorkArea from './components/MainWorkArea.vue';
 import CollapsableSidebar from './components/CollapsableSidebar.vue';
-// import { onCreated } from './bridge/utils';
 
 export default defineComponent({
   name: 'webpage-builder_generator_index',

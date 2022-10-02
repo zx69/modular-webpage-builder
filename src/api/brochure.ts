@@ -60,7 +60,7 @@ export type BrochureItem = {
   cover: string,
   content: Obj,
 };
-export type BrochureBaseInfo = { name: string, viewRange: 1 | 2 | 3, cover: string, version: string, content: Obj };
+export type BrochureBaseInfo = { name: string, isOpen: 1 | 2, cover: string, version: string, content: Obj };
 
 // 新增材料册
 export const addMaterialBrochure = async (brochureData: Omit<BrochureItem, 'id'>) => {

@@ -11,8 +11,8 @@
     </main>
     <Previewer
       v-model:isPreviewing="isPreviewing"
-      qrcodeUrl="/merchant-homepage/detail"
-      :qrcodeQueryId="companyInfo?.orgId"
+      qrcodeUrl="/homepage/index"
+      qrcodeQueryId="123"
       qrcodeQueryKey="orgId"
     />
   </div>
@@ -26,13 +26,9 @@ import Editor from './editor/index.vue';
 import HeaderBar from './components/HeaderBar.vue';
 import BrochureBaseInfoForm from './components/BrochureBaseInfoForm.vue';
 import ModulesListPanel from './editor/components/panels/ModulesListPanel.vue';
-// import TemplatesListPanel from './editor/components/panels/TemplatesListPanel.vue';
 import TextControlPanel from './editor/components/panels/TextControlPanel.vue';
-// import ShapeControlPanel from './editor/components/panels/ShapeControlPanel.vue';
-// import HotPointControlPanel from './editor/components/panels/HotPointControlPanel.vue';
 import PhotoLibraryPanel from './editor/components/panels/PhotoLibraryPanel.vue';
 import ProductsListPanel from './editor/components/panels/ProductsListPanel.vue';
-// import ModelListPanel from './editor/components/panels/ModelListPanel.vue';
 import Previewer from './previewer/index.vue';
 import { generateModulesList, setRenderSchema } from './editor/store';
 

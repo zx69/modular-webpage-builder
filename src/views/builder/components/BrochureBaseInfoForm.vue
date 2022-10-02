@@ -3,36 +3,24 @@
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
     <div class="brochure-template-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
       <el-form
-        size="small"
         class="brochure-template-base-info-form form--narrow-label"
         label-position="top"
         :model="formData"
         :rules="formRules"
         ref="formRef"
       >
-        <el-form-item label="材料册类型" isRequired>
-          <el-radio-group v-model="formData.isOpen" disabled>
-            <el-radio :label="1">公开材料册</el-radio>
-            <el-radio :label="2">私密材料册</el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item class="password-form-item" label="" prop="password">
-          <div class="encrypt-box flex" v-show="formData.isOpen === 2">
-            <el-checkbox v-model="isEncrypt" label="加密" size="large" />
-            <el-input
-              v-show="isEncrypt"
-              v-model="formData.password"
-              placeholder="请输入密码"
-              :maxlength="4"
-            />
-          </div>
-        </el-form-item>
         <el-form-item label="名称" prop="name" isRequired>
           <el-input
             v-model="formData.name"
             placeholder="请输入名称"
             :maxlength="20"
           />
+        </el-form-item>
+        <el-form-item label="类型" isRequired>
+          <el-radio-group v-model="formData.isOpen">
+            <el-radio :label="1">公开</el-radio>
+            <el-radio :label="2">私密</el-radio>
+          </el-radio-group>
         </el-form-item>
         <ImageUploader v-model:imageUrl="formData.cover" label="封面" prop="cover">
           <template #emptyPlaceholder>
@@ -72,68 +60,45 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
-    // renderSchema: {
-    //   type: [Array, Object],
-    //   default: [],
-    // },
     // inject无法获取到dialog形式的formData, 所以对于isInDialog, 取props.initFormData
     initFormData: {
       type: Object as PropType<BrochureBaseInfo>,
     },
-    submitSaveFormFn: {
-      type: Function,
-    },
   },
   setup(props, { emit }) {
+    const formRef = ref();
     const {
       baseInfo,
-      // relatedMaterialsIds,
       submitSaveForm,
-    } = useBaseInfo();
+      validateForm,
+    } = useBaseInfo(formRef);
+
     const state = reactive({
       loading: false,
-      isEncrypt: false,
       formData: baseInfo,
     });
 
-    // baseInfo发生整体替换时才覆盖组件内state,无需deep
-    watch(() => baseInfo, (val) => {
-      // state.formData = baseInfo;
-      state.isEncrypt = !!baseInfo.password;
-    });
-
-    const formRef = ref();
     const formRules = computed(() => ({
       name: { required: true, message: '不得为空', trigger: 'change' },
-      password: state.isEncrypt ? { required: true, message: '不得为空', trigger: 'change' } : null,
     }));
 
-    watch(() => state.isEncrypt, (val) => {
-      if (val) {
-        if (!state.formData.password) {
-          state.formData.password = createRandomString();
-        }
-      } else {
-        state.formData.password = '';
-      }
-    });
-
-    const validateForm = async () => {
-      await formRef.value?.validate();
-    };
+    // const validateForm = async () => {
+    //   await formRef.value?.validate();
+    // };
 
     const handleSubmit = async () => {
-      formRef.value!.validate(async (valid: boolean) => {
-        if (valid) {
-          try {
-            state.loading = true;
-            const _brochureId = await submitSaveForm(baseInfo, 'add');
-            emit('confirm', { brochureId: _brochureId, formData: { ...state.formData } });
-          } finally {
-            state.loading = false;
-          }
-        }
-      });
+      await validateForm();
+      // formRef.value!.validate(async (valid: boolean) => {
+      //   if (valid) {
+      try {
+        state.loading = true;
+        const _brochureId = await submitSaveForm(baseInfo, 'add');
+        emit('confirm', { brochureId: _brochureId, formData: { ...state.formData } });
+      } finally {
+        state.loading = false;
+      }
+      // }
+      // });
     };
 
     return {

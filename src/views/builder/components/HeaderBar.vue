@@ -3,7 +3,6 @@
     <h3>未命名</h3>
     <section class="right-section">
       <el-button @click="handlePreview">预览</el-button>
-      <el-button @click="handlePreview">版本</el-button>
       <el-dropdown split-button @click="handleSaveCommand('save')" @command="handleSaveCommand">
         保存
         <template #dropdown>
@@ -22,13 +21,9 @@ import { dialog } from '@/utils/dialog';
 import {
   defineComponent, reactive, computed, ref, toRefs, PropType, inject,
 } from 'vue';
-// import { BrochureItem, editMaterialBrochureInfo, saveMaterialBrochureContent } from '@/api/brochure';
 import { ElMessage } from 'element-plus';
-// import { getRelativePathFromUrl } from '@/utils/normalize-component';
-// import { history } from '@/utils/history';
-// import { handleChangeTempStatus } from '@/api/materialBook';
-import { useRouter } from 'vue-router';
-import BrochureTemplateBaseInfoForm from './BrochureTemplateBaseInfoForm.vue';
+import useBaseInfo from '../editor/uses/use-base-info';
+import BrochureBaseInfoForm from './BrochureBaseInfoForm.vue';
 
 export default defineComponent({
   name: 'webpage-builder_header-bar',
@@ -36,32 +31,11 @@ export default defineComponent({
   props: {
   },
   setup(props, { emit }) {
-    const router = useRouter();
     const {
-      brochureId,
-      renderSchemaList,
-      getCurrentBaseFormInfo,
-      setBrochureId,
-      setBaseInfo,
-      setRenderSchema,
-      setSaveState,
-      validateSave,
-      generateCover,
-      validateCurrentBaseFormInfo,
+      baseInfo,
+      validateForm,
       submitSaveForm,
-    } = inject('BrochureCommonStore') || {
-      brochureId: ref(''),
-      setBrochureId: (id: string) => ({}),
-      setBaseInfo: (data: Obj) => ({}),
-      setRenderSchema: (data: Obj) => ({}),
-      setSaveState: (data: Obj) => ({}),
-      validateSave: () => ({}),
-      renderSchemaList: ref([]),
-      getCurrentBaseFormInfo: () => ({}),
-      generateCover: () => ({}),
-      validateCurrentBaseFormInfo: async () => ({}),
-      submitSaveForm: () => ({}),
-    };
+    } = useBaseInfo();
 
     const state = reactive({
       // saveType: 'add' as 'add' | 'edit',
@@ -75,27 +49,22 @@ export default defineComponent({
       let currentBaseFormInfo;
       // 如果是另存为, 直接显示空白表单,不必显示当前表单内容
       if (command === 'save') {
-        currentBaseFormInfo = getCurrentBaseFormInfo();
+        currentBaseFormInfo = baseInfo;
       }
       const { brochureId: _brochureId, formData } = await dialog<{
         brochureId: string,
         formData: Obj,
       }>({
-        is: BrochureTemplateBaseInfoForm,
+        is: BrochureBaseInfoForm,
         props: {
           isInDialog: true,
-          renderSchema: renderSchemaList.value,
           initFormData: currentBaseFormInfo,
-          generateCoverFn: generateCover, // 弹框不属于子元素,无法用provide/inject注入方法
-          submitSaveFormFn: submitSaveForm,
         },
       }, {
         props: {
           width: '540px',
         },
       });
-      setBrochureId(_brochureId);
-      setBaseInfo(formData);
     };
 
     const handleSaveCommand = async (command: 'save' | 'saveAs') => {
@@ -103,34 +72,20 @@ export default defineComponent({
         await showEditBaseInfoDialog(command);
       } else {
         try {
-          await validateCurrentBaseFormInfo?.();
-          const currentBaseFormInfo = getCurrentBaseFormInfo();
-          const _brochureId = await submitSaveForm(currentBaseFormInfo);
-          setBrochureId(_brochureId);
+          await validateForm();
+          const currentBaseFormInfo = baseInfo;
+          const _brochureId = await submitSaveForm(currentBaseFormInfo, 'add');
         } catch (err) {
           await showEditBaseInfoDialog(command);
         }
       }
       await ElMessage.success('保存成功');
-      setSaveState(true);
-    };
-
-    const goBack = async () => {
-      const isSaved = await validateSave();
-      if (isSaved) {
-        router.back();
-      } else {
-        await handleSaveCommand('save');
-        router.back();
-      }
     };
 
     return {
       ...toRefs(state),
       handlePreview,
       handleSaveCommand,
-      brochureId,
-      goBack,
     };
   },
 });
