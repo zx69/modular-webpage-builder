@@ -83,10 +83,10 @@ import {
   PropType,
 } from 'vue';
 import { PanelConfig } from './typings';
-// import store, {
+import store, {
 //   resetStore,
-//   activeElementSchema,
-// } from './store';
+  activeElementSchema,
+} from './store';
 import MainWorkArea from './components/MainWorkArea.vue';
 import CollapsableSidebar from './components/CollapsableSidebar.vue';
 // import { onCreated } from './bridge/utils';
@@ -114,6 +114,18 @@ export default defineComponent({
         : null,
       rightSidebarActiveValue: props.rightSidebarTabsConfig?.[0]?.value,
     });
+
+
+    watch(activeElementSchema, (val) => {
+      if (!val) {
+        return;
+      }
+      const operation = val.operation ?? false;
+      if (operation) {
+        state.rightSidebarActiveValue = operation;
+      }
+    });
+
     return {
       ...toRefs(state),
     };

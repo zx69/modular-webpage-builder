@@ -4,7 +4,7 @@ import {
 } from 'vue';
 import getModulesList from '../modules';
 import {
-  CommonCompProp, CompBlock, CompComponent, CompModule, ControlAction, FrameClientRect,
+  CommonCompProp, CompBlock, CompComponent, CompModule, ControlAction, FrameClientRect, ProductItem,
 } from './typings';
 
 export const modules: Ref<CommonCompProp<'module'>[]> = ref([]);
@@ -40,7 +40,6 @@ const initStoreData = {
   isInit: false,
   // 模型是否已经初始化
   isModelInit: false,
-  ossDomain: '',
   previewAreaWidth: 1420,
   previewContentWidth: 286,
 };

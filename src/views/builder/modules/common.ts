@@ -113,11 +113,6 @@ export const moduleInnerBox1 = (valueKey: string, style = {}) => {
   };
 };
 
-export const materialItemIds = () => ({
-  catalogId: '',
-  materialId: '',
-  version: '',
-});
 
 // iconfont
 export const iconfontElem = (fontKey: string, appendStyle: Obj, operation: string | null = 'text') => {

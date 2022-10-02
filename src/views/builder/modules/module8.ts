@@ -1,5 +1,5 @@
 import { getPercentage } from '@/utils/style';
-import { headerSection, moduleInnerBox1, materialItemIds } from './common';
+import { headerSection, moduleInnerBox1 } from './common';
 
 const leftSection = {
   type: 'block',
@@ -144,7 +144,7 @@ const module = () => ({
     titleTag: 'SD-13688',
     imgUrl: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-5.png',
     mainMaterialId: '',
-    materialsIds: Array.from({ length: 6 }).map(e => materialItemIds()),
+    materialsIds: Array.from({ length: 6 }).map(e => ''),
   },
   class: 'module-beside-gap',
   children: [

@@ -2,4 +2,4 @@
 import { ref } from 'vue';
 import { ProductItem } from '../typings';
 
-export const draggingMaterial = ref<ProductItem | null>(null);
+export const draggingProduct = ref<ProductItem | null>(null);

@@ -1,26 +1,26 @@
 <template>
   <DropReceiver
     class="webpage-builder_material-box"
-    transferDataType="material-id"
+    transferDataType="product-id"
     @transferData="receiverDropMaterial"
-    v-on="material ? events : null"
+    v-on="product ? events : null"
     :class="$attrs.class"
     :style="$attrs.style"
-    :fid="status === 'edit' && !material ? null : $attrs.fid"
+    :fid="status === 'edit' && !product ? null : $attrs.fid"
   >
     <ProductTileItem
-      v-if="material"
-      :material="material"
+      v-if="product"
+      :product="product"
       :showSupplier="showTitle"
       :showTitle="showTitle"
       :showPrice="showTitle"
-      :class="{ 'ban-hover': isMobile || $attrs.status === 'edit' }"
+      :class="{ 'ban-hover': isMobile || status === 'edit' }"
     ></ProductTileItem>
-    <div class="material-receive-box flex-column" v-else>
+    <div class="product-receive-box flex-column" v-else>
       <div
         class="fixed-aspect-radio-box"
-        :fid="status === 'edit' && !material ? $attrs.fid : null"
-        v-on="!material ? events : null"
+        :fid="status === 'edit' && !product ? $attrs.fid : null"
+        v-on="!product ? events : null"
       >
         <div class="flex-center">
           <i class="iconfont i-shangpin"></i>
@@ -41,11 +41,12 @@ import {
 import {
   isMobile, getModuleData, saveModuleData, getEventCatchAndThrowMap,
 } from '../../utils';
-import store, { setActiveFrameClientRect } from '../../store';
+import { setActiveFrameClientRect } from '../../store';
 import DropReceiver from '../DropReceiver.vue';
 import { RenderStatus, ProductItem } from '../../typings';
-import { draggingMaterial } from '../../uses/use-drag-material';
+import { draggingProduct } from '../../uses/use-drag-product';
 import ProductTileItem from '../panels/ProductTileItem.vue';
+import { relatedProductsList, removeRelatedProductIds } from '../../uses/use-related-products';
 
 // app端webview注入的全局变量
 declare const Idealab: { postMessage: (...arg: any) => void };
@@ -79,28 +80,52 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const state = reactive({
-      materialId: '',
-      material: null as ProductItem | null,
+      productId: '',
+      product: null as ProductItem | null,
     });
 
-    const receiverDropMaterial = (materialId: string) => {
-      state.material = draggingMaterial.value;
-      state.materialId = materialId;
-      draggingMaterial.value = null;
+    const receiverDropMaterial = (productId: string) => {
+      const _p = relatedProductsList.value.find(m => m.id === productId);
+      if (_p) {
+        state.product = _p;
+      } else {
+        relatedProductsList.value.push(draggingProduct.value!);
+        state.product = draggingProduct.value;
+      }
+      state.productId = productId;
+      draggingProduct.value = null;
       setActiveFrameClientRect(null);
     };
 
-    watch(() => state.materialId, (val, oldVal) => {
-      // todo
+    watch(() => state.productId, (val, oldVal) => {
+      if (!val) {
+        if (!oldVal) {
+          return;
+        }
+        // oldVal有值而val无值表示为清空材料操作
+        removeRelatedProductIds(oldVal);
+      } else if (oldVal) {
+        // oldVal和val都有值而表示为替换材料操作
+        removeRelatedProductIds(oldVal);
+      }
+      console.log('set', props.data, props.valueKey, val);
+      saveModuleData(props.data, props.valueKey, val);
+      // setRelatedMaterialsIds(state.productId);
+      const _p = relatedProductsList.value.find(m => m.id === val);
+      state.product = _p ?? null;
     }, { immediate: true });
 
-
-    onUnmounted(() => {
-      // 模块清空操作时还原材料为未使用状态
-      if (state.materialId) {
-        // removeRelatedMaterialIds(state.materialId);
-      }
+    // 该watch只在初始化等整体替换product列表时触发(无deep)
+    watch(() => relatedProductsList.value, (val) => {
+      const _p = val.find(m => m.id === state.productId);
+      state.product = _p ?? null;
     });
+
+    // 初始化获取productId
+    watch(() => ({ data: props.data, key: props.valueKey }), ({ data, key }) => {
+      state.productId = getModuleData(data, key) as string;
+      console.log('get', data, key);
+    }, { immediate: true, deep: true });
 
     return {
       ...toRefs(state),
@@ -114,7 +139,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 // @import 'url'
 .webpage-builder_material-box {
-  .material-receive-box {
+  .product-receive-box {
     width: 100%;
     height: 100%;
     .bottom {

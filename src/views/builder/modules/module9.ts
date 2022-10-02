@@ -1,5 +1,5 @@
 import { getPercentage } from '@/utils/style';
-import { headerSection, moduleInnerBox1, materialItemIds } from './common';
+import { headerSection, moduleInnerBox1 } from './common';
 
 const module = () => ({
   type: 'module',
@@ -9,7 +9,7 @@ const module = () => ({
     title: '材料系列名称',
     desc: 'Width：52” Gauge：0.8mm',
     titleTag: 'SD-13688',
-    materialsIds: Array.from({ length: 10 }).map(e => materialItemIds()),
+    materialsIds: Array.from({ length: 10 }).map(e => ''),
   },
   class: 'module-beside-gap',
   children: [

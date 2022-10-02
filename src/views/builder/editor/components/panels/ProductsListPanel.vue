@@ -6,17 +6,17 @@
     <main class="main-content flex-column flex-1">
       <CollapseSearchFilter ref="collapseSearchFilterEl" :handleChange="handleSearch" />
       <div id="tileListWrap" class="loading-wrap" v-loading="loading" :element-loading-text="loadingText">
-        <div class="material-search-list" ref="materialListWrapEl">
+        <div class="product-search-list" ref="materialListWrapEl">
           <ProductTileItem
-            v-for="(material, i) in materialList"
+            v-for="(product, i) in productList"
             :key="i"
-            :material="material"
+            :product="product"
             :draggable="true"
             :showSupplier="false"
-            @dragstart="(ev) => handleDragStart(ev, material)"
+            @dragstart="(ev) => handleDragStart(ev, product)"
           ></ProductTileItem>
         </div>
-        <div v-if="materialList.length === 0" class="no-data-error">暂无数据</div>
+        <div v-if="productList.length === 0" class="no-data-error">暂无数据</div>
       </div>
 
       <el-pagination
@@ -41,7 +41,7 @@ import {
 } from 'vue';
 import { fetchProductList } from '@/api/brochure';
 import { ProductItem } from '../../typings';
-import { draggingMaterial } from '../../uses/use-drag-material';
+import { draggingProduct } from '../../uses/use-drag-product';
 import ProductTileItem from './ProductTileItem.vue';
 import CollapseSearchFilter from './CollapseSearchFilter.vue';
 
@@ -63,7 +63,7 @@ export default defineComponent({
     const state = reactive({
       loading: false,
       loadingText: '加载中',
-      materialList: [] as ProductItem[],
+      productList: [] as ProductItem[],
       currentParams: {
         keywords: '',
         status: '',
@@ -78,7 +78,7 @@ export default defineComponent({
     const getMaterialList = async () => {
       try {
         state.loading = true;
-        state.materialList = await fetchProductList({
+        state.productList = await fetchProductList({
           ...state.currentParams,
           ...state.pageOption,
         });
@@ -100,10 +100,10 @@ export default defineComponent({
     };
 
 
-    const handleDragStart = (ev: DragEvent, material: ProductItem) => {
+    const handleDragStart = (ev: DragEvent, product: ProductItem) => {
       // 拖动材料先保存到store中;
-      draggingMaterial.value = material;
-      ev.dataTransfer?.setData('material-id', material.id);
+      draggingProduct.value = product;
+      ev.dataTransfer?.setData('product-id', product.id);
     };
 
     getMaterialList();
@@ -137,7 +137,7 @@ export default defineComponent({
     flex: 1;
     overflow: auto;
     position: relative;
-    .material-search-list {
+    .product-search-list {
       max-height: 100%;
       overflow: auto;
       padding: 0 20px;
@@ -155,7 +155,7 @@ export default defineComponent({
       background-color: rgba(#000000, 0.2);
     }
   }
-  .material-tile-item {
+  .product-tile-item {
     .hover-footer .gray-tag {
       display: none !important;
     }

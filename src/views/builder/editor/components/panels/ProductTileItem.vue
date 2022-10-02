@@ -1,30 +1,30 @@
 <template>
-  <div class="material-tile-item-wrapper">
-    <div class="material-tile-item" :class="{ disabled }">
+  <div class="product-tile-item-wrapper">
+    <div class="product-tile-item" :class="{ disabled }">
       <div class="img-wrap" :style="imgWrapStyle">
-        <el-image :src="material.imgUrl"></el-image>
+        <el-image :src="product.imgUrl"></el-image>
       </div>
       <div v-if="showBottom" class="bottom">
         <div v-if="showTitle" class="title">
           <div class="over-text">
-            {{ material.name }}
+            {{ product.name }}
           </div>
         </div>
         <div v-if="showPrice" class="price">
-          ${{ material.price }}
+          ${{ product.price }}
         </div>
         <div class="hover-footer">
           <div class="gray-tags">
-            <span v-if="material.applicableSeason" class="gray-tag over-text">{{ material.applicableSeason }}</span>
-            <span class="gray-tag over-text">{{ material.category }}</span>
+            <span v-if="product.applicableSeason" class="gray-tag over-text">{{ product.applicableSeason }}</span>
+            <span class="gray-tag over-text">{{ product.category }}</span>
           </div>
           <div v-if="showSupplier" class="supplier-bar">
               <div class="left">
                 <span class="logo-wrap">
-                  <el-image :src="material.supplierLogo"></el-image>
+                  <el-image :src="product.supplierLogo"></el-image>
                 </span>
                 <span class="supplier-title over-text">
-                  {{ material.supplierName }}
+                  {{ product.supplierName }}
                 </span>
               </div>
               <div class="right">
@@ -45,9 +45,9 @@ import { getPx } from '@/utils/style';
 import { ProductItem } from '../../typings';
 
 export default defineComponent({
-  name: 'material-tile-item',
+  name: 'product-tile-item',
   props: {
-    material: {
+    product: {
       type: Object as PropType<ProductItem>,
       required: true,
     },
@@ -94,10 +94,10 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
-.material-tile-item-wrapper {
+.product-tile-item-wrapper {
   position: relative;
 
-  .material-tile-item {
+  .product-tile-item {
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s;
@@ -220,9 +220,9 @@ export default defineComponent({
       }
     }
   }
-  &:hover {
+  &:not(.ban-hover):hover {
     z-index: 999;
-    .material-tile-item {
+    .product-tile-item {
       transform: scale(1.06);
     }
 

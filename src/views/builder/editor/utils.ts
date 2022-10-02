@@ -41,10 +41,6 @@ export const getModuleData = (data: Obj, express: string) => {
 export const saveModuleData = (data: Obj, express: string, val: unknown) => {
   // eslint-disable-next-line import/no-named-as-default-member
   keySerializer.set(data, express, val);
-  // 初始化时进行的赋值操作不改变isSaved的值
-  // if (store.isInit) {
-  //   setSaveState(false);
-  // }
 };
 
 // 捕获事件并重新抛出.按设计,组件类型应该作为一个整体接受事件, 即组件内部元素不可单独点击等.所以对于type=component类型,

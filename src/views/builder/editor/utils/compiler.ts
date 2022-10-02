@@ -150,7 +150,6 @@ const comilpeSchema = (
     nodeSchema.operation = moduleComponentsMap[nodeSchema.component].operation ?? false;
   }
 
-  console.log(nodeSchema.operation);
   if (nodeSchema.operation) {
     // 暂定fid生成方案.需求: 需要跟元素绑定,避免每次修改样式都生成新的fid,导致频繁mutation
     fid = `${parentFid ? `${parentFid}-` : ''}${globalIdCount++}`;

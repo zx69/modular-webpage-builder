@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { getPercentage } from '@/utils/style';
-import { headerSection, materialItemIds } from './common';
+import { headerSection } from './common';
 
 const gridImgBox = (wrapperStyle: Obj, imgBoxValueKey: string) => ({
   type: 'block',
@@ -38,8 +38,8 @@ const module = () => ({
     titleTag: 'SD-13688',
     boxTitle: '千鸟格',
     boxDesc: 'houndstooth',
-    materialId1: materialItemIds(),
-    materialId2: materialItemIds(),
+    materialId1: '',
+    materialId2: '',
     imgUrl1: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-7.png',
     imgUrl2: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-8.png',
     imgUrl3: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-9.png',
