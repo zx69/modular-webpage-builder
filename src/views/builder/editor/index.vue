@@ -35,7 +35,7 @@
               effect="light"
               :content="tab.label"
               placement="left"
-              :visible-arrow="false"
+              :show-arrow="false"
               popper-class="block-radio-tooltip"
               :offset="-6"
             >

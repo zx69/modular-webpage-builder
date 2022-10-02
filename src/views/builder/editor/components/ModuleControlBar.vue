@@ -6,7 +6,7 @@
         effect="light"
         :content="btn.title"
         placement="right"
-        :visible-arrow="false"
+        :show-arrow="false"
         popper-class="block-radio-tooltip"
         :offset="2"
       >

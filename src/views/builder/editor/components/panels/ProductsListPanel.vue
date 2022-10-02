@@ -143,7 +143,7 @@ export default defineComponent({
       padding: 0 20px;
       display: grid;
       grid-template-columns: repeat(2, calc(50% - 6px));
-      gap: 20px 12px;
+      gap: 12px 12px;
     }
     .search-collapse-mask {
       position: absolute;
