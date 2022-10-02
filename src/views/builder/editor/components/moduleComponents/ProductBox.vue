@@ -40,7 +40,7 @@ import {
 } from 'vue';
 import {
   isMobile, getModuleData, saveModuleData, getEventCatchAndThrowMap,
-} from '../../utils';
+} from '../../utils/helper';
 import { setActiveFrameClientRect } from '../../store';
 import DropReceiver from '../DropReceiver.vue';
 import { RenderStatus, ProductItem } from '../../typings';
@@ -108,7 +108,6 @@ export default defineComponent({
         // oldVal和val都有值而表示为替换材料操作
         removeRelatedProductIds(oldVal);
       }
-      console.log('set', props.data, props.valueKey, val);
       saveModuleData(props.data, props.valueKey, val);
       // setRelatedMaterialsIds(state.productId);
       const _p = relatedProductsList.value.find(m => m.id === val);
@@ -124,7 +123,6 @@ export default defineComponent({
     // 初始化获取productId
     watch(() => ({ data: props.data, key: props.valueKey }), ({ data, key }) => {
       state.productId = getModuleData(data, key) as string;
-      console.log('get', data, key);
     }, { immediate: true, deep: true });
 
     return {

@@ -1,12 +1,13 @@
 import { objUtil } from '@/utils/objUtil';
 import { ComponentOptionsMixin, h, VNode } from 'vue';
-import hash from 'object-hash';
+// import hash from 'object-hash';
 import classnames from 'classnames';
 import {
   CommonCompProp, PreviewMode, RenderStatus, SchemaType,
 } from '../typings';
 import store from '../store';
 import { moduleComponentsMap } from '../../modules';
+import { getModuleData } from './helper';
 
 /**
  * 对于移动端/移动预览/微信, schema取mobile/weixin项定义值覆盖对应外层值
@@ -42,6 +43,29 @@ function isComponent(schema: CommonCompProp): schema is CommonCompProp<'componen
 function isBlock(schema: CommonCompProp): schema is CommonCompProp<'block'> {
   return schema.type === 'block';
 }
+
+/**
+ * 解析字符串模板表达式
+ */
+export const parseTplExpress = (data: Obj, express: string) => {
+  if (!data || !express) {
+    return '';
+  }
+  const avaliableExpress = String(express).replace(/\$\{(.*?)\}/, (_, match) => {
+    return getModuleData(data, match) as string;
+  });
+  return avaliableExpress;
+};
+
+
+// 解析style属性中的变量;
+const parseStyleValue = (styleObj: Obj, data: Obj) => {
+  const _style: Obj = {};
+  Object.entries(styleObj).forEach(([key, val]) => {
+    _style[key] = parseTplExpress(data, val);
+  });
+  return _style;
+};
 
 // 规范化nodeSchema策略集合
 const normalizeStrategies = {
@@ -160,6 +184,12 @@ const comilpeSchema = (
     class: autoMergedClassName,
     fid,
   });
+
+  // 解析style中可能包含的变量
+  if (attrs.style && moduleData) {
+    attrs.style = parseStyleValue(attrs.style, moduleData);
+  }
+
   // console.log(attrs);
   // 子元素为组件时
   if (isComponent(nodeSchema)) {

@@ -24,7 +24,7 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, toRef, watch, nextTick, PropType,
 } from 'vue';
-import { getModuleData, saveModuleData, getEventCatchAndThrowMap } from '../../utils';
+import { getModuleData, saveModuleData, getEventCatchAndThrowMap } from '../../utils/helper';
 import { RenderStatus } from '../../typings';
 
 export default defineComponent({

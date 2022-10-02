@@ -22,7 +22,7 @@ import {
   defineComponent, reactive, computed, ref, toRefs, PropType, watch, onMounted,
 } from 'vue';
 import { ElImage } from 'element-plus';
-import { getEventCatchAndThrowMap, getModuleData, saveModuleData } from '../../utils';
+import { getEventCatchAndThrowMap, getModuleData, saveModuleData } from '../../utils/helper';
 import DropReceiver from '../DropReceiver.vue';
 import { RenderStatus } from '../../typings';
 import { activeElementSchema } from '../../store';
