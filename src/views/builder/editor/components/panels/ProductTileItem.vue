@@ -11,15 +11,14 @@
           </div>
         </div>
         <div v-if="showPrice" class="price">
-          {{ material.price }}
+          ${{ material.price }}
         </div>
         <div class="hover-footer">
           <div class="gray-tags">
             <span v-if="material.applicableSeason" class="gray-tag over-text">{{ material.applicableSeason }}</span>
             <span class="gray-tag over-text">{{ material.category }}</span>
           </div>
-          <div v-if="showHeader" class="supplier-bar">
-            <template v-if="showSupplier">
+          <div v-if="showSupplier" class="supplier-bar">
               <div class="left">
                 <span class="logo-wrap">
                   <el-image :src="material.supplierLogo"></el-image>
@@ -31,7 +30,6 @@
               <div class="right">
                 <i class="i-r-you-12"></i>
               </div>
-            </template>
           </div>
         </div>
       </div>
@@ -55,16 +53,11 @@ export default defineComponent({
     },
     showTitle: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     showPrice: {
       type: Boolean,
-      default: false,
-    },
-    showHeader: {
-      // 原本header的商家信息,现在移动到底部了,为了兼容原本的传参,暂时不修改了
-      type: Boolean,
-      default: false,
+      default: true,
     },
     showSupplier: {
       type: Boolean,
@@ -73,7 +66,6 @@ export default defineComponent({
     width: {
       type: [Number, String],
     },
-
     disabled: {
       type: Boolean,
       default: false,

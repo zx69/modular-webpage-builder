@@ -11,7 +11,7 @@
     <ProductTileItem
       v-if="material"
       :material="material"
-      :showHeader="showTitle"
+      :showSupplier="showTitle"
       :showTitle="showTitle"
       :showPrice="showTitle"
       :class="{ 'ban-hover': isMobile || $attrs.status === 'edit' }"
@@ -65,6 +65,10 @@ export default defineComponent({
       required: true,
     },
     showTitle: {
+      type: Boolean,
+      default: true,
+    },
+    showSupplier: {
       type: Boolean,
       default: true,
     },

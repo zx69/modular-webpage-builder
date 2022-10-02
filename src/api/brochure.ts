@@ -3,6 +3,8 @@ import justifiedLayout from 'justified-layout';
 import hash from 'object-hash';
 import mockImageList from '@/mock/image/list.json';
 import store from '@/views/builder/editor/store';
+
+
 /* ============== 图片管理 ============== */
 
 // photo上传状态
@@ -51,7 +53,7 @@ export const photoApi = {
 /* ============== end 图片管理 ============== */
 
 
-/* ============== 材料册管理 ============== */
+/* ============== 主页管理 ============== */
 export type BrochureItem = {
   id: string,
   name: string,
@@ -98,19 +100,24 @@ export const fetchMaterialBrochureContent = async (collectionId: string) => {
 // };
 
 
-/* ============== end 材料册管理 ============== */
+/* ============== end 主页管理 ============== */
 
 
-// 获取材料册内容JSON
-export const fetchMaterialList = async (params: Obj) => {
+// 获取商品列表
+export const fetchProductList = async (params: Obj) => {
   // mock
-  return Array(10).fill('').map((item, i) => ({
+  const { page, size, keywords } = params;
+  const mockList = Array(20).fill('').map((item, i) => ({
     id: `${i + 1}`,
     name: `产品${i + 1}`,
-    price: Math.random() * 10 + 12,
+    price: Number((Math.random() * 10 + 12).toFixed(2)),
     applicableSeason: ['春季', '夏季', '秋季', '冬季'][Math.round(Math.random() * 4)],
     category: ['衣服', '鞋子', '裤子', '配饰'][Math.round(Math.random() * 4)],
-    supplierLogo: '',
+    // eslint-disable-next-line import/no-dynamic-require
+    imgUrl: require(`@/mock/product/cover/product-${i + 1}.png`),
+    supplierLogo: require('@/assets/logo.png'),
     supplierName: 'Niubility Ltd',
   }));
+
+  return mockList.slice((page - 1) * size, page * size);
 };

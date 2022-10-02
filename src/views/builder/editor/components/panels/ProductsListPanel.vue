@@ -12,6 +12,7 @@
             :key="i"
             :material="material"
             :draggable="true"
+            :showSupplier="false"
             @dragstart="(ev) => handleDragStart(ev, material)"
           ></ProductTileItem>
         </div>
@@ -22,7 +23,7 @@
         small
         :pager-count="3"
         hide-on-single-page
-        class="material-search-pageination"
+        class="search-pageination"
         layout="prev, next"
         :page-size="pageOption.size"
         :total="pageOption.total"
@@ -38,7 +39,7 @@
 import {
   defineComponent, reactive, computed, ref, toRefs, watch,
 } from 'vue';
-import { fetchMaterialList } from '@/api/brochure';
+import { fetchProductList } from '@/api/brochure';
 import { ProductItem } from '../../typings';
 import { draggingMaterial } from '../../uses/use-drag-material';
 import ProductTileItem from './ProductTileItem.vue';
@@ -64,21 +65,22 @@ export default defineComponent({
       loadingText: '加载中',
       materialList: [] as ProductItem[],
       currentParams: {
-        category: '',
+        keywords: '',
+        status: '',
       } as Obj,
       pageOption: {
         page: 1,
         size: 10,
-        total: 10,
+        total: 20,
       },
     });
 
     const getMaterialList = async () => {
       try {
         state.loading = true;
-        state.materialList = await fetchMaterialList({
-          keywords: '',
+        state.materialList = await fetchProductList({
           ...state.currentParams,
+          ...state.pageOption,
         });
       } finally {
         state.loading = false;
@@ -104,7 +106,7 @@ export default defineComponent({
       ev.dataTransfer?.setData('material-id', material.id);
     };
 
-
+    getMaterialList();
     return {
       ...toRefs(state),
       materialListWrapEl,
@@ -162,6 +164,9 @@ export default defineComponent({
     text-align: center;
     color: #dddddd;
     margin-top: 60px !important;
+  }
+  .search-pageination{
+    margin: 0 auto;
   }
 }
 </style>
