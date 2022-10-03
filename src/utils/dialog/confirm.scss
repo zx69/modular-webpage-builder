@@ -1,0 +1,23 @@
+.sd-confirm{
+  &-title{
+    font-size: 16px;
+    font-weight: 500;
+    color:#222222;
+    &+.sd-confirm-message{
+      padding-top: 12px;
+    }
+  }
+  &-message{
+    color:  #666666;
+    line-height: 22px;
+  }
+  .sd-confirm-title{
+    white-space: pre-line;
+  }
+}
+
+.sd-confirm-dialog{
+  .el-dialog__body{
+    padding: 40px 24px 20px 24px !important;
+  }
+}

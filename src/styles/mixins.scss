@@ -1,0 +1,10 @@
+
+@mixin appleSafeArea($cssKey:'padding-bottom') {
+  @supports (bottom: constant(safe-area-inset-top)) or (bottom: env(safe-area-inset-top)){
+    #{$cssKey}: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
+    #{$cssKey}: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
+  }
+}
+@function getAppleSafeArea(){
+  @return env(safe-area-inset-top) or constant(safe-area-inset-top);
+}

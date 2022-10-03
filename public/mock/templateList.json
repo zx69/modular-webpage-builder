@@ -1,0 +1,710 @@
+[
+    {
+        "id": "1",
+        "cover": "mock/preset-image/d6748cc280ec327fd6e6f0ae2ddad7e16a5497d41c0e97-O2mlZU_fw658.png",
+        "name": "模板一",
+        "content": [
+            {
+                "type": "module",
+                "index": 1,
+                "aspectRadio": "44.26%",
+                "data": {
+                    "backgroundImage": "mock/preset-image/d8df0fa3f51f0c955b3e6e0431be098ac23de4211a804-t7gAZ0_fw658.png",
+                    "title": "2022秋冬新时尚",
+                    "desc": "Fashion style for fall/winter 2022"
+                },
+                "class": "fixed-aspect-radio-box",
+                "style": {
+                    "paddingBottom": "44.26%"
+                },
+                "mobile": {
+                    "style": {
+                        "paddingBottom": "44.26%",
+                        "borderRadius": "8px",
+                        "overflow": "hidden"
+                    }
+                },
+                "children": [
+                    {
+                        "type": "component",
+                        "component": "ImageBox",
+                        "props": {
+                            "valueKey": "backgroundImage",
+                            "imageType": "image"
+                        },
+                        "class": "flex-center",
+                        "style": {
+                            "justifyContent": "flex-end"
+                        },
+                        "operation": "image"
+                    },
+                    {
+                        "type": "block",
+                        "style": {
+                            "display": "flex",
+                            "flexDirection": "column",
+                            "justifyContent": "center",
+                            "alignItems": "stretch",
+                            "width": "36%",
+                            "left": "unset",
+                            "right": "4%"
+                        },
+                        "children": [
+                            {
+                                "type": "component",
+                                "style": {
+                                    "color": "#48484d",
+                                    "fontSize": "50px",
+                                    "fontWeight": "bold",
+                                    "lineHeight": "1.2",
+                                    "marginBottom": "4.69%"
+                                },
+                                "mobile": {
+                                    "props": {
+                                        "valueKey": "title",
+                                        "mobileSizeRadio": 0.32,
+                                        "overflowLine": 2
+                                    }
+                                },
+                                "component": "InputableText",
+                                "props": {
+                                    "valueKey": "title",
+                                    "overflowLine": 2
+                                },
+                                "operation": "text"
+                            },
+                            {
+                                "type": "component",
+                                "style": {
+                                    "color": "#7E7E7E",
+                                    "fontSize": "24px"
+                                },
+                                "mobile": {
+                                    "props": {
+                                        "valueKey": "desc",
+                                        "mobileSizeRadio": 0.4166666666666667,
+                                        "overflowLine": 2
+                                    }
+                                },
+                                "component": "InputableText",
+                                "props": {
+                                    "valueKey": "desc",
+                                    "overflowLine": 2
+                                },
+                                "operation": "text"
+                            }
+                        ]
+                    }
+                ],
+                "mid": "module9",
+                "sid": "section1"
+            },
+            {
+                "type": "module",
+                "index": 2,
+                "aspectRadio": "65.42%",
+                "data": {
+                    "title": "主题1",
+                    "desc": "description text",
+                    "titleTag": "ASIDE TAG",
+                    "imgUrl": "https://gd-hbimg.huaban.com/32a1357b1da66d1637653f69bfa46a82654e27b524f9a-dQrYqC_fw658",
+                    "materialsIds": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                "class": "module-beside-gap",
+                "children": [
+                    {
+                        "type": "block",
+                        "style": {
+                            "paddingBottom": "50px"
+                        },
+                        "mobile": {
+                            "style": {
+                                "paddingLeft": "12px",
+                                "paddingRight": "12px",
+                                "paddingBottom": "20px",
+                                "paddingTop": "20px",
+                                "backgroundColor": "#ffffff",
+                                "borderTopLeftRadius": "8px",
+                                "borderTopRightRadius": "8px"
+                            }
+                        },
+                        "children": [
+                            {
+                                "type": "block",
+                                "style": {
+                                    "display": "flex",
+                                    "justifyContent": "space-between",
+                                    "alignItems": "center"
+                                },
+                                "children": [
+                                    {
+                                        "type": "component",
+                                        "component": "InputableText",
+                                        "style": {
+                                            "fontSize": "36px",
+                                            "fontWeight": "bold",
+                                            "flex": "1 1 auto"
+                                        },
+                                        "mobile": {
+                                            "props": {
+                                                "valueKey": "title",
+                                                "mobileSizeRadio": 0.5
+                                            }
+                                        },
+                                        "props": {
+                                            "valueKey": "title"
+                                        },
+                                        "operation": "text"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "InputableText",
+                                        "style": {
+                                            "fontSize": "28px",
+                                            "lineHeight": "48px",
+                                            "padding": "0 20px",
+                                            "color": "#ffffff",
+                                            "backgroundColor": "#000000",
+                                            "flex": "0 0 auto",
+                                            "marginLeft": "20px"
+                                        },
+                                        "mobile": {
+                                            "style": {
+                                                "fontSize": "12px",
+                                                "lineHeight": "24px",
+                                                "padding": "0 16px",
+                                                "color": "#ffffff",
+                                                "backgroundColor": "#000000",
+                                                "flex": "0 0 auto",
+                                                "marginLeft": "20px"
+                                            }
+                                        },
+                                        "props": {
+                                            "valueKey": "titleTag"
+                                        },
+                                        "operation": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "component",
+                                "component": "InputableText",
+                                "style": {
+                                    "fontSize": "20px",
+                                    "color": "#666666",
+                                    "marginTop": "8px"
+                                },
+                                "mobile": {
+                                    "style": {
+                                        "fontSize": "20px",
+                                        "color": "#666666"
+                                    },
+                                    "props": {
+                                        "valueKey": "desc",
+                                        "mobileSizeRadio": 0.6
+                                    }
+                                },
+                                "props": {
+                                    "valueKey": "desc"
+                                },
+                                "operation": "text"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "block",
+                        "style": {
+                            "display": "flex",
+                            "alignItems": "stretch"
+                        },
+                        "mobile": {
+                            "style": {
+                                "display": "block"
+                            }
+                        },
+                        "children": [
+                            {
+                                "type": "block",
+                                "style": {
+                                    "width": "34.92%",
+                                    "marginRight": "11.11%",
+                                    "paddingBottom": "50.00%",
+                                    "flex": "0 0 auto"
+                                },
+                                "mobile": {
+                                    "style": {
+                                        "paddingBottom": "118.52%",
+                                        "backgroundColor": "#ffffff",
+                                        "marginBottom": "20px",
+                                        "borderBottomLeftRadius": "8px",
+                                        "borderBottomRightRadius": "8px",
+                                        "marginTop": "-12px"
+                                    }
+                                },
+                                "class": "fixed-aspect-radio-box",
+                                "children": [
+                                    {
+                                        "type": "block",
+                                        "style": {
+                                            "flex": "0 0 auto"
+                                        },
+                                        "mobile": {
+                                            "style": {
+                                                "top": "12px",
+                                                "left": "12px",
+                                                "right": "12px",
+                                                "bottom": "12px",
+                                                "paddingRight": "16.51%"
+                                            }
+                                        },
+                                        "children": [
+                                            {
+                                                "type": "block",
+                                                "style": {
+                                                    "height": "100%",
+                                                    "background": "#F8F8F8",
+                                                    "overflow": "hidden"
+                                                },
+                                                "children": [
+                                                    {
+                                                        "type": "block",
+                                                        "style": {
+                                                            "height": "100%",
+                                                            "filter": "blur(13px)",
+                                                            "backgroundColor": "#f8f8f8",
+                                                            "backgroundImage": "url(${imgUrl})"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "block",
+                                                "style": {
+                                                    "width": "81.82%",
+                                                    "height": "84.13%",
+                                                    "position": "absolute",
+                                                    "right": "-18.18%",
+                                                    "top": "50%",
+                                                    "marginTop": "calc(-60.23%)",
+                                                    "backgroundColor": "#ffffff"
+                                                },
+                                                "mobile": {
+                                                    "style": {
+                                                        "width": "81.82%",
+                                                        "height": "84.13%",
+                                                        "position": "absolute",
+                                                        "right": "0",
+                                                        "top": "50%",
+                                                        "marginTop": "calc(-49.62%)",
+                                                        "backgroundColor": "#ffffff"
+                                                    }
+                                                },
+                                                "children": [
+                                                    {
+                                                        "type": "component",
+                                                        "component": "ImageBox",
+                                                        "style": {
+                                                            "width": "calc(100% - 20px)",
+                                                            "height": "calc(100% - 20px)",
+                                                            "margin": "10px"
+                                                        },
+                                                        "props": {
+                                                            "valueKey": "imgUrl"
+                                                        },
+                                                        "operation": "image"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "block",
+                                "style": {
+                                    "display": "grid",
+                                    "gap": "16px 5.88%",
+                                    "gridTemplateColumns": "repeat(3, 29.41%)",
+                                    "flex": "1"
+                                },
+                                "mobile": {
+                                    "style": {
+                                        "display": "grid",
+                                        "gap": "12px 12px",
+                                        "gridTemplateColumns": "repeat(2, calc((100% - 12px)/2))"
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[0]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[1]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[2]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[3]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[4]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "ProductBox",
+                                        "props": {
+                                            "valueKey": "materialsIds[5]"
+                                        },
+                                        "style": {},
+                                        "operation": "product"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "mid": "module10",
+                "sid": "section2"
+            },
+            {
+                "type": "module",
+                "index": 5,
+                "aspectRadio": "60.31%",
+                "data": {
+                    "title": "主题1",
+                    "desc": "description text",
+                    "titleTag": "ASIDE TAG",
+                    "imgUrl": "https://gd-hbimg.huaban.com/bd9e3c8dbac90bf642791d6bda467828571be9f414ec1e-bMoss5_fw658",
+                    "materialsIds": [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                "operation": "shape",
+                "class": "module-beside-gap",
+                "style": {
+                    "position": "relative"
+                },
+                "children": [
+                    {
+                        "type": "block",
+                        "operation": "shape",
+                        "style": {
+                            "height": "100%",
+                            "width": "100%",
+                            "position": "absolute",
+                            "left": "0",
+                            "top": "0",
+                            "backgroundColor": "#f9f7f6"
+                        },
+                        "mobile": {
+                            "style": {
+                                "height": "0",
+                                "paddingBottom": "134.19%",
+                                "position": "absolute",
+                                "left": "0",
+                                "top": "0",
+                                "right": "0",
+                                "backgroundColor": "#f9f7f6"
+                            }
+                        }
+                    },
+                    {
+                        "type": "block",
+                        "operation": "shape",
+                        "style": {
+                            "height": "100%",
+                            "width": "35.77%",
+                            "position": "absolute",
+                            "left": "0",
+                            "top": "0",
+                            "backgroundColor": "#dfdbd8"
+                        },
+                        "mobile": {
+                            "style": {
+                                "height": "0",
+                                "width": "74.67%",
+                                "paddingBottom": "134.19%",
+                                "position": "absolute",
+                                "left": "0",
+                                "top": "0",
+                                "backgroundColor": "#dfdbd8"
+                            }
+                        }
+                    },
+                    {
+                        "type": "block",
+                        "style": {
+                            "position": "relative"
+                        },
+                        "mobile": {
+                            "style": {
+                                "position": "relative"
+                            }
+                        },
+                        "children": [
+                            {
+                                "type": "block",
+                                "style": {
+                                    "paddingBottom": "50px"
+                                },
+                                "mobile": {
+                                    "style": {
+                                        "paddingLeft": "12px",
+                                        "paddingRight": "12px",
+                                        "paddingBottom": "20px",
+                                        "paddingTop": "20px"
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "type": "block",
+                                        "style": {
+                                            "display": "flex",
+                                            "justifyContent": "space-between",
+                                            "alignItems": "center"
+                                        },
+                                        "children": [
+                                            {
+                                                "type": "component",
+                                                "component": "InputableText",
+                                                "style": {
+                                                    "fontSize": "36px",
+                                                    "fontWeight": "bold",
+                                                    "flex": "1 1 auto"
+                                                },
+                                                "mobile": {
+                                                    "props": {
+                                                        "valueKey": "title",
+                                                        "mobileSizeRadio": 0.5
+                                                    }
+                                                },
+                                                "props": {
+                                                    "valueKey": "title"
+                                                },
+                                                "operation": "text"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "InputableText",
+                                                "style": {
+                                                    "fontSize": "28px",
+                                                    "lineHeight": "48px",
+                                                    "padding": "0 20px",
+                                                    "color": "#ffffff",
+                                                    "backgroundColor": "#000000",
+                                                    "flex": "0 0 auto",
+                                                    "marginLeft": "20px"
+                                                },
+                                                "mobile": {
+                                                    "style": {
+                                                        "fontSize": "12px",
+                                                        "lineHeight": "24px",
+                                                        "padding": "0 16px",
+                                                        "color": "#ffffff",
+                                                        "backgroundColor": "#000000",
+                                                        "flex": "0 0 auto",
+                                                        "marginLeft": "20px"
+                                                    }
+                                                },
+                                                "props": {
+                                                    "valueKey": "titleTag"
+                                                },
+                                                "operation": "text"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "component",
+                                        "component": "InputableText",
+                                        "style": {
+                                            "fontSize": "20px",
+                                            "color": "#666666",
+                                            "marginTop": "8px"
+                                        },
+                                        "mobile": {
+                                            "style": {
+                                                "fontSize": "20px",
+                                                "color": "#666666"
+                                            },
+                                            "props": {
+                                                "valueKey": "desc",
+                                                "mobileSizeRadio": 0.6
+                                            }
+                                        },
+                                        "props": {
+                                            "valueKey": "desc"
+                                        },
+                                        "operation": "text"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "block",
+                                "style": {
+                                    "display": "flex",
+                                    "alignItems": "stretch"
+                                },
+                                "mobile": {
+                                    "style": {
+                                        "display": "block"
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "type": "block",
+                                        "style": {
+                                            "width": "32.38%",
+                                            "marginLeft": "7.94%",
+                                            "marginRight": "7.14%",
+                                            "paddingBottom": "41.67%"
+                                        },
+                                        "mobile": {
+                                            "style": {
+                                                "width": "77.49%",
+                                                "marginLeft": "22.51%",
+                                                "paddingBottom": "100.00%",
+                                                "marginBottom": "34px"
+                                            }
+                                        },
+                                        "class": "fixed-aspect-radio-box",
+                                        "children": [
+                                            {
+                                                "type": "component",
+                                                "component": "ImageBox",
+                                                "style": {
+                                                    "width": "100%",
+                                                    "height": "100%"
+                                                },
+                                                "props": {
+                                                    "valueKey": "imgUrl"
+                                                },
+                                                "operation": "image"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "block",
+                                        "style": {
+                                            "display": "grid",
+                                            "gap": "16px 5.88%",
+                                            "gridTemplateColumns": "repeat(3, 29.41%)",
+                                            "flex": "1"
+                                        },
+                                        "mobile": {
+                                            "style": {
+                                                "display": "grid",
+                                                "gap": "12px 12px",
+                                                "gridTemplateColumns": "repeat(2, calc((100% - 12px)/2))"
+                                            }
+                                        },
+                                        "children": [
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[0]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[1]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[2]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[3]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[4]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            },
+                                            {
+                                                "type": "component",
+                                                "component": "ProductBox",
+                                                "props": {
+                                                    "valueKey": "materialsIds[5]"
+                                                },
+                                                "style": {},
+                                                "operation": "product"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "mid": "module13",
+                "sid": "section3"
+            }
+        ]
+    }
+]

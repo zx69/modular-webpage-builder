@@ -1,0 +1,451 @@
+body{
+  background-color: #f7f7f7;
+}
+.hidden,
+[hidden="hidden"] {
+  display: none !important;
+}
+
+[class*=" img-icon"],
+[class^="img-icon"] {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-size: 114.285%;
+  width: 1em;
+  height: 1em;
+  line-height: 0.875;
+  vertical-align: -18.25%;
+  display: inline-block;
+}
+
+.orange{
+  color:#FA8810;
+}
+.green{
+  color:#32cc72;
+}
+.blue{
+  color: #2878ff;
+}
+.gray{
+  color:  #999999;
+}
+.red{
+  color:  #f62020;
+}
+
+// 防止外边距合并
+.no-collapse {
+  padding: 0.05px;
+}
+
+// 清除浮动影响
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// 换行
+.word-break-normal {
+  white-space: normal;
+  word-break: normal;
+}
+
+
+/* Flex 布局常用样式 */
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-justify-flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-column-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.flex-self-contetn {
+  width: 100%;
+  justify-self: self-start;
+  align-self: self-start;
+}
+
+// position相关
+.position-center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+// 可点击的文字
+.text-link {
+  color: $color-primary !important;
+  cursor: pointer !important;
+}
+
+.hover-link {
+  color: $color-font-darkest!important;
+  cursor: pointer;
+  transition: color .2s;
+
+  &:hover{
+    color: $color-primary!important;
+  }
+  
+}
+
+.icon-link-hvoer {
+  color: #515151;
+  cursor: pointer;
+  &:hover {
+    color: $color-primary;
+  }
+  &.disabled {
+    color: #CCCCCC;
+    cursor: not-allowed;
+  }
+}
+
+// 单行显示文字，隐藏多余的文字
+.text-one-line {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// 双行显示文字, 隐藏多余文字
+.text-two-line {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// 滚动条
+[class*=" scrollable"],
+.el-table__body-wrapper,
+.el-scrollbar__wrap,
+[class^="scrollable"] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, .2) transparent;
+
+  &.scrollable-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  &.scrollable-y {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &.scrollable-xy {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: transparent;
+    transition: background-color .5s;
+  }
+
+  &.hide-scrollbar {
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+  }
+}
+
+// 默认显示scroll
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  transition: background-color .5s;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+.hover-scroll {
+  overflow: auto;
+  &::-webkit-scrollbar-thumb{
+    background-color: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2);
+  }
+}
+
+.h-disabled{
+  position: relative;
+  opacity: 0.5;
+  pointer-events: none;
+  &::after {
+    content: "";
+    cursor: not-allowed;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+}
+
+.table-img{
+  text-align:center;
+  border-radius: 5px;
+  overflow: hidden;
+  .el-image{
+    width:52px!important;
+    height: 52px!important;
+  }
+}
+
+
+.over-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.over-text-2{
+  @include over-text(2)
+}
+
+// label-position=top的label, UI要求缩小padding
+.el-form--label-top.form--narrow-label .el-form-item, .el-form--label-top .form-item--narrow-label.el-form-item {
+    &.is-required:not(.is-no-asterisk) > .el-form-item__label, &[isRequired] > .el-form-item__label {
+      &:before {
+        vertical-align: middle;
+      }
+    }
+    .el-form-item__label {
+      margin-bottom: 4px;
+      line-height: 20px;
+    }
+}
+
+// 窄padding的tooltip
+.tooltip--narrow{
+  padding: 3px 10px;
+}
+
+// 加自己图标的button居中对齐
+.icon-button{
+  >i{
+    padding-right: 5px;
+  }
+  >span{
+    display: flex;
+    align-items: center;
+    >i{
+      padding-right: 5px;
+    }
+  }
+}
+
+// .role-selector-dialog{
+//   .el-dialog__body{
+//     padding: 0;
+//   }
+// }
+
+.sd-button{
+  display: flex;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .3s;
+  font-size: 14px;
+
+  +.sd-button{
+    margin-left: 10px;
+  }
+
+  background: #f3f2f2;
+  color: #666666;
+  padding: 9px 17px;
+  &:hover,&:active{
+    background: #dad9d9;
+  }
+
+  // primary
+  &.primary{
+    background: #31c0bb;
+    color: #ffffff;
+    &:hover,&:active{
+      background:  #1daba5;
+    }
+  }
+
+  // like
+  &.like{
+    background: rgba(255,102,120,0.1);
+    color: #ff6678;
+    &:hover,&:active{
+      background:  #ffdadf;
+    }
+  }
+
+  // blue
+  &.blue{
+    background: #2878ff;;
+    color: white!important;
+    &:hover,&:active{
+      background:  #ffdadf;
+    }
+  }
+}
+
+.sd-border-radio{
+  margin-right: 0;
+  :deep(.el-radio__input){
+    display: none;
+  }
+  &.is-checked{
+    background: rgba(33,191,184,0.1);
+  }
+  &+.sd-border-radio{
+    margin-left: 8px;
+
+  }
+  .el-radio__input{
+    display: none;
+  }
+  .el-radio__label{
+    padding-left: 6px;
+  }
+}
+
+.required{
+  &::before{
+    content: '*';
+    display: inline-block;
+    position: relative;
+    /* top: -3px; */
+    color: #F56C6C;
+    margin-right: 4px;
+    font-size: 16px;
+    height: 20px;
+    overflow: hidden;
+  }
+}
+
+// 鼠标hover状态
+.cursor-pointer {
+  cursor: pointer;
+}
+
+//css空格处理
+.white-space-pre {
+  white-space: pre;
+}
+
+//买家Header固定在顶部，mainContent样式
+.header+.fixed-header-top{
+  margin-top: 63px !important;
+}
+
+// 行內元素水平居中
+.text-center {
+  text-align: center;
+}
+
+.fixed-header{
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  position: fixed !important;
+}
+
+.dialog-no-need-padding{
+  .el-dialog__body {
+    padding: 0 !important;
+  }
+}

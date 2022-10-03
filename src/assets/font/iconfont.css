@@ -1,0 +1,115 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3606701 */
+  src: url('iconfont.woff2?t=1664677188913') format('woff2'),
+       url('iconfont.woff?t=1664677188913') format('woff'),
+       url('iconfont.ttf?t=1664677188913') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i-sousuo:before {
+  content: "\e651";
+}
+
+.i-xiangyouzhankai:before {
+  content: "\e8a7";
+}
+
+.i-xiangzuoshouqi:before {
+  content: "\e8a8";
+}
+
+.i-moban:before {
+  content: "\e76a";
+}
+
+.i-shangpin:before {
+  content: "\e600";
+}
+
+.i-mokuai:before {
+  content: "\e8a5";
+}
+
+.i-mobile:before {
+  content: "\e624";
+}
+
+.i-pc:before {
+  content: "\e619";
+}
+
+.i-yingyongguanli:before {
+  content: "\eb67";
+}
+
+.i-wancheng:before {
+  content: "\e667";
+}
+
+.i-shangchuan:before {
+  content: "\e635";
+}
+
+.i-close:before {
+  content: "\e604";
+}
+
+.i-text:before {
+  content: "\e959";
+}
+
+.i-image:before {
+  content: "\e6bb";
+}
+
+.i-settings:before {
+  content: "\e899";
+}
+
+.i-xiangshang4:before {
+  content: "\e795";
+}
+
+.i-xiangxia4:before {
+  content: "\e796";
+}
+
+.i-fuzhi:before {
+  content: "\e618";
+}
+
+.i-changyonggoupiaorenshanchu:before {
+  content: "\e645";
+}
+
+.i-jiahao:before {
+  content: "\e616";
+}
+
+.i-recover:before {
+  content: "\e60d";
+}
+
+.i-juzhongduiqi:before {
+  content: "\ec80";
+}
+
+.i-youduiqi:before {
+  content: "\ec82";
+}
+
+.i-zuoduiqi:before {
+  content: "\ec86";
+}
+
+.i-zuoyouduiqi:before {
+  content: "\ec87";
+}
+

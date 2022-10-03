@@ -5,15 +5,30 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build:gh_io": "vue-cli-service build --mode github_io",
+    "lint": "vue-cli-service lint",
+    "start": "yarn serve"
   },
   "dependencies": {
+    "@cheprasov/qrcode": "^0.1.0",
+    "classnames": "^2.3.2",
     "core-js": "^3.8.3",
+    "deepmerge": "^4.2.2",
+    "element-plus": "^2.2.12",
+    "justified-layout": "^4.1.0",
+    "normalize.css": "^8.0.1",
+    "object-hash": "^3.0.0",
+    "query-string": "^7.1.1",
+    "throttle-debounce": "^5.0.0",
     "vue": "^3.2.13",
+    "vue-picture-cropper": "^0.5.1",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/justified-layout": "^4.1.0",
+    "@types/mockjs": "^1.0.6",
+    "@types/object-hash": "^2.2.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
