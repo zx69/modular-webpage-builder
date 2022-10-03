@@ -1,8 +1,6 @@
 import justifiedLayout from 'justified-layout';
 // import Mock from 'mockjs';
 import hash from 'object-hash';
-import mockImageList from '@/mock/image/list.json';
-import mockTemplateList from '@/mock/templateList.json';
 import store from '@/views/builder/editor/store';
 
 
@@ -31,7 +29,9 @@ export type LayoutedPhotoItem = ReturnType<typeof justifiedLayout>['boxes'][0] &
 
 // 获取用户图片库图片列表
 export const fetchPhotoLibraryList = async (): Promise<PhotoItem[]> => {
-  return (mockImageList as PhotoItem[]).map(item => ({ ...item, id: hash(Date.now()) }));
+  return import(`${process.env.BASE_URL}mock/image/list.json`).then(mockImageList => {
+    return (Array.from(mockImageList) as PhotoItem[]).map(item => ({ ...item, id: hash(Date.now()) }));
+  });
 };
 
 // 保存图片信息到图片库
@@ -106,7 +106,7 @@ export const fetchProductList = async (params: Obj) => {
     applicableSeason: ['春季', '夏季', '秋季', '冬季'][Math.round(Math.random() * 4)],
     category: ['衣服', '鞋子', '裤子', '配饰'][Math.round(Math.random() * 4)],
     // eslint-disable-next-line import/no-dynamic-require
-    imgUrl: require(`@/mock/product/cover/product-${i + 1}.png`),
+    imgUrl: require(`${process.env.BASE_URL}mock/product/cover/product-${i + 1}.png`),
     supplierLogo: require('@/assets/logo.png'),
     supplierName: 'Niubility Ltd',
   }));
@@ -116,7 +116,9 @@ export const fetchProductList = async (params: Obj) => {
 
 // 获取模板列表
 export const fetchTemplateList = (params: {keyword?: string}) => {
-  return {
-    data: mockTemplateList,
-  };
+  return import(`${process.env.BASE_URL}mock/templateList.json`).then(mockTemplateList => {
+    return {
+      data: mockTemplateList,
+    };
+  });
 };

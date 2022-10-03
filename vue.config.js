@@ -2,6 +2,7 @@ const { defineConfig } = require('@vue/cli-service');
 // const nodeSassJsonImporter = require('node-sass-json-importer');
 
 module.exports = defineConfig({
+  publicPath: process.env.PUBLIC_PATH ?? process.env.NODE_ENV === 'development' ? '/public' : '/',
   transpileDependencies: true,
   css: {
     loaderOptions: {

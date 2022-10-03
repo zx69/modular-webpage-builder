@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:gh_io": "vue-cli-service build --mode github_io",
     "lint": "vue-cli-service lint",
     "start": "yarn serve"
   },
