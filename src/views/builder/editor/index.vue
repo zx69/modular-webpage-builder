@@ -26,7 +26,7 @@
         </div>
       </template>
     </CollapsableSidebar>
-    <MainWorkArea class="flex-1" ref="mainWorkArea" :isExpansable="isModulesExpansable"></MainWorkArea>
+    <MainWorkArea class="flex-1" ref="mainWorkArea" ></MainWorkArea>
     <CollapsableSidebar v-if="rightSidebarTabsConfig" class="right-sidebar" position="right" :panelWidth="240">
       <template #control-bar>
         <div class="block-radio-group">

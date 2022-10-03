@@ -79,7 +79,6 @@ import {
 import justifiedLayout from 'justified-layout';
 import {
   fetchPhotoLibraryList,
-  // fetchVideoLibraryList,
   LayoutedPhotoItem,
   MixedPhotoItem,
 } from '@/api/builder';
@@ -91,8 +90,6 @@ export default defineComponent({
   name: 'webpage-builder_photo-library-panel',
   components: {
     PhotoUploader,
-    // VideoUploader,
-    // BaseVideo,
   },
   props: {
     title: {

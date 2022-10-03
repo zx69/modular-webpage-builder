@@ -87,4 +87,5 @@ export type ProductItem = {
   category: string,
   supplierLogo: string,
   supplierName: string,
+  imgUrl: string,
 };
