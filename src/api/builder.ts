@@ -29,27 +29,21 @@ export type LayoutedPhotoItem = ReturnType<typeof justifiedLayout>['boxes'][0] &
 
 // 获取用户图片库图片列表
 export const fetchPhotoLibraryList = async (): Promise<PhotoItem[]> => {
-  return import(`${process.env.BASE_URL}mock/image/list.json`).then(mockImageList => {
-    return (Array.from(mockImageList) as PhotoItem[]).map(item => ({ ...item, id: hash(Date.now()) }));
+  return fetch(`${process.env.BASE_URL}mock/image/list.json`).then(r => r.json()).then(j => {
+    return (Array.from(j) as PhotoItem[]).map(item => ({ ...item, id: hash(Date.now()) }));
   });
 };
 
 // 保存图片信息到图片库
 export const savePhotoToLibrary = async (photoData: PhotoItem) => {
-  // const res = await axios.post<{ id: string, coverPictureUrl: string, }>('/idealab-manage/pic/manage/add', { ...photoData, status: 1 });
+  // const res = await axios.post<{ id: string, coverPictureUrl: string, }>('', { ...photoData, status: 1 });
   // return res.data;
 };
 
 // 从图片库中删除图片
 export const removePhotoFromLibray = async (photoIds: string) => {
-  // const res = await axios.post<null>('/idealab-manage/pic/manage/delete', [photoIds]);
+  // const res = await axios.post<null>('', [photoIds]);
   // return res;
-};
-
-export const photoApi = {
-  fetch: fetchPhotoLibraryList,
-  add: savePhotoToLibrary,
-  remove: removePhotoFromLibray,
 };
 /* ============== end 图片管理 ============== */
 
@@ -63,29 +57,6 @@ export type WebpageItem = {
 };
 export type WebpageBaseInfo = { name: string, isOpen: 1 | 2, cover: string, version: string, content: Obj };
 
-// 新增材料册
-export const addMaterialBrochure = async (brochureData: Omit<WebpageItem, 'id'>) => {
-  // const res = await axios.post<null>('/idealab-manage/collection/temp/add', brochureData);
-  // return res.data;
-};
-
-// 编辑材料册属性
-export const editMaterialBrochureInfo = async (brochureInfo: Omit<WebpageItem, 'content'>) => {
-  // const res = await axios.post<null>('/idealab-manage/collection/temp/update', brochureInfo);
-  // return res;
-};
-
-// 保存材料册内容，并记录版本
-export const saveMaterialBrochureContent = async (brochureContent: Pick<WebpageItem, 'id' | 'content'>) => {
-  // const res = await axios.post<null>('/idealab-manage/collection/temp/content/update', brochureContent);
-  // return res.data;
-};
-
-// 获取材料册属性
-export const fetchMaterialBrochureInfo = async (collectionId: string) => {
-  // const res = await axios.get<WebpageBaseInfo>('/idealab-manage/collection/temp/detail', { params: { tempId: collectionId } });
-  // return res.data;
-};
 
 // 获取材料册内容JSON
 export const fetchMaterialBrochureContent = async (collectionId: string) => {
@@ -106,7 +77,8 @@ export const fetchProductList = async (params: Obj) => {
     applicableSeason: ['春季', '夏季', '秋季', '冬季'][Math.round(Math.random() * 4)],
     category: ['衣服', '鞋子', '裤子', '配饰'][Math.round(Math.random() * 4)],
     // eslint-disable-next-line import/no-dynamic-require
-    imgUrl: require(`${process.env.BASE_URL}mock/product/cover/product-${i + 1}.png`),
+    // imgUrl: require(`${process.env.BASE_URL}mock/product/cover/product-${i + 1}.png`),
+    imgUrl: '',
     supplierLogo: require('@/assets/logo.png'),
     supplierName: 'Niubility Ltd',
   }));
@@ -116,9 +88,10 @@ export const fetchProductList = async (params: Obj) => {
 
 // 获取模板列表
 export const fetchTemplateList = (params: {keyword?: string}) => {
-  return import(`${process.env.BASE_URL}mock/templateList.js`).then(mockTemplateList => {
+  return fetch(`${process.env.BASE_URL}mock/templateList.json`).then(r => r.json()).then(j => {
+    console.log(j);
     return {
-      data: mockTemplateList.default,
+      data: j,
     };
   });
 };

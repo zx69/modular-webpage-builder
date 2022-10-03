@@ -23,7 +23,7 @@ import {
   defineComponent, reactive, computed, ref, toRefs,
 } from 'vue';
 import Upload from '@/components/upload/index.vue';
-import { MixedPhotoItem, savePhotoToLibrary } from '@/api/builder';
+import { MixedPhotoItem } from '@/api/builder';
 
 export default defineComponent({
   name: 'webpage-builder_photo-uploader',
