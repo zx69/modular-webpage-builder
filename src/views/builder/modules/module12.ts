@@ -35,8 +35,8 @@ const module = () => ({
     desc: 'description text',
     titleTag: 'ASIDE TAG',
     materialsIds: Array.from({ length: 9 }).map(e => ''),
-    imgUrl1: 'https://gd-hbimg.huaban.com/85b335916ee9a97b55ff463cb0a0331cb74f09f356972-8okT2A_fw658',
-    imgUrl2: 'https://gd-hbimg.huaban.com/9eade61122ea1a4a26832ff1118601622ec379df27e72-b1FgQv_fw658',
+    imgUrl1: `${process.env.BASE_URL}mock/preset-image/85b335916ee9a97b55ff463cb0a0331cb74f09f356972-8okT2A_fw658.png`,
+    imgUrl2: `${process.env.BASE_URL}mock/preset-image/9eade61122ea1a4a26832ff1118601622ec379df27e72-b1FgQv_fw658.png`,
   },
   class: 'module-beside-gap',
   children: [

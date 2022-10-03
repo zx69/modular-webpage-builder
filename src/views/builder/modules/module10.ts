@@ -35,7 +35,7 @@ const module = () => ({
     desc: 'description text',
     titleTag: 'ASIDE TAG',
     materialsIds: Array.from({ length: 9 }).map(e => ''),
-    imgUrl1: 'https://gd-hbimg.huaban.com/fd14e8a677975411f376a8a06a03209778051ad312d137-mPnJ6p_fw658',
+    imgUrl1: `${process.env.BASE_URL}mock/preset-image/fd14e8a677975411f376a8a06a03209778051ad312d137-mPnJ6p_fw658.png`,
     imgUrl2: 'https://sdtc-frontend.oss-cn-shenzhen.aliyuncs.com/webapp/idealab/assets/material-brochure/material-brochure-sample-image-1.png',
   },
   class: 'module-beside-gap',

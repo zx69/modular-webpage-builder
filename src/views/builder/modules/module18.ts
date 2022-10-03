@@ -31,8 +31,8 @@ const module = () => ({
   aspectRadio: getPercentage(760 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    imgUrl: 'https://gd-hbimg.huaban.com/f74a99d4d1d83d2be74dad201d44c481d95bb93726e4fe-PoQuL5_fw658',
-    imgUrl2: 'https://gd-hbimg.huaban.com/e259c0707a4fdfc746c9cd0e1a8281be1ee7502742d63-oAka3l_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/f74a99d4d1d83d2be74dad201d44c481d95bb93726e4fe-PoQuL5_fw658.png`,
+    imgUrl2: `${process.env.BASE_URL}mock/preset-image/e259c0707a4fdfc746c9cd0e1a8281be1ee7502742d63-oAka3l_fw658.png`,
     desc1: '现代风格',
     desc2: '遇见悠闲的生活',
   },

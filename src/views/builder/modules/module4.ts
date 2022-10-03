@@ -128,7 +128,7 @@ const module = () => ({
     title: '主题1',
     desc: 'description text',
     titleTag: 'ASIDE TAG',
-    imgUrl: 'https://gd-hbimg.huaban.com/32a1357b1da66d1637653f69bfa46a82654e27b524f9a-dQrYqC_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/32a1357b1da66d1637653f69bfa46a82654e27b524f9a-dQrYqC_fw658.png`,
     materialsIds: Array.from({ length: 6 }).map(e => ''),
   },
   class: 'module-beside-gap',

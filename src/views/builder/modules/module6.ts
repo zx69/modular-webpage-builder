@@ -93,7 +93,7 @@ const module = () => ({
     desc: 'description text',
     titleTag: 'ASIDE TAG',
     materialsIds: Array.from({ length: 8 }).map(e => ''),
-    imgUrl: 'https://gd-hbimg.huaban.com/103172a6ef037234a61869cd74ed842f9c334d65187435-LowUX7_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/103172a6ef037234a61869cd74ed842f9c334d65187435-LowUX7_fw658.png`,
   },
   class: 'module-beside-gap',
   children: [

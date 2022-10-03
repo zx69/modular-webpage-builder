@@ -142,7 +142,7 @@ const module = () => ({
     title: '主题1',
     desc: 'description text',
     titleTag: 'ASIDE TAG',
-    imgUrl: 'https://gd-hbimg.huaban.com/a287954cdc6c3165cab1f01288302122e293b75410d196-8Phl2O_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/a287954cdc6c3165cab1f01288302122e293b75410d196-8Phl2O_fw658.png`,
     mainMaterialId: '',
     materialsIds: Array.from({ length: 6 }).map(e => ''),
   },

@@ -5,7 +5,7 @@ const module = () => ({
   aspectRadio: '44.26%',
   data: {
     // eslint-disable-next-line max-len
-    backgroundImage: 'https://gd-hbimg.huaban.com/d8df0fa3f51f0c955b3e6e0431be098ac23de4211a804-t7gAZ0_fw658',
+    backgroundImage: `${process.env.BASE_URL}mock/preset-image/d8df0fa3f51f0c955b3e6e0431be098ac23de4211a804-t7gAZ0_fw658.png`,
     title: '2022秋冬新时尚',
     desc: 'Fashion style for fall/winter 2022',
   },

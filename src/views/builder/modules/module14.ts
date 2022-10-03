@@ -7,8 +7,8 @@ const module = () => ({
   aspectRadio: '49.30%',
   data: {
     // eslint-disable-next-line max-len
-    backgroundImage: 'https://gd-hbimg.huaban.com/7a91a61830b4337e2c0c551004323db674855e1f7b612-hIii7P_fw658',
-    imgUrl: 'https://gd-hbimg.huaban.com/0692517a9772b34212a05c2efb213c6d73b491e8ad00a-YTgS6J_fw658',
+    backgroundImage: `${process.env.BASE_URL}mock/preset-image/7a91a61830b4337e2c0c551004323db674855e1f7b612-hIii7P_fw658.png`,
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/0692517a9772b34212a05c2efb213c6d73b491e8ad00a-YTgS6J_fw658.png`,
     title: 'FA',
     title2: 'SHION',
   },

@@ -31,7 +31,7 @@ const module = () => ({
   aspectRadio: getPercentage(800 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    imgUrl: 'https://gd-hbimg.huaban.com/5edee231a8a21aaefa8b60b14d125e0b0234a90c303c9-1VjnaL_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/5edee231a8a21aaefa8b60b14d125e0b0234a90c303c9-1VjnaL_fw658.png`,
     title: '简约',
     title2: '时尚',
     desc: 'FASHION',
@@ -50,7 +50,7 @@ const module = () => ({
         bottom: getPercentage(50 / 800),
         alignItems: 'stretch',
         // eslint-disable-next-line max-len
-        backgroundImage: 'url(https://gd-hbimg.huaban.com/e02471b697cfca846605a884cbdc81951235d3c5dec95-pqO6bJ_fw658)',
+        backgroundImage: `url(${process.env.BASE_URL}mock/preset-image/e02471b697cfca846605a884cbdc81951235d3c5dec95-pqO6bJ_fw658.png)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
       },

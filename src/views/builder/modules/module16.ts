@@ -8,7 +8,7 @@ const module = () => ({
   aspectRadio: getPercentage(700 / 1420),
   data: {
     // eslint-disable-next-line max-len
-    backgroundImage: 'https://gd-hbimg.huaban.com/8906cb4ad5a5d230fa3f32e4e5aaf8504142369bbb1f0-bIJymE_fw658',
+    backgroundImage: `${process.env.BASE_URL}mock/preset-image/8906cb4ad5a5d230fa3f32e4e5aaf8504142369bbb1f0-bIJymE_fw658.png`,
     title: '简约',
     title2: '舒适',
     desc1: '现代风格',

@@ -116,9 +116,9 @@ export const fetchProductList = async (params: Obj) => {
 
 // 获取模板列表
 export const fetchTemplateList = (params: {keyword?: string}) => {
-  return import(`${process.env.BASE_URL}mock/templateList.json`).then(mockTemplateList => {
+  return import(`${process.env.BASE_URL}mock/templateList.js`).then(mockTemplateList => {
     return {
-      data: mockTemplateList,
+      data: mockTemplateList.default,
     };
   });
 };

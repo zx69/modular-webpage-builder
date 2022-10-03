@@ -61,7 +61,7 @@ const module = () => ({
     title: '主题1',
     desc: 'description text',
     titleTag: 'ASIDE TAG',
-    imgUrl: 'https://gd-hbimg.huaban.com/bd9e3c8dbac90bf642791d6bda467828571be9f414ec1e-bMoss5_fw658',
+    imgUrl: `${process.env.BASE_URL}mock/preset-image/bd9e3c8dbac90bf642791d6bda467828571be9f414ec1e-bMoss5_fw658.png`,
     materialsIds: Array.from({ length: 6 }).map(e => ''),
   },
   operation: 'shape',
