@@ -18,8 +18,6 @@ module.exports = {
     GetArrayItem: 'readonly',
     AsyncReturnType: 'readonly',
     Obj: 'readonly',
-    TableParams: 'readonly',
-    TableData: 'readonly',
     valueof: 'readonly',
   },
   parserOptions: {
