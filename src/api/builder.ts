@@ -1,6 +1,5 @@
 import justifiedLayout from 'justified-layout';
 // import Mock from 'mockjs';
-import hash from 'object-hash';
 import store from '@/views/builder/editor/store';
 
 
@@ -30,7 +29,7 @@ export type LayoutedPhotoItem = ReturnType<typeof justifiedLayout>['boxes'][0] &
 // 获取用户图片库图片列表
 export const fetchPhotoLibraryList = async (): Promise<PhotoItem[]> => {
   return fetch(`${process.env.BASE_URL}mock/image/list.json`).then(r => r.json()).then(j => {
-    return (Array.from(j) as PhotoItem[]).map(item => ({ ...item, id: hash(Date.now()) }));
+    return (Array.from(j) as PhotoItem[]).map(item => ({ ...item, id: String(Date.now()) }));
   });
 };
 
