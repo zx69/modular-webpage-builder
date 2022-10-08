@@ -42,7 +42,6 @@ export default defineComponent({
         is: ImageCorpper,
         props: {
           // eslint-disable-next-line max-len
-          // imageUrl: 'https://cdn-dev-sit.idealabmat.com/binaryFile/b74c3da57564282bcc51e82c9bd5d59c.png?ch=2&x-oss-process=image/resize,w_777,h_777,m_fill/format,webp',
           imageUrl: currentImageUrl,
           cropperProps: {
             aspectRatio: _aspectRatio,

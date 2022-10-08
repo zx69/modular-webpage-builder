@@ -49,7 +49,7 @@ import ProductTileItem from '../panels/ProductTileItem.vue';
 import { relatedProductsList, removeRelatedProductIds } from '../../uses/use-related-products';
 
 // app端webview注入的全局变量
-declare const Idealab: { postMessage: (...arg: any) => void };
+// declare const AppMsger: { postMessage: (...arg: any) => void };
 
 export default defineComponent({
   name: 'webpage-builder_material-box',
