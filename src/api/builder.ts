@@ -77,8 +77,7 @@ export const fetchProductList = async (params: Obj) => {
     applicableSeason: ['春季', '夏季', '秋季', '冬季'][Math.round(Math.random() * 4)],
     category: ['衣服', '鞋子', '裤子', '配饰'][Math.round(Math.random() * 4)],
     // eslint-disable-next-line import/no-dynamic-require
-    // imgUrl: require(`${process.env.BASE_URL}mock/product/cover/product-${i + 1}.png`),
-    imgUrl: '',
+    imgUrl: `${process.env.BASE_URL}mock/product/cover/product-${i + 1}.png`,
     supplierLogo: require('@/assets/logo.png'),
     supplierName: 'Niubility Ltd',
   }));
@@ -88,8 +87,8 @@ export const fetchProductList = async (params: Obj) => {
 
 // 获取模板列表
 export const fetchTemplateList = (params: {keyword?: string}) => {
+  // mock
   return fetch(`${process.env.BASE_URL}mock/templateList.json`).then(r => r.json()).then(j => {
-    console.log(j);
     return {
       data: j,
     };
