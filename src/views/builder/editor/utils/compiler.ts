@@ -34,6 +34,7 @@ const mobileSchemaOverwrite = (nodeSchema: CommonCompProp, previewMode?: Preview
   return _nodeSchema;
 };
 
+// 类型保护
 function isModule(schema: CommonCompProp): schema is CommonCompProp<'module'> {
   return schema.type === 'module';
 }
@@ -44,9 +45,7 @@ function isBlock(schema: CommonCompProp): schema is CommonCompProp<'block'> {
   return schema.type === 'block';
 }
 
-/**
- * 解析字符串模板表达式
- */
+// 解析字符串模板表达式
 export const parseTplExpress = (data: Obj, express: string) => {
   if (!data || !express) {
     return '';
@@ -67,7 +66,7 @@ const parseStyleValue = (styleObj: Obj, data: Obj) => {
   return _style;
 };
 
-// 规范化nodeSchema策略集合
+// 规范化nodeSchema策略集合（策略模式）
 const normalizeStrategies = {
   module(nodeSchema: CommonCompProp) {
     return {
@@ -94,10 +93,7 @@ const normalizeStrategies = {
   },
 };
 
-
-/**
- * 合并attrs
- */
+// 合并attrs
 const mergeAttrs = (baseAttrs: Obj, appendAttrs: Obj) => {
   // console.log(baseAttrs, appendAttrs);
   Object.entries(appendAttrs).forEach(([key, val]) => {
@@ -122,10 +118,10 @@ const mergeAttrs = (baseAttrs: Obj, appendAttrs: Obj) => {
 let globalIdCount = 1; // 用于生成fid的计算器
 
 const comilpeSchema = (
-  nodeSchema: CommonCompProp<SchemaType>,
-  renderData?: Obj,
-  parentAttrs?: Obj | null,
-  config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' },
+  nodeSchema: CommonCompProp<SchemaType>, // schema
+  renderData?: Obj, // module的data
+  parentAttrs?: Obj | null, // 父节点传入子节点的属性
+  config: { mode: PreviewMode, status: RenderStatus } = { mode: 'pc', status: 'preview' }, // 配置选项
 ): VNode => {
   if (typeof nodeSchema !== 'object') {
     throw Error('render json schema must be a object!');
@@ -135,14 +131,16 @@ const comilpeSchema = (
   if (nodeSchema.sid) {
     globalIdCount = 1;
   }
-
+  // 根据platform合并样式
   nodeSchema = mobileSchemaOverwrite(nodeSchema, config.mode);
 
   // 没有找到规范策略时则设type为最基本类型block
   if (!Object.keys(normalizeStrategies).includes(nodeSchema.type)) {
     nodeSchema.type = 'block';
   }
+  // 规范化策略
   const normalizeStrategy = normalizeStrategies[nodeSchema.type];
+  // schema规范化
   const vnode = normalizeStrategy(nodeSchema, config.status);
 
   // 模块汇总的data
@@ -167,6 +165,7 @@ const comilpeSchema = (
     Object.assign(nodeSchema.style, nodeSchema.customStyle);
   }
 
+  // fid：可编辑元素都增加该id,用于识别当前选中元素
   let fid: string | undefined;
   const parentFid = nodeSchema.sid ?? parentAttrs?.parentFid;
   // let componentNode: ComponentOptionsMixin | undefined;
@@ -190,7 +189,6 @@ const comilpeSchema = (
     attrs.style = parseStyleValue(attrs.style, moduleData);
   }
 
-  // console.log(attrs);
   // 子元素为组件时
   if (isComponent(nodeSchema)) {
     if (typeof nodeSchema.component === 'function') {
