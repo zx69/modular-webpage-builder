@@ -4956,11 +4956,6 @@ object-assign@^4.0.1:
   resolved "https://registry.npmmirror.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
 
-object-hash@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmmirror.com/object-hash/-/object-hash-3.0.0.tgz#73f97f753e7baffc0e2cc9d6e079079744ac82e9"
-  integrity sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==
-
 object-inspect@^1.12.0, object-inspect@^1.9.0:
   version "1.12.2"
   resolved "https://registry.npmmirror.com/object-inspect/-/object-inspect-1.12.2.tgz#c0641f26394532f28ab8d796ab954e43c009a8ea"
@@ -6727,6 +6722,21 @@ webpack-bundle-analyzer@^4.4.0:
   version "4.5.0"
   resolved "https://registry.npmmirror.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.5.0.tgz#1b0eea2947e73528754a6f9af3e91b2b6e0f79d5"
   integrity sha512-GUMZlM3SKwS8Z+CKeIFx7CVoHn3dXFcUAjT/dcZQQmfSZGvitPfMob2ipjai7ovFFqPvTqkEZ/leL4O0YOdAYQ==
+  dependencies:
+    acorn "^8.0.4"
+    acorn-walk "^8.0.0"
+    chalk "^4.1.0"
+    commander "^7.2.0"
+    gzip-size "^6.0.0"
+    lodash "^4.17.20"
+    opener "^1.5.2"
+    sirv "^1.0.7"
+    ws "^7.3.1"
+
+webpack-bundle-analyzer@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.npmmirror.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.6.1.tgz#bee2ee05f4ba4ed430e4831a319126bb4ed9f5a6"
+  integrity sha512-oKz9Oz9j3rUciLNfpGFjOb49/jEpXNmWdVH8Ls//zNcnLlQdTGXQQMsBbb/gR7Zl8WNLxVCq+0Hqbx3zv6twBw==
   dependencies:
     acorn "^8.0.4"
     acorn-walk "^8.0.0"
