@@ -114,7 +114,7 @@ export default defineComponent({
   }
 }
 
-.brochure-previewer-dialog {
+.webpage-previewer-dialog {
   min-height: 700px;
   border-radius: 8px;
   overflow: visible;

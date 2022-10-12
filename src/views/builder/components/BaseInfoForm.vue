@@ -1,7 +1,7 @@
 <template>
   <div class="webpage-builder_settings-panel control-panel">
     <h3 class="sidebar-title" v-if="title">{{ title }}</h3>
-    <div class="brochure-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
+    <div class="webpage-base-info-form" :class="{ 'in-dialog': isInDialog }" v-loading="loading">
       <el-form
         class="form--narrow-label"
         label-position="top"
@@ -49,7 +49,7 @@ import { createRandomString } from '../editor/utils/common';
 import ImageUploader from './ImageUploader.vue';
 
 export default defineComponent({
-  name: 'brochure-base-info-form',
+  name: 'webpage-base-info-form',
   components: { ImageUploader },
   props: {
     title: {
@@ -91,8 +91,8 @@ export default defineComponent({
       //   if (valid) {
       try {
         state.loading = true;
-        const _brochureId = await submitSaveForm(baseInfo, 'add');
-        emit('confirm', { brochureId: _brochureId, formData: { ...state.formData } });
+        const _id = await submitSaveForm(baseInfo, 'add');
+        emit('confirm', { brochureId: _id, formData: { ...state.formData } });
       } finally {
         state.loading = false;
       }
@@ -116,7 +116,7 @@ export default defineComponent({
     margin-bottom: 16px;
   }
 }
-.brochure-base-info-form {
+.webpage-base-info-form {
   .el-radio {
     width: 100%;
     + .el-radio {

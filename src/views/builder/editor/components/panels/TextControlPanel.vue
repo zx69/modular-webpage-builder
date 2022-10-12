@@ -100,12 +100,10 @@ import store, { activeElementSchema } from '../../store';
 import {
   presetFontStyleMenuList, fontTypeBtnsList, fontFamilyList, fontSizeList, textAlignBtnsList,
 } from '../../const/textStyleConfig';
-// import BrochureColorPicker from '../BrochureColorPicker.vue';
 
 export default defineComponent({
   name: 'webpage-builder_text-control-panel',
   components: {
-    // BrochureColorPicker,
   },
   props: {
     title: {

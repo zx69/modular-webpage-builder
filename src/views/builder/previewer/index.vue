@@ -30,7 +30,7 @@ import { generateQRCode } from '@/utils/qrcode';
 import {
   defineComponent, reactive, computed, ref, toRefs, toRef, onMounted, watch, onUnmounted, toRaw, inject, PropType,
 } from 'vue';
-import { fetchMaterialBrochureContent } from '@/api/builder';
+import { fetchWebpageContent } from '@/api/builder';
 import { CompModule, PreviewMode } from '../editor/typings';
 import store from '../editor/store';
 import useBaseInfo from '../editor/uses/use-base-info';
@@ -118,7 +118,7 @@ export default defineComponent({
           // 每次打开预览时再给currentSchema赋值触发渲染.
           currentSchema.value = _renderSchemaProp;
         } else if (props.renderSchemaId) {
-          currentSchema.value = await fetchMaterialBrochureContent(props.renderSchemaId);
+          currentSchema.value = await fetchWebpageContent(props.renderSchemaId);
         }
         currentName.value = props.name || baseInfo?.name || '';
         const _qrcodeUrl = `${window.location.origin}${props.qrcodeUrl}`;
@@ -254,7 +254,7 @@ export default defineComponent({
   border: none;
   flex: 1;
 }
-.brochure-previewer-dialog {
+.webpage-previewer-dialog {
   overflow-x: hidden;
   overflow-y: auto;
   .webpage-builder_previewer {

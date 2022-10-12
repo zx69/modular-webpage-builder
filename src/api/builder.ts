@@ -58,7 +58,7 @@ export type WebpageBaseInfo = { name: string, isOpen: 1 | 2, cover: string, vers
 
 
 // 获取材料册内容JSON
-export const fetchMaterialBrochureContent = async (collectionId: string) => {
+export const fetchWebpageContent = async (collectionId: string) => {
   // mock
   return store.renderSchemaList;
 };
