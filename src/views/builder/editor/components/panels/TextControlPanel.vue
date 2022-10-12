@@ -50,7 +50,7 @@
       <el-color-picker
         v-model="currentColor"
         color-format="rgb"
-        popper-class="webpage-builder_color-picker"
+        popper-class="webpage-builder_color-picker-popper"
         @active-change="(val) => setCustomStyle({ color: val })"
         @change="(val) => setCustomStyle({ color: val })"
       />
@@ -198,6 +198,44 @@ export default defineComponent({
       color: $color-primary;
       border: 1px solid $color-primary;
       background-color: #f5ffff;
+    }
+  }
+
+  .el-color-picker{
+    width: 100%;
+    .el-color-picker__trigger {
+      padding: 0;
+      width: 100%;
+      height: 30px;
+      overflow: hidden;
+    }
+    .el-color-picker__color {
+      border: 0;
+    }
+    .el-color-picker__icon {
+      position: absolute;
+      right: 0px;
+      width: 30px;
+      height: 100%;
+      background: #fff;
+      color: #c0c4cc !important;
+      line-height: 26px;
+    }
+  }
+
+  .webpage-builder_color-picker-popper {
+    .el-color-dropdown__btns {
+      .el-color-dropdown__link-btn{
+        display: none;
+      }
+    }
+    .color-picker-trigger {
+      width: unset;
+      .arrow {
+        display: block;
+        width: 28px;
+        text-align: center;
+      }
     }
   }
 }
