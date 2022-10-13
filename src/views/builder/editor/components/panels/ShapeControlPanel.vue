@@ -16,7 +16,7 @@
       ></BrochureColorPicker> -->
       <el-color-picker
         :disabled="!isColorCheckable"
-        v-model="currentColor"
+        v-model="shapeStyle.backgroundColor"
         color-format="rgb"
         popper-class="webpage-builder_color-picker-popper"
         @active-change="(val) => isColorChecked && setCustomStyle({ backgroundColor: val })"
