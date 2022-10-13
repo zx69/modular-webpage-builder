@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "@cheprasov/qrcode": "^0.1.0",
+    "@codemirror/lang-javascript": "^6.1.0",
+    "@codemirror/lang-json": "^6.0.0",
+    "@codemirror/theme-one-dark": "^6.1.0",
     "classnames": "^2.3.2",
+    "codemirror": "^6.0.1",
     "core-js": "^3.8.3",
     "deepmerge": "^4.2.2",
     "element-plus": "^2.2.12",
@@ -20,6 +24,7 @@
     "query-string": "^7.1.1",
     "throttle-debounce": "^5.0.0",
     "vue": "^3.2.13",
+    "vue-codemirror": "^6.1.1",
     "vue-picture-cropper": "^0.5.1",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
