@@ -116,5 +116,6 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     'vuejs-accessibility/click-events-have-key-events': 'off',
     'vuejs-accessibility/mouse-events-have-key-events': 'off',
+    'vuejs-accessibility/form-control-has-label': 'off',
   },
 };

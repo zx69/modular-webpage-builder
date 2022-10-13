@@ -11,12 +11,12 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '/builder',
         name: 'builder',
-        component: Builder,
+        component: () => import('@/views/builder/index.vue'),
       },
       {
         path: '/moduleEditor',
         name: 'moduleEditor',
-        component: ModuleEditor,
+        component: () => import('@/views/moduleEditor/index.vue'),
       },
     ],
   },

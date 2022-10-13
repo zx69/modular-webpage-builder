@@ -1,0 +1,154 @@
+{
+  "type": "module",
+  "index": 7,
+  "aspectRadio": "65.99%",
+  "data": {
+    "title": "主题1",
+    "desc": "description text",
+    "titleTag": "ASIDE TAG",
+    "materialsIds": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "class": "module-beside-gap",
+  "children": [
+    {
+      "type": "block",
+      "children": [
+        {
+          "type": "block",
+          "style": {
+            "display": "flex",
+            "justifyContent": "space-between",
+            "alignItems": "center"
+          },
+          "children": [
+            {
+              "type": "component",
+              "component": "InputableText",
+              "style": {
+                "fontSize": "36px",
+                "fontWeight": "bold",
+                "flex": "1 1 auto"
+              },
+              "mobile": {
+                "props": {
+                  "valueKey": "title",
+                  "mobileSizeRadio": 0.5
+                }
+              },
+              "props": {
+                "valueKey": "title"
+              }
+            },
+            {
+              "type": "component",
+              "component": "InputableText",
+              "style": {
+                "fontSize": "28px",
+                "lineHeight": "48px",
+                "padding": "0 20px",
+                "color": "#ffffff",
+                "backgroundColor": "#000000",
+                "flex": "0 0 auto",
+                "marginLeft": "20px"
+              },
+              "mobile": {
+                "style": {
+                  "fontSize": "12px",
+                  "lineHeight": "24px",
+                  "padding": "0 16px",
+                  "color": "#ffffff",
+                  "backgroundColor": "#000000",
+                  "flex": "0 0 auto",
+                  "marginLeft": "20px"
+                }
+              },
+              "props": {
+                "valueKey": "titleTag"
+              }
+            }
+          ]
+        },
+        {
+          "type": "component",
+          "component": "InputableText",
+          "style": {
+            "fontSize": "20px",
+            "color": "#666666",
+            "marginTop": "8px"
+          },
+          "mobile": {
+            "style": {
+              "fontSize": "20px",
+              "color": "#666666"
+            },
+            "props": {
+              "valueKey": "desc",
+              "mobileSizeRadio": 0.6
+            }
+          },
+          "props": {
+            "valueKey": "desc"
+          }
+        }
+      ]
+    },
+    {
+      "type": "block",
+      "children": [
+        {
+          "type": "block",
+          "style": {
+            "display": "grid",
+            "gap": "30px 20px",
+            "gridTemplateColumns": "repeat(5, calc((100% - 60px)/4))",
+            "flex": "1"
+          },
+          "mobile": {
+            "style": {
+              "display": "grid",
+              "gap": "12px 12px",
+              "gridTemplateColumns": "repeat(2, calc((100% - 12px)/2))"
+            }
+          },
+          "children": [
+            {
+              "type": "component",
+              "component": "ProductBox",
+              "props": {
+                "valueKey": "materialsIds[0]"
+              }
+            },
+            {
+              "type": "component",
+              "component": "ProductBox",
+              "props": {
+                "valueKey": "materialsIds[1]"
+              }
+            },
+            {
+              "type": "component",
+              "component": "ProductBox",
+              "props": {
+                "valueKey": "materialsIds[2]"
+              }
+            },
+            {
+              "type": "component",
+              "component": "ProductBox",
+              "props": {
+                "valueKey": "materialsIds[3]"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
