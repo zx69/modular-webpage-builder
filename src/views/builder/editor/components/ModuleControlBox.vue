@@ -10,6 +10,7 @@
       <slot></slot>
     </div>
     <ModuleControlBar :moduleSchema="moduleSchema" :index="index"></ModuleControlBar>
+    <div class="draggable-handle-area"></div>
   </div>
 </template>
 
@@ -58,6 +59,14 @@ export default defineComponent({
   padding: 20px;
   position: relative;
   @include webpage-builder-module-section;
+  .draggable-handle-area {
+    width: 20px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    cursor: move;
+  }
   .module-control-box-inner {
     transform-origin: left top;
   }

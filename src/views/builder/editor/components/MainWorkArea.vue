@@ -13,26 +13,48 @@
       @mouseout="handleMouseOut"
       @click.stop="handleClick"
     >
-      <ModuleControlBox
-        v-for="(schema, i) in renderSchemaList"
-        :key="schema.sid"
-        :index="i"
-        :moduleSchema="schema"
-        :realWidth="currentPreviewAreaWidth"
-        :scale="mainContainerScale"
-        :style="{
-          height: `${(mainContainerWidth * parseFloat(schema.aspectRadio)) / 100 + 40}px`,
-        }"
+      <Draggable
+        class="modules-list"
+        handle=".draggable-handle-area"
+        :class="{ disabled: isDropReceiverHovering }"
+        v-model="renderSchemaList"
+        group="modules"
+        item-key="sid"
+        :component-data="{ tag: 'div', name: 'modules-list', type: 'transtion-group' }"
+        @change="handleDraggableItemChange"
       >
-        <Renderer :schema="schema" :data="schema.data" status="edit"></Renderer>
-      </ModuleControlBox>
-      <DropReceiver transferDataType="module-schema-id" @transferData="copyDropSchema" v-if="isExpansable">
+        <template #item="{ element, index }">
+          <ModuleControlBox
+            :index="index"
+            :moduleSchema="element"
+            :realWidth="currentPreviewAreaWidth"
+            :scale="mainContainerScale"
+            :style="{
+              height: `${(mainContainerWidth * parseFloat(element.aspectRadio)) / 100 + 40}px`,
+            }"
+          >
+            <Renderer :schema="element" :data="element.data" status="edit"></Renderer>
+          </ModuleControlBox>
+        </template>
+      </Draggable>
+      <DropReceiver
+        ref="dropReceiverBlock"
+        class="sticky-bottom-block"
+        transferDataType="module-schema-id"
+        @transferData="copyDropSchema"
+        v-if="isExpansable"
+      >
         <div class="module-receive-box flex-center">
           <i class="iconfont i-jiahao"></i>
           &nbsp;&nbsp;拖拽模块到这里
         </div>
       </DropReceiver>
-      <div id="hoverFrame" class="hover-frame" :style="unitifyClientRect(hoverFrameClientRect) ?? {}" v-show="hoverFrameClientRect"></div>
+      <div
+        id="hoverFrame"
+        class="hover-frame"
+        :style="unitifyClientRect(hoverFrameClientRect) ?? {}"
+        v-show="hoverFrameClientRect"
+      ></div>
       <ActiveFrame />
     </main>
   </div>
@@ -45,6 +67,7 @@ import {
   defineComponent, reactive, computed, ref, toRefs, h, onMounted, nextTick, toRef,
 } from 'vue';
 import { getPx } from '@/utils/style';
+import Draggable from 'vuedraggable';
 import {
   CONTENT_MAX_WIDTH,
   CONTENT_MIN_WIDTH,
@@ -54,7 +77,7 @@ import store, {
   modules, setActiveElementFid, setActiveFrameClientRect, setMainContainerDom,
 } from '../store';
 // import modules from '../modules';
-import { FrameClientRect } from '../typings';
+import { FrameClientRect, vueSortableEvent } from '../typings';
 import { unitifyClientRect } from '../utils/common';
 import Renderer from './Renderer';
 import DropReceiver from './DropReceiver.vue';
@@ -65,6 +88,7 @@ import ActiveFrame from './ActiveFrame.vue';
 export default defineComponent({
   name: 'webpage-builder_main-work-area',
   components: {
+    Draggable,
     Renderer,
     DropReceiver,
     ModuleControlBox,
@@ -79,6 +103,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const mainWorkArea = ref();
     const mainContainer = ref();
+    const dropReceiverBlock = ref();
+
     const state = reactive({
       mainContainerWidth: 0,
       currentPreviewAreaWidth: 1420, // 当前预览时的有效区域宽度
@@ -90,15 +116,23 @@ export default defineComponent({
       // activeFrameClientRect: null as FrameClientRect | null,
     });
 
+    // 投放块是否hovering中. 此时可能draggable的move已经激活, 再drop会重复添加(投放块和draggable同时添加), 所以此时要禁用draggalbe
+    const isDropReceiverHovering = computed(() => {
+      return dropReceiverBlock.value?.isDraghoverring || false;
+    });
     const copyDropSchema = (schemaMid: string) => {
       const schema = modules.value.find(module => module.mid === schemaMid);
       if (schema) {
-        // const { data } = schema;
-        // schema.data = JSON.parse(JSON.stringify(data));
-        // 同一材料册可能有多个相同模块,各模块的data/style各不相同, 所以应深拷贝一份;
+        // 同一页面可能有多个相同模块,各模块的data/style各不相同, 所以应深拷贝一份;
         const _copiedSchema = JSON.parse(JSON.stringify(schema));
         _copiedSchema.sid = `section${store.sectionIdCount++}`;
         store.renderSchemaList.push(_copiedSchema);
+      }
+    };
+
+    const handleDraggableItemChange = (vgEvent: vueSortableEvent) => {
+      if (vgEvent.added) {
+        vgEvent.added.element.sid = `section${store.sectionIdCount++}`;
       }
     };
 
@@ -183,6 +217,9 @@ export default defineComponent({
       removeWorkAreaActiveStatus,
       unitifyClientRect,
       mainContainerScale: computed(() => store.editorContainerScale),
+      handleDraggableItemChange,
+      dropReceiverBlock,
+      isDropReceiverHovering,
     };
   },
 });
@@ -227,15 +264,49 @@ export default defineComponent({
 </style>
 <style lang="scss">
 .webpage-builder_main-work-area {
-  .drop-receiver {
+  .sticky-bottom-block {
+    position: sticky;
+    bottom: 20px;
+    z-index: 99;
+    user-select: none;
+    // cursor: pointer;
     .icon {
       margin-right: 4px;
       font-size: 16px;
     }
-
     &.hovering {
       .module-receive-box {
         background: #eeeeee;
+      }
+    }
+  }
+    // 左侧拖动到中间画布的效果(sortable-ghost为vue.draggable类)
+  .sortable-ghost {
+    &.webpage-builder_module-control-box,
+    &.module-thumbnail-wrapper {
+      padding: 0;
+      background: $color-primary;
+      padding-bottom: 0 !important;
+      height: 2px !important;
+      // overflow: hidden !important;
+      margin: 20px 0;
+      position: relative;
+
+      &:before {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 2px;
+        position: absolute;
+        left: -4px;
+        top: -2px;
+        border-radius: 50%;
+        border: 2px solid $color-primary;
+        background: #ffffff;
+      }
+      .module-control-box-inner,
+      .module-thumbnail {
+        display: none;
       }
     }
   }
