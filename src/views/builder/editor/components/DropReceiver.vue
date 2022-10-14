@@ -38,11 +38,14 @@ export default defineComponent({
       },
       drop: (ev: DragEvent) => {
         ev.preventDefault();
-        state.isDraghoverring = false;
+        // state.isDraghoverring = false;
         state.dropTransferData = ev.dataTransfer?.getData(props.transferDataType) ?? '';
         if (state.dropTransferData) {
           emit('transferData', state.dropTransferData);
         }
+        setTimeout(() => {
+          state.isDraghoverring = false;
+        }, 0);
       },
     };
     return {

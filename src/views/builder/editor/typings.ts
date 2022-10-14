@@ -86,3 +86,11 @@ export type ProductItem = {
   supplierName: string,
   imgUrl: string,
 };
+
+export type vueSortableEvent = {
+  [evType: string]: {
+    element: any,
+    newIndex: number,
+    oldIndex: number,
+  },
+};
