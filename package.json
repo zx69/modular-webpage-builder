@@ -27,12 +27,14 @@
     "vue-codemirror": "^6.1.1",
     "vue-picture-cropper": "^0.5.1",
     "vue-router": "^4.0.3",
+    "vuedraggable": "^4.1.0",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@types/justified-layout": "^4.1.0",
     "@types/mockjs": "^1.0.6",
     "@types/object-hash": "^2.2.1",
+    "@types/sortablejs": "1.13.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vue/cli-plugin-babel": "~5.0.0",
