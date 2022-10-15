@@ -107,6 +107,10 @@ export default defineComponent({
     .cm-editor {
       width: 50%;
       height: 100%;
+      .cm-content{
+        font-family: 'Consolas' !important;
+        font-size: 16px;
+      }
     }
   }
   .platform-radio {
