@@ -1,6 +1,10 @@
-# modular-webpage-builder
+<h1 align="center">modular-webpage-builder</h1>
 
 [![vue](https://img.shields.io/badge/vue-3.2.13-brightgreen.svg)](https://github.com/vuejs/core) [![typescript](https://img.shields.io/badge/typescript-4.5.5-blue.svg)](https://github.com/microsoft/TypeScript) [![element-plus](https://img.shields.io/badge/element--plus-2.2.12-yellow.svg)](https://github.com/element-plus/element-plus)
+
+
+![homepage](https://github.com/zx69/front-end-articles/blob/main/modular-webpage-builder/images/builder-main-preview.png)
+
 
 `modular-webpage-builder`是一个模块化+低代码的页面生成器,基于`vue`+`typescript`+`element-plus`实现。
 
@@ -9,9 +13,12 @@
     - 本项目初始开发时，vue3-setup语法糖还没出来，所以本项目没有采用，只用了基础的`composition-api`。
 
     - 其中`element-plus`使用的不多，根据自身需要可自行替换为其他UI框架。
+    
+    - 因为时间有限，element-plus为全量引入，没做按需加载，打包后vendors体积稍大(chunk-vendors大约1MB，其中element-plus占了2/3)。大家可自行处理。
 
 - 演示Demo为Github Pages页面，数据是临时自己mock的。
 
+- 在线预览速度可能比较慢，建议梯子或者下载到本地启动。有时间我去搞个gitee版本
 
 ## Documentation 文档
 系列目录
@@ -22,11 +29,7 @@
 - 在线预览：[demo](https://zx69.github.io/modular-webpage-builder/index.html)
 - 在线模块生成器（演示用）：[module-editor](https://zx69.github.io/modular-webpage-builder/#/moduleEditor)
 
-## Screenshots 截图
-
-![homepage](https://github.com/zx69/front-end-articles/blob/main/modular-webpage-builder/images/builder-main-preview.png)
-
-## Display Gif 演示
+## Display Screenshots 演示
 ![display](https://github.com/zx69/front-end-articles/blob/main/modular-webpage-builder/images/display-video-2.gif)
 
 ## Project setup 启动项目
