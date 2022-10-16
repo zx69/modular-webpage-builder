@@ -34,6 +34,7 @@ export const headerSection = (withBacground = true) => ({
             fontSize: '36px',
             fontWeight: 'bold',
             flex: '1 1 auto',
+            overflow: 'hidden',
           },
           mobile: {
             props: {
