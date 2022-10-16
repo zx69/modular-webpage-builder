@@ -54,9 +54,18 @@ export default defineComponent({
       cmView.value = view;
       console.log(cmView);
     };
+
     const currentSchema = computed(() => {
-      return JSON.parse(code.value);
+      const oldSchema = code.value;
+      let schema;
+      try {
+        schema = JSON.parse(code.value);
+      } catch (e) {
+        schema = { children: 'json parse error!' };
+      }
+      return schema;
     });
+
     const currentPreviewMode = ref<PreviewMode>('pc');
 
     // const getCodemirrorStates = () => {
